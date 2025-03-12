@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.Header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Header-h1{
+  font-size: 44px;
+  color: var(--color-text);
+}
+.Header-nav,.Header-subNav{
+  padding: 10px;
+  margin: 40px 0;
+}
+
+.Nav-link{
+  display: inline-block;
+  margin: 0 20px;
+  color: var(--color-bg);
+  text-decoration: none;
+  font-size: 24px;
+  background-color: var(--color-text);
+  padding: 15px;
+  border-radius: 20px;
+  transition: box-shadow 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.Nav-link:hover{
+  box-shadow: var(--box-shadow);
+  transform: translateY(10px);
+}
+.active{
+  scale: 1.3;
+}

@@ -1,0 +1,19 @@
+.Menu{
+    display: flex;
+    justify-content: space-around;
+}
+.GaleriaMenu{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.GaleriaMenu-img{
+    width: 300px;
+    height: auto;
+    margin: 20px;
+}
+.CheckOut{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}

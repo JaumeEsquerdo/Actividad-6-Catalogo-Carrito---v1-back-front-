@@ -1,0 +1,31 @@
+
+.Home{
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+background-color: var(--color-bg2);
+}
+
+.Home-h1{
+  font-size: 76px;
+  color: antiquewhite;
+  
+  
+}
+
+.Home-link{
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  padding: 1.225rem;
+  border-radius: 20px;
+  transition: transform 1s ease-in-out, box-shadow 1s ease-in-out;
+}
+
+.Home-link:hover{
+transform: translateY(-20px);
+box-shadow: var(--box-shadow);
+}
