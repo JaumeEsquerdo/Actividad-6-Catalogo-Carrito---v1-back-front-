@@ -1,0 +1,7 @@
+PORT = "3000"
+DOMAIN = "http://localhost"
+
+DB_USER= "jaumeesquerdo"
+DB_PASS = "I6SlwoOlJS3nxKSt"
+DB_CLUSTER = "cei-valencia-mongodb-pr.qlgcw.mongodb.net"
+DATABASE = "menu"

@@ -1,0 +1,15 @@
+@dominio = http://localhost:3000
+@uid=67d2134192e8a897b6d1f3ed
+
+
+### update usuario
+PUT {{dominio}}/api/v1/usuarios
+Content-Type: application/json
+
+{
+    "nombre": "Jaume",
+    "email": "jaume@gmail.es"
+}
+
+### get usuario
+GET {{dominio}}/api/v1/usuarios/{{uid}}
