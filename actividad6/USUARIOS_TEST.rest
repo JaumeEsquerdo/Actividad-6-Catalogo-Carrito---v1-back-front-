@@ -13,3 +13,15 @@ Content-Type: application/json
 
 ### get usuario
 GET {{dominio}}/api/v1/usuarios/{{uid}}
+
+### post de producto
+POST {{dominio}}/api/v1/productos
+Content-Type: application/json
+
+{
+    "name": "nigiri atun",
+    "precio": 23,
+    "img": "hsadasd.jpg"
+}
+### get producto
+GET {{dominio}}/api/v1/productos/{{uid}}

@@ -12,6 +12,8 @@ const options = {
 const productoSchema = new mongoose.Schema({
     name: String,
     precio: Number,
+    img: String,
+    tipo: String,
     compras: [{
         type: mongoose.Schema.Types.ObjectId, ref:'Compra'
     }]
