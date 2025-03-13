@@ -1,50 +1,82 @@
 import '@/css/menu.css'
 import { useState, useEffect } from 'react';
 const Menu = () => {
-    const [product, setProduct] = useState([])
-    const [quantity, setQuantity] = useState(null)
-    const precio = 0
+
     const [user, setUser] = useState(null);
     const userId = "67d2134192e8a897b6d1f3ed"
+    const [cart, setCart] = useState([]) //carrito
+    const [products, setProducts] = useState([]) //productos
 
-    const handlePrevent = ()=>{
+    const handlePrevent = () => {
         e.handlePrevent();
     }
 
-    useEffect(()=>{
-        const fetchUser = async ()=>{
-            try{
-                const response = await fetch(`http://localhost:3000/api/v1/usuarios/
-                    ${userId}`)
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await fetch(`http://localhost:3000/api/v1/usuarios/${userId}`)
 
-                    const data = await response.json()
+                const userData = await response.json()
+                console.log(userData)
+                setUser(userData)
 
-                    setUser(data)
-
-            }catch(e){
+            } catch (e) {
                 console.error('error en el try', e)
             }
         }
         fetchUser()
-    }, [])
+    }, [userId])
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/v1/productos')
+                const data = await response.json()
+
+                setProducts(data)
+            } catch (e) {
+                console.error(`error al obtener productos`, e)
+            }
+        }
+        fetchProducts();
+    }, []);
+
+
+    const addToCart = (product) => {
+        setCart((prevCart) => {
+            const existingProduct = prevCart.find((item) => item._id === product._id
+            )
+            if (existingProduct) {
+                return prevCart.map((item) => item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item)
+            } else {
+                return [...prevCart, { ...product, quantity: 1 }]
+            }
+        })
+    }
+
     return (
         <main className="Menu">
+            {user ? <h2>Elige lo que más te apetezca {user.name}</h2> : <h2>Esperando cliente...</h2>}
 
-            <GaleriaMenu />
+            <div className='Order'>
+                <GaleriaMenu products={products} addToCart={addToCart} />
 
-            <form onClick={handlePrevent} className='CheckOut'>
-                <label >
-                <input type="text" value={product}/>
-                </label>
-                <label >
-                <input type="number" value={quantity}/>
-                </label>
-                <label >
-                <input type="number" value={precio}/>
-                </label>
-                <button className='CheckOut-btn'>Pedir</button>
-            </form>
+                <div>
+                    <h3>Tu pedido:</h3>
+                    {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
+                        :
+                        <ul>
+                            {cart.map((item) => (
+                                <li key={item._id}>
+                                    {item.name} - {item.quantity} x {item.price}€ = {item.quantity * item.price}
+                                </li>
+                            ))}
+                        </ul>
+                    }
 
+                </div>
+
+            </div>
 
         </main>
     );
@@ -52,16 +84,16 @@ const Menu = () => {
 
 export default Menu;
 
-export const GaleriaMenu = () => {
+export const GaleriaMenu = ({ products, addToCart }) => {
     return (<div className="GaleriaMenu">
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-        <img className='GaleriaMenu-img' src="/img/imagen-no-encontrada.jpg" alt="" />
-
+        {products.lenght === 0 ? (<p>Cargando productos...</p>) : (
+            products.map((product) => (
+                <div key={product_id} className='GaleriaMenu-item' onClick={() => addToCart(product)}>
+                    <img src={product.img || "/img/imagen-no-encontrada.jpg"} alt={product.name} />
+                    <p>{product.name} - {product.price}€</p>
+                </div>
+            ))
+        )}
 
     </div>);
 }

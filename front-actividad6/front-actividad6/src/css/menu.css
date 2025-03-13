@@ -1,6 +1,8 @@
 .Menu{
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 .GaleriaMenu{
     display: grid;
@@ -16,4 +18,8 @@
     display: flex;
     flex-direction: column;
     width: 600px;
+}
+.Order{
+    display: flex;
+    flex-direction: column;
 }
