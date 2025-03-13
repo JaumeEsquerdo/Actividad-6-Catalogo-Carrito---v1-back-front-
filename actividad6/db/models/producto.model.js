@@ -9,13 +9,15 @@ const options = {
     }
 }
 
+// required: true es que el campo owner es obligatorio
 const productoSchema = new mongoose.Schema({
     name: String,
     precio: Number,
     img: String,
     tipo: String,
+    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", required: true },
     compras: [{
-        type: mongoose.Schema.Types.ObjectId, ref:'Compra'
+        type: mongoose.Schema.Types.ObjectId, ref: 'Compra'
     }]
     // todas las compras que tiene este producto
 }, options)

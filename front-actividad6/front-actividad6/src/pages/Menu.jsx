@@ -7,7 +7,8 @@ const Menu = () => {
     const userId = "67d2134192e8a897b6d1f3ed"
     const [cart, setCart] = useState([]) //carrito
     const [products, setProducts] = useState([]) //productos
-    const [filter, setFilter] = useState("todos") //filtro
+    const [filters, setFilters] = useState("todos") //filtro
+    const [purchased, setPurchased] = useState([]) // lista de compra definitiva?
 
     // const filters = [
     //     { name: "Todos", value: "todos" },
@@ -38,9 +39,11 @@ const Menu = () => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/v1/productos')
-                const data = await response.json()
-
-                setProducts(data)
+                const responseAPI = await response.json()
+                //cuidado! tienes que guardar el contenido de dentro del array no lo de fuera! si no no puedes hacer nada con eso despues
+                console.log('CONSOLE RESPONSEAPI.DATA',responseAPI.data)
+                setProducts(responseAPI.data)
+                console.log('CONSOLE RESPONSEAPI.DATA',responseAPI.data)
             } catch (e) {
                 console.error(`error al obtener productos`, e)
             }
@@ -55,6 +58,7 @@ const Menu = () => {
             )
             if (existingProduct) {
                 return prevCart.map((item) => item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item)
+
             } else {
                 return [...prevCart, { ...product, quantity: 1 }]
             }
@@ -62,7 +66,12 @@ const Menu = () => {
         console.log('Console log de cart!', cart)
     };
 
-    const filterProductos = products.filter((product) => filter === "todos" ? true : product.tipo === filter);
+    const filterProductos = products.filter((product) => {
+        console.log('Console de product', product)
+        return filters === "todos" ? true : product.tipo === filters
+    });
+
+
 
 
     return (
@@ -71,26 +80,26 @@ const Menu = () => {
             {/* PENDIENTE FILTROS */}
             <nav className="Menu-filters">
                 <button
-                    className={filter === "todos" ? "active" : ""}
-                    onClick={() => setFilter("todos")}
+                    className={filters === "todos" ? "active" : ""}
+                    onClick={() => setFilters("todos")}
                 >
                     Todos
                 </button>
                 <button
-                    className={filter === "sushi" ? "active" : ""}
-                    onClick={() => setFilter("sushi")}
+                    className={filters === "sushi" ? "active" : ""}
+                    onClick={() => setFilters("sushi")}
                 >
                     Sushi
                 </button>
                 <button
-                    className={filter === "nigiri" ? "active" : ""}
-                    onClick={() => setFilter("nigiri")}
+                    className={filters === "nigiri" ? "active" : ""}
+                    onClick={() => setFilters("nigiri")}
                 >
                     Nigiri
                 </button>
                 <button
-                    className={filter === "otros" ? "active" : ""}
-                    onClick={() => setFilter("otros")}
+                    className={filters === "otros" ? "active" : ""}
+                    onClick={() => setFilters("otros")}
                 >
                     Otros platos
                 </button>
@@ -106,9 +115,10 @@ const Menu = () => {
                     {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
                         :
                         <ul>
+                            {console.log('console de cart',cart)}
                             {cart.map((item) => (
                                 <li key={item._id}>
-                                    {item.name} - {item.quantity} x {item.precio}€ = {item.quantity * item.price}
+                                    {item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}
                                 </li>
                             ))}
                         </ul>

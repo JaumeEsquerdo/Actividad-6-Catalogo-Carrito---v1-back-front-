@@ -19,9 +19,14 @@ POST {{dominio}}/api/v1/productos
 Content-Type: application/json
 
 {
-    "name": "nigiri atun",
-    "precio": 23,
-    "img": "hsadasd.jpg"
+    "name": "roll de atun",
+    "precio": 8,
+    "img": "atun.jpg",
+    "tipo": "roll"
 }
+
 ### get producto
 GET {{dominio}}/api/v1/productos/{{uid}}
+
+### get productos
+GET {{dominio}}/api/v1/productos

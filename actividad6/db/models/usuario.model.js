@@ -12,6 +12,7 @@ const options = {
 const usuarioSchema = new mongoose.Schema({
     name: String,
     email: String,
+    productos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Producto' }],
     compras: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Compra'
     }]

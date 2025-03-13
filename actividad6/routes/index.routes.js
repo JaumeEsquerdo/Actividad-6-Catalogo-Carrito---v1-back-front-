@@ -1,7 +1,7 @@
 import { Router } from "express" //importar libreria
 
 import {getUsuario, updateUsuario, createUsuario} from '../controllers/users.controller.js'
-import { getProducto, createProducto } from "../controllers/products.controller.js";
+import { getProducto, createProducto, getProductos } from "../controllers/products.controller.js";
 
 const router = Router()
 
@@ -15,7 +15,8 @@ router.put("/usuarios/:id", updateUsuario)
 // productos
 
 router.get("/productos/:id", getProducto);
-router.post("/productos", createProducto)
+router.post("/productos", createProducto);
+router.get("/productos", getProductos);
 
 
 export default router;
