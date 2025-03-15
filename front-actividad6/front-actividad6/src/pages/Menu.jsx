@@ -80,25 +80,25 @@ const Menu = () => {
             {/* PENDIENTE FILTROS */}
             <nav className="Menu-filters">
                 <button
-                    className={filters === "todos" ? "active" : ""}
+                    className={`Btn-link ${filters === "todos" ? "active" : ""}`}
                     onClick={() => setFilters("todos")}
                 >
                     Todos
                 </button>
                 <button
-                    className={filters === "sushi" ? "active" : ""}
+                    className={`Btn-link ${filters === "sushi" ? "active" : ""}`}
                     onClick={() => setFilters("sushi")}
                 >
                     Sushi
                 </button>
                 <button
-                    className={filters === "nigiri" ? "active" : ""}
+                    className={`Btn-link ${filters === "nigiri" ? "active" : ""}`}
                     onClick={() => setFilters("nigiri")}
                 >
                     Nigiri
                 </button>
                 <button
-                    className={filters === "otros" ? "active" : ""}
+                    className={`Btn-link ${filters === "otros" ? "active" : ""}`}
                     onClick={() => setFilters("otros")}
                 >
                     Otros platos
@@ -110,15 +110,15 @@ const Menu = () => {
             <div className='Order'>
                 <GaleriaMenu products={filterProductos} addToCart={addToCart} />
 
-                <div>
-                    <h3>Tu pedido:</h3>
+                <div className='Order-div'>
+                    <h3>TU PEDIDO:</h3>
                     {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
                         :
-                        <ul>
+                        <ul className='Order-ul'>
                             {console.log('console de cart',cart)}
                             {cart.map((item) => (
                                 <li key={item._id}>
-                                    {item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}
+                                    <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
                                 </li>
                             ))}
                         </ul>
@@ -139,8 +139,8 @@ export const GaleriaMenu = ({ products, addToCart }) => {
         {products.length === 0 ? (<p>Cargando productos...</p>) : (
             products.map((product) => (
                 <div key={product._id} className='GaleriaMenu-item' onClick={() => addToCart(product)}>
-                    <img src={product.img || "/img/imagen-no-encontrada.jpg"} alt={product.name} />
-                    <p>{product.name} - {product.price}€</p>
+                    <img className='GaleriaMenu-img' src={product.img || "/img/imagen-no-encontrada.jpg"} alt={product.name} />
+                    <p className='GaleriaMenu-p'>{product.name} - {`${parseFloat(product.precio)}`}€</p>
                 </div>
             ))
         )}

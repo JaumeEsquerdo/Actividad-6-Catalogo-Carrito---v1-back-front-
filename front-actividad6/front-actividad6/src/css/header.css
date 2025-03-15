@@ -19,7 +19,7 @@
   margin: 40px 0;
 }
 
-.Nav-link{
+.Btn-link{
   display: inline-block;
   margin: 0 20px;
   color: var(--color-bg);
@@ -31,9 +31,13 @@
   transition: box-shadow 1s ease-in-out, transform 1s ease-in-out;
 }
 
-.Nav-link:hover{
+.Btn-link:hover{
   box-shadow: var(--box-shadow);
   transform: translateY(10px);
+}
+.Order-p{
+  font-size: 24px;
+  color: var(--color-text);
 }
 .active{
   scale: 1.3;

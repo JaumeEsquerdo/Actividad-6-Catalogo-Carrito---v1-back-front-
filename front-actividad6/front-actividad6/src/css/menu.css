@@ -3,19 +3,45 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    height: 100%;
+    margin: 50px 0;
+    
 }
 
 .GaleriaMenu {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    box-shadow: 0px 0px 10px 5px #DFD0B880;
+    padding: 20px;
+    margin: 50px;
+    min-height: 300px;
+    border-radius: 24px;
 }
-
-.GaleriaMenu-img {
+.GaleriaMenu-item{
+    background-color: var(--color-bg);
+    border-radius: 24px;
     width: 300px;
     height: auto;
+    display: flex;
+    flex-direction: column;
     margin: 20px;
-}
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    justify-content: space-around;
+    align-items: center;
 
+}
+.GaleriaMenu-img {
+    width: 200px;
+    height: auto;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 1px rgba(202, 200, 200, 0.2);
+}
+.GaleriaMenu-p{
+    font-size: 20px;
+    color: var(--color-text2);
+}
 .CheckOut {
     display: flex;
     flex-direction: column;
@@ -25,6 +51,16 @@
 .Order {
     display: flex;
     flex-direction: column;
+}
+.Order-div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Order-ul{
+    margin: 50px;
 }
 
 /* btns */
