@@ -41,9 +41,9 @@ const Menu = () => {
                 const response = await fetch('http://localhost:3000/api/v1/productos')
                 const responseAPI = await response.json()
                 //cuidado! tienes que guardar el contenido de dentro del array no lo de fuera! si no no puedes hacer nada con eso despues
-                console.log('CONSOLE RESPONSEAPI.DATA',responseAPI.data)
+                console.log('CONSOLE RESPONSEAPI.DATA', responseAPI.data)
                 setProducts(responseAPI.data)
-                console.log('CONSOLE RESPONSEAPI.DATA',responseAPI.data)
+                console.log('CONSOLE RESPONSEAPI.DATA', responseAPI.data)
             } catch (e) {
                 console.error(`error al obtener productos`, e)
             }
@@ -70,8 +70,6 @@ const Menu = () => {
         console.log('Console de product', product)
         return filters === "todos" ? true : product.tipo === filters
     });
-
-
 
 
     return (
@@ -115,13 +113,16 @@ const Menu = () => {
                     {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
                         :
                         <ul className='Order-ul'>
-                            {console.log('console de cart',cart)}
+                            {console.log('console de cart', cart)}
                             {cart.map((item) => (
                                 <li key={item._id}>
                                     <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
                                 </li>
                             ))}
                         </ul>
+                    }
+                    {
+                        cart.length !== 0? (<h3>Total: ${}</h3>): ("")
                     }
 
                 </div>
