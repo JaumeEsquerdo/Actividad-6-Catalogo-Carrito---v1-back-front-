@@ -10,8 +10,9 @@ const options = {
 }
 
 const usuarioSchema = new mongoose.Schema({
-    name: String,
-    email: String,
+    name: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
     productos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Producto' }],
     compras: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Compra'
