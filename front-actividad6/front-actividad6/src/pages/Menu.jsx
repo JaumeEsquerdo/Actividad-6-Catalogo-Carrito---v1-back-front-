@@ -1,36 +1,42 @@
 import '@/css/menu.css'
 import { useState, useEffect, use } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+
 const Menu = () => {
 
+    const navigate = useNavigate();
+
+
     const [user, setUser] = useState(null);
-    const userId = "67d2134192e8a897b6d1f3ed"
+    const userId = "67e05d8d980f2bae50decf29"
     const [cart, setCart] = useState([]) //carrito
     const [products, setProducts] = useState([]) //productos
     const [filters, setFilters] = useState("todos") //filtro
 
-    // const filters = [
-    //     { name: "Todos", value: "todos" },
-    //     { name: "Sushi", value: "sushi" },
-    //     { name: "Nigiri", value: "nigiri" },
-    //     { name: "Otros platos", value: "otros" }
-    // ]
-
 
     // Cargar carrito desde LocalStorage al iniciar
-    useEffect(()=>{
-        const savedCart = localStorage.getItem('cart');
-        if(savedCart){
-            setCart(JSON.parse(savedCart))
+    useEffect(() => {
+        if (user) {
+            const savedCart = localStorage.getItem(`cart${user._id}`) // para q se guarde con el id;
+            if (savedCart) {
+                setCart(JSON.parse(savedCart))
+            }
         }
-    },[])
+
+    }, [user])
 
     // guardar carrito en LocalStorage cada vez que cambia
-    useEffect(()=>{
-        localStorage.setItem('cart', JSON.stringify(cart))
-    },[cart])
+    useEffect(() => {
+        if (user) {
+            console.log("Guardando carrito:", cart);
 
-    // fetch usuario
+            localStorage.setItem(`cart${user._id}`, JSON.stringify(cart))
+        }
+
+    }, [cart, user])
+
+    // fetch usuario 
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -47,8 +53,31 @@ const Menu = () => {
         fetchUser()
     }, [userId])
 
-    // fetch productos
+
+    /**  fetch usuario
     useEffect(() => {
+        const fetchUser = async () => {
+            const token = localStorage.getItem("token")
+            if (!token) return
+
+            try {
+                const res = await fetch('http://localhost:3000/api/v1/auth/me', {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                if (!res.ok) throw new Error('error al obtener el fetch')
+
+            } catch (e) {
+                console.error("error en el fetch del usuario", e)
+            }
+        }
+        fetchUser();
+    }, []); */
+
+    //FETCH PRODUCTOS
+    useEffect(() => {
+
         const fetchProducts = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/v1/productos')
@@ -66,6 +95,10 @@ const Menu = () => {
 
 
     const addToCart = (product) => {
+        if (!user) {
+            alert("Debes de iniciar sesión para agregar productos!")
+            return;
+        }
         setCart((prevCart) => {
             const existingProduct = prevCart.find((item) => item._id === product._id
             )
@@ -76,13 +109,21 @@ const Menu = () => {
                 return [...prevCart, { ...product, quantity: 1 }]
             }
         })
-        console.log('Console log de cart!', cart)
     };
 
     const filterProductos = products.filter((product) => {
         console.log('Console de product', product)
         return filters === "todos" ? true : product.tipo === filters
     });
+
+    //limpiar con logout, pero no del localstorage
+    const logout = () => {
+        setUser(null)
+        setCart([])
+        navigate("/login")
+
+    }
+
 
 
     return (
@@ -135,13 +176,14 @@ const Menu = () => {
                         </ul>
                     }
                     {
-                        cart.length !== 0? (<h3>Total: ${}</h3>): ("")
+                        cart.length !== 0 ? (<h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>) : ("")
                     }
+                    {/* .reduce()  calcula el total acumulado sumando en cada iteracion el total anterior con el precio por la cantidad de cada producto. El 0 es la posición inicial */}
 
                 </div>
 
             </div>
-
+                    <button onClick={logout}>Salir de la sesión</button>
         </main>
     );
 }
