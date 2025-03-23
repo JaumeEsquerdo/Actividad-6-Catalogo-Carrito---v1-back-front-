@@ -1,5 +1,5 @@
 import '@/css/menu.css'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { NavLink } from 'react-router-dom';
 const Menu = () => {
 
@@ -8,7 +8,6 @@ const Menu = () => {
     const [cart, setCart] = useState([]) //carrito
     const [products, setProducts] = useState([]) //productos
     const [filters, setFilters] = useState("todos") //filtro
-    const [purchased, setPurchased] = useState([]) // lista de compra definitiva?
 
     // const filters = [
     //     { name: "Todos", value: "todos" },
@@ -16,6 +15,20 @@ const Menu = () => {
     //     { name: "Nigiri", value: "nigiri" },
     //     { name: "Otros platos", value: "otros" }
     // ]
+
+
+    // Cargar carrito desde LocalStorage al iniciar
+    useEffect(()=>{
+        const savedCart = localStorage.getItem('cart');
+        if(savedCart){
+            setCart(JSON.parse(savedCart))
+        }
+    },[])
+
+    // guardar carrito en LocalStorage cada vez que cambia
+    useEffect(()=>{
+        localStorage.setItem('cart', JSON.stringify(cart))
+    },[cart])
 
     // fetch usuario
     useEffect(() => {

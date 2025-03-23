@@ -3,6 +3,8 @@ import {createBrowserRouter} from 'react-router'
 // importe de páginas
 import Menu from '@/pages/Menu'
 import Home from '@/pages/Home'
+import Register from '@/pages/Register'
+import Login from '@/pages/Login'
 
 
 // importe de páginas especiales
@@ -25,10 +27,14 @@ const router = createBrowserRouter([
                 path: '/menu',
                 element: <Menu/>,
             },
-            // {
-            //     path: 'secciones/:id',
-            //     element: <SeccionDinamica/>
-            // },
+            {
+                path: '/register',
+                element: <Register/>,
+            },
+            {
+                path: '/login',
+                element: <Login/>,
+            },
             {
                 path: '*',
                 element:<ErrorPage/>
