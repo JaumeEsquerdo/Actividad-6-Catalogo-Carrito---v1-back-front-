@@ -10,6 +10,7 @@ import Login from '@/pages/Login'
 // importe de páginas especiales
 import Layout from '@/Layout'
 import ErrorPage from '@/Errorpage'
+import FormEditImg from '@/pages/FormEditImg'
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>,
+            },
+            {
+                path: '/formEditingImg',
+                element: <FormEditImg/>,
             },
             {
                 path: '*',

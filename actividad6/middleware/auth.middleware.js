@@ -9,7 +9,7 @@ export const authMiddleWare = (req, res, next) => {
     if (!token) {
         return res.status(401).json({ message: "acceso denegado, token requerido" });
     }
-
+    
     try {
         // verificar el token
         const decoded = jwt.verify(token, JWT_SECRET);
