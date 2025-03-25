@@ -22,4 +22,4 @@ const productoSchema = new mongoose.Schema({
     // todas las compras que tiene este producto
 }, options)
 
-export const Producto = mongoose.model("Producto", productoSchema)  //se suele exportar al archivo donde está
+export const Producto = mongoose.model("Producto", productoSchema)  //se suele exportar al controllers donde está
