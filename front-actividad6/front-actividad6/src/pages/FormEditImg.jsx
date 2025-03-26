@@ -56,7 +56,7 @@ const FormEditImg = () => {
 
         try{
 
-            const response = await fetch(`${BACKEND_URL}/api/v1/productos/${idImg}`,{
+            const response = await fetch(`${BACKEND_URL}/api/v1/productos/${idImg}/image`,{
                 method: "PUT",
                 body:formDataImg
             })

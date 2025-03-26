@@ -36,7 +36,7 @@ router.get("/productos", getProductos);
 
 router.put("/productos/:id", updateProductos);
 // ruta solo para actualizar la img del producto especifico
-router.put("/productos/:id", uploadImg.single('imgprod'), updateImage);
+router.put("/productos/:id/image", uploadImg.single('imgprod'), updateImage);
 
 
 export default router;

@@ -1,4 +1,5 @@
 import { Producto } from '../db/models/producto.model.js'
+import { BACKEND_URL } from '../config/config.js'
 
 const responseAPI = {
     msg: "",
@@ -106,17 +107,22 @@ export const updateImage = async(req,res, next) =>{
         })
     }
 
+    console.log('Archivo recibido: ', req.file.filename);
+
     try{
         const updateImageProduct = await Producto.findByIdAndUpdate(id, {
             img: req.file.filename
         }, {new:true})
+
+
         if(!updateImageProduct){
             responseAPI.msg = `No se encontró el producto con ID ${id}`
             responseAPI.status = 'error'
             return res.status(404).json(responseAPI)
         }
 
-        const imageUrl = `${BACKEND_URL}/uploads${req.file.filename}`;
+        const imageUrl = `${BACKEND_URL}/uploads/${req.file.filename}`;
+        // aseguramos q imageUrl forme parte de la respuesta
         updateImageProduct.imageUrl = imageUrl
 
         responseAPI.msg = "Img del producto actualizado";
@@ -125,7 +131,7 @@ export const updateImage = async(req,res, next) =>{
         res.status(200).json(responseAPI);
 
     }catch(e){
-        console.error(`tuvimos un error en el try del update del producto`, err)
+        console.error(`tuvimos un error en el try del update del producto`, e)
         next(e)
     }
 }
