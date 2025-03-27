@@ -106,6 +106,8 @@ export const updateImage = async(req,res, next) =>{
             message: "No se ha proporcionado una img"
         })
     }
+    console.log('Archivo recibido en el controller: ', req.file);
+
 
     console.log('Archivo recibido: ', req.file.filename);
 
@@ -124,6 +126,8 @@ export const updateImage = async(req,res, next) =>{
         const imageUrl = `${BACKEND_URL}/uploads/${req.file.filename}`;
         // aseguramos q imageUrl forme parte de la respuesta
         updateImageProduct.imageUrl = imageUrl
+
+        console.log('updateImg:',updateImageProduct)
 
         responseAPI.msg = "Img del producto actualizado";
         responseAPI.data = updateImageProduct;

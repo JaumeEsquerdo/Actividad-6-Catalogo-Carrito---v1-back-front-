@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
         // aqui definimos el nombre que tendrá nuestro upload
 
         // V1 guardar el archivo con el nombre que lo subí
-        cb(null, file.originalname)
+       // cb(null, file.originalname)
 
         //V2 generar un nombre único usando la fecha
         //ej: unixTimestamp-342413.jpg
@@ -26,6 +26,8 @@ const storage = multer.diskStorage({
 
         // creamos el nuevo nombre del archivo
         const fileName = `${file.fieldname}-${date}${fileExt}`
+        console.log("Nombre generado:", fileName);
+
         cb(null, fileName)
     }
 })
