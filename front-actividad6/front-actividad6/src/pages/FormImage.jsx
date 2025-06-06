@@ -25,6 +25,7 @@ const FormImage = () => {
 
         try {
             // Enviamos el FormData al backend con fetch
+            // La propiedad 'body' recibe el FormData que incluye el archivo
             const res = await fetch('http://localhost:3000/api/v1/producto/upload', {
                 method: 'POST',
                 body: formData, // aquí va todo el formulario, incluida la imagen
