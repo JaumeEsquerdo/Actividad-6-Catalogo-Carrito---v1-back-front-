@@ -11,6 +11,7 @@ import Login from '@/pages/Login'
 import Layout from '@/Layout'
 import ErrorPage from '@/pages/Errorpage'
 import FormEditImg from '@/pages/FormEditImg'
+import FormImage from '@/pages/FormImage'
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
                 {
                     path: '/formEditingImg',
                     element: <FormEditImg />,
+                }
+                ,
+                {
+                    path: '/formImage',
+                    element: <FormImage />,
                 }
             ]
     }

@@ -1,7 +1,8 @@
 import '@/css/menu.css'
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
 
@@ -156,6 +157,8 @@ const Menu = () => {
                     Otros platos
                 </button>
             </nav>
+            <Link to="/formImage">Form para subir img</Link>
+
 
 
 
@@ -183,7 +186,7 @@ const Menu = () => {
                 </div>
 
             </div>
-                    <button onClick={logout}>Salir de la sesión</button>
+            <button onClick={logout}>Salir de la sesión</button>
         </main>
     );
 }
