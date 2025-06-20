@@ -1,12 +1,13 @@
 import { Router } from "express" //importar libreria
 
-import {getUsuario, updateUsuario, createUsuario} from '../controllers/users.controller.js'
-import { getProducto, createProducto, getProductos } from "../controllers/products.controller.js";
-import { authMiddleWare } from "../middleware/auth.middleware.js";
+import { getUsuario, updateUsuario, createUsuario } from '../controllers/users.controller.js'
+import { getProducto, createProducto, getProductos, updateProductos, updateImage } from "../controllers/products.controller.js";
 import { registerUser, loginUser, getCurrentUser } from "../controllers/auth.controller.js";
+import { crearCompra, getCompras, pagarCompra } from "../controllers/compras.controller.js";
+import { getMesas, createMesa, updateMesa } from "../controllers/mesas.controller.js";
 
-import { updateProductos, updateImage } from "../controllers/products.controller.js";
 
+import { authMiddleWare } from "../middleware/auth.middleware.js";
 import { uploadImg } from "../middleware/upload.middleware.js";
 
 const router = Router()
@@ -18,8 +19,8 @@ router.post("/auth/register", registerUser);
 router.post("/auth/login", loginUser);
 router.get("/auth/me", authMiddleWare, getCurrentUser);
 
-router.get("/protected", authMiddleWare, (req , res )=>{
-    res.json({message:"Estás en una ruta protegida, Felicidades tu token es válido"})
+router.get("/protected", authMiddleWare, (req, res) => {
+    res.json({ message: "Estás en una ruta protegida, Felicidades tu token es válido" })
 })
 
 
@@ -33,10 +34,18 @@ router.put("/usuarios/:id", updateUsuario)
 router.get("/productos/:id", getProducto);
 router.post("/productos", createProducto);
 router.get("/productos", getProductos);
-
 router.put("/productos/:id", updateProductos);
-// ruta solo para actualizar la img del producto especifico
-router.put("/productos/:id/image", uploadImg.single('imgprod'), updateImage);
+router.put("/productos/:id/image", uploadImg.single('imgprod'), updateImage); // ruta solo para actualizar la img del producto especifico
+
+// Mesas
+router.get("/mesas", getMesas);
+router.post("/mesas", createMesa);
+router.put("/mesas/:id", updateMesa);
+
+// Compras
+router.post("/compras", crearCompra);
+router.get("/compras", getCompras);
+router.put("/compras/:id/pagar", pagarCompra);
 
 
 export default router;

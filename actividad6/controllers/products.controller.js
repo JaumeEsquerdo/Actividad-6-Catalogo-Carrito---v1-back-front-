@@ -9,7 +9,7 @@ const responseAPI = {
 }
 
 export const createProducto = async (req, res, next) => {
-    const { name, precio, img, tipo } = req.body
+    const { name, precio, img, tipo, descripcion, valoresNutricionales } = req.body;
 
     try {
         const nuevoProducto = await Producto.create({
@@ -17,18 +17,20 @@ export const createProducto = async (req, res, next) => {
             precio,
             img,
             tipo,
-            
+            descripcion,
+            valoresNutricionales
         });
 
-        responseAPI.msg = "Producto creado con exito";
+        responseAPI.msg = "Producto creado con éxito";
         responseAPI.data = nuevoProducto;
 
-        res.status(201).json(responseAPI)
+        res.status(201).json(responseAPI);
     } catch (e) {
-        console.error('error creando producto', e)
-        next(e)
+        console.error('error creando producto', e);
+        next(e);
     }
 }
+
 
 export const getProducto = async (req, res, next) => {
     const { id } = req.params
@@ -64,19 +66,19 @@ export const getProductos = async (req, res, next) => {
 }
 
 export const updateProductos = async (req, res, next) => {
-    const {id} = req.params
-    const {name, precio, tipo} = req.body
+    const { id } = req.params
+    const { name, precio, tipo } = req.body
 
-    try{
+    try {
         const updateProducto = await Producto.findByIdAndUpdate(id, {
-            name:name,
-            precio:precio,
+            name: name,
+            precio: precio,
             //img: req.file.filename,
-            tipo:tipo
+            tipo: tipo
 
-        }, {new:true})
+        }, { new: true })
 
-        if(!updateProducto){
+        if (!updateProducto) {
             responseAPI.msg = `No se encontró el producto con ID ${id}`
             responseAPI.status = 'error'
             return res.status(404).json(responseAPI)
@@ -89,7 +91,7 @@ export const updateProductos = async (req, res, next) => {
         res.status(200).json(responseAPI);
 
 
-    }catch(e){
+    } catch (e) {
         console.error(`tuvimos un error en el try del update del producto`, e)
 
         next(e)
@@ -97,12 +99,12 @@ export const updateProductos = async (req, res, next) => {
 
 }
 
-export const updateImage = async(req,res, next) =>{
-    const {id} = req.params
+export const updateImage = async (req, res, next) => {
+    const { id } = req.params
 
-    if(!req.file){
+    if (!req.file) {
         return res.status(404).json({
-            success:false,
+            success: false,
             message: "No se ha proporcionado una img"
         })
     }
@@ -111,13 +113,13 @@ export const updateImage = async(req,res, next) =>{
 
     console.log('Archivo recibido: ', req.file.filename);
 
-    try{
+    try {
         const updateImageProduct = await Producto.findByIdAndUpdate(id, {
             img: req.file.filename
-        }, {new:true})
+        }, { new: true })
 
 
-        if(!updateImageProduct){
+        if (!updateImageProduct) {
             responseAPI.msg = `No se encontró el producto con ID ${id}`
             responseAPI.status = 'error'
             return res.status(404).json(responseAPI)
@@ -127,14 +129,14 @@ export const updateImage = async(req,res, next) =>{
         // aseguramos q imageUrl forme parte de la respuesta
         updateImageProduct.imageUrl = imageUrl
 
-        console.log('updateImg:',updateImageProduct)
+        console.log('updateImg:', updateImageProduct)
 
         responseAPI.msg = "Img del producto actualizado";
         responseAPI.data = updateImageProduct;
         responseAPI.status = "ok";
         res.status(200).json(responseAPI);
 
-    }catch(e){
+    } catch (e) {
         console.error(`tuvimos un error en el try del update del producto`, e)
         next(e)
     }
