@@ -17,7 +17,7 @@ import FormImage from '@/pages/FormImage'
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Home />,
+        element: <Menu />,
         index: true,// página principal sin Layout, para q no comparta header y footer
     }
     ,
@@ -25,10 +25,6 @@ const router = createBrowserRouter([
         element: <Layout />,
         children:
             [
-                {
-                    path: '/menu',
-                    element: <Menu />,
-                },
                 {
                     path: '/register',
                     element: <Register />,

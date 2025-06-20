@@ -32,7 +32,7 @@ const Login = () => {
 
             if (data.token) {
                 localStorage.setItem('token', data.token)
-                navigate("/menu")
+                navigate("/")
             } else {
                 throw new Error("No llega el token")
             }

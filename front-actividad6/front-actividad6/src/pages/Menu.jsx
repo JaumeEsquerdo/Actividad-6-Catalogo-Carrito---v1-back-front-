@@ -10,7 +10,7 @@ const Menu = () => {
 
 
     const [user, setUser] = useState(null);
-    const userId = "67e05d8d980f2bae50decf29"
+    // const userId = "67e05d8d980f2bae50decf29"
     const [cart, setCart] = useState([]) //carrito
     const [products, setProducts] = useState([]) //productos
     const [filters, setFilters] = useState("todos") //filtro
@@ -40,19 +40,34 @@ const Menu = () => {
     // fetch usuario 
     useEffect(() => {
         const fetchUser = async () => {
-            try {
-                const response = await fetch(`http://localhost:3000/api/v1/usuarios/${userId}`)
+            const token = localStorage.getItem("token")
+            if (!token) {
+                navigate("/login")
+                return
+            }
 
-                const userData = await response.json()
-                console.log(userData)
+            try {
+                const res = await fetch(`http://localhost:3000/api/v1/auth/me`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+
+                if (!res.ok) throw new Error("Token inválido o expirado")
+
+                const userData = await res.json()
                 setUser(userData)
 
             } catch (e) {
-                console.error('error en el try', e)
+                console.error("Error al traer el usuario:", e)
+                localStorage.removeItem("token")
+                navigate("/login")
             }
         }
+
         fetchUser()
-    }, [userId])
+    }, [])
+
 
 
     /**  fetch usuario
@@ -128,66 +143,73 @@ const Menu = () => {
 
 
     return (
-        <main className="Menu">
-            {user ? <h2>Elige lo que más te apetezca {user.name}</h2> : <h2>Esperando cliente...</h2>}
-            {/* PENDIENTE FILTROS */}
-            <nav className="Menu-filters">
-                <button
-                    className={`Btn-link ${filters === "todos" ? "active" : ""}`}
-                    onClick={() => setFilters("todos")}
-                >
-                    Todos
-                </button>
-                <button
-                    className={`Btn-link ${filters === "sushi" ? "active" : ""}`}
-                    onClick={() => setFilters("sushi")}
-                >
-                    Sushi
-                </button>
-                <button
-                    className={`Btn-link ${filters === "nigiri" ? "active" : ""}`}
-                    onClick={() => setFilters("nigiri")}
-                >
-                    Nigiri
-                </button>
-                <button
-                    className={`Btn-link ${filters === "otros" ? "active" : ""}`}
-                    onClick={() => setFilters("otros")}
-                >
-                    Otros platos
-                </button>
-            </nav>
-            <Link to="/formImage">Form para subir img</Link>
+        <>
+            <div className='PageWrap'>
+                <aside className='ImgMenu'>
+                    img
+                </aside>
+                <main className="Menu">
+                    {user ? <h2>Elige lo que más te apetezca {user.data.name}</h2> : <h2>Esperando cliente...</h2>}
+                    {/* PENDIENTE FILTROS */}
+                    <nav className="Menu-filters">
+                        <button
+                            className={`Btn-link ${filters === "todos" ? "active" : ""}`}
+                            onClick={() => setFilters("todos")}
+                        >
+                            Todos
+                        </button>
+                        <button
+                            className={`Btn-link ${filters === "sushi" ? "active" : ""}`}
+                            onClick={() => setFilters("sushi")}
+                        >
+                            Sushi
+                        </button>
+                        <button
+                            className={`Btn-link ${filters === "nigiri" ? "active" : ""}`}
+                            onClick={() => setFilters("nigiri")}
+                        >
+                            Nigiri
+                        </button>
+                        <button
+                            className={`Btn-link ${filters === "otros" ? "active" : ""}`}
+                            onClick={() => setFilters("otros")}
+                        >
+                            Otros platos
+                        </button>
+                    </nav>
+                    <Link to="/formImage">Form para subir img</Link>
 
 
 
 
-            <div className='Order'>
-                <GaleriaMenu products={filterProductos} addToCart={addToCart} />
+                    <div className='Order'>
+                        <GaleriaMenu products={filterProductos} addToCart={addToCart} />
 
-                <div className='Order-div'>
-                    <h3>TU PEDIDO:</h3>
-                    {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
-                        :
-                        <ul className='Order-ul'>
-                            {console.log('console de cart', cart)}
-                            {cart.map((item) => (
-                                <li key={item._id}>
-                                    <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    }
-                    {
-                        cart.length !== 0 ? (<h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>) : ("")
-                    }
-                    {/* .reduce()  calcula el total acumulado sumando en cada iteracion el total anterior con el precio por la cantidad de cada producto. El 0 es la posición inicial */}
+                        <div className='Order-div'>
+                            <h3>TU PEDIDO:</h3>
+                            {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
+                                :
+                                <ul className='Order-ul'>
+                                    {console.log('console de cart', cart)}
+                                    {cart.map((item) => (
+                                        <li key={item._id}>
+                                            <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            }
+                            {
+                                cart.length !== 0 ? (<h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>) : ("")
+                            }
+                            {/* .reduce()  calcula el total acumulado sumando en cada iteracion el total anterior con el precio por la cantidad de cada producto. El 0 es la posición inicial */}
 
-                </div>
+                        </div>
 
+                    </div>
+                    <button onClick={logout}>Salir de la sesión</button>
+                </main>
             </div>
-            <button onClick={logout}>Salir de la sesión</button>
-        </main>
+        </>
     );
 }
 
