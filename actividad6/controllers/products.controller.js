@@ -9,7 +9,7 @@ const responseAPI = {
 }
 
 export const createProducto = async (req, res, next) => {
-    const { name, precio, img, tipo, owner } = req.body
+    const { name, precio, img, tipo } = req.body
 
     try {
         const nuevoProducto = await Producto.create({
@@ -17,7 +17,7 @@ export const createProducto = async (req, res, next) => {
             precio,
             img,
             tipo,
-            owner
+            
         });
 
         responseAPI.msg = "Producto creado con exito";
@@ -90,7 +90,7 @@ export const updateProductos = async (req, res, next) => {
 
 
     }catch(e){
-        console.error(`tuvimos un error en el try del update del producto`, err)
+        console.error(`tuvimos un error en el try del update del producto`, e)
 
         next(e)
     }

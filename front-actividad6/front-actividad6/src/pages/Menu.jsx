@@ -14,6 +14,8 @@ const Menu = () => {
     const [cart, setCart] = useState([]) //carrito
     const [products, setProducts] = useState([]) //productos
     const [filters, setFilters] = useState("todos") //filtro
+    const [selectedProduct, setSelectedProduct] = useState(null);
+const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
 
 
     // Cargar carrito desde LocalStorage al iniciar

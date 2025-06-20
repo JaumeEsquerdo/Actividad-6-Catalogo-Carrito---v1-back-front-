@@ -1,25 +1,47 @@
 import mongoose from "mongoose"
 
 const options = {
-    collection: 'productos', //nombre de la colección en MongoDB
-    strict: true, // solo permite guardar los campos definidos en el esquema
+    collection: 'productos',
+    strict: true,
     collation: {
-        locale: "es", // config para el idioma que sea español
-        strength: 1 //nivel de comparación de strings( 1: ignorar mayúsculas, minúsculas y tildes)
+        locale: "es",
+        strength: 1
     }
 }
 
-// required: true es que el campo owner es obligatorio
 const productoSchema = new mongoose.Schema({
-    name: String,
-    precio: Number,
-    img: String,
-    tipo: String,
-    // owner: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", required: true },
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    precio: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    img: {
+        type: String, // URL o path relativo
+        default: "/img/imagen-no-encontrada.jpg"
+    },
+    tipo: {
+        type: String, // ej. 'sushi', 'nigiri', 'bebida'
+        required: true
+    },
+    descripcion: {
+        type: String,
+        default: "Delicioso plato para disfrutar en nuestro restaurante."
+    },
+    valoresNutricionales: {
+        kcal: Number,
+        grasas: Number,
+        proteinas: Number,
+        hidratos: Number
+    },
     compras: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Compra'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Compra'
     }]
-    // todas las compras que tiene este producto
 }, options)
 
-export const Producto = mongoose.model("Producto", productoSchema)  //se suele exportar al controllers donde está
+export const Producto = mongoose.model("Producto", productoSchema)

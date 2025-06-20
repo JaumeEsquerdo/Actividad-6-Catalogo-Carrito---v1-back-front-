@@ -15,6 +15,7 @@
 
 .PageWrap{
     display: flex;
+    max-height: 100vh;
 }
 
 .GaleriaMenu {

@@ -1,21 +1,37 @@
 import mongoose from "mongoose"
 
 const options = {
-    collection: 'compras', //nombre de la colección en MongoDB
-    strict: true, // solo permite guardar los campos definidos en el esquema
+    collection: 'compras',
+    strict: true,
     collation: {
-        locale: "es", // config para el idioma que sea español
-        strength: 1 //nivel de comparación de strings( 1: ignorar mayúsculas, minúsculas y tildes)
+        locale: "es",
+        strength: 1
     }
 }
 
 const compraSchema = new mongoose.Schema({
-    fecha: { type: Date, default: Date.now },
-    usuario: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' },
-    productos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Producto' }]
-
-    // recibe fecha compra, el usuario, y los productos comprados
-
+    fecha: {
+        type: Date,
+        default: Date.now
+    },
+    mesa: {
+        type: String, // puedes usar "mesa-1", "mesa-12" o incluso códigos QR
+        required: true
+    },
+    productos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Producto',
+        required: true
+    }],
+    estado: {
+        type: String,
+        enum: ['pendiente', 'en preparación', 'servido', 'cerrado'],
+        default: 'pendiente'
+    },
+    total: {
+        type: Number,
+        required: true
+    }
 }, options)
 
-export const Compra = mongoose.model("Compra", compraSchema)  //se suele exportar al archivo donde está
+export const Compra = mongoose.model("Compra", compraSchema)
