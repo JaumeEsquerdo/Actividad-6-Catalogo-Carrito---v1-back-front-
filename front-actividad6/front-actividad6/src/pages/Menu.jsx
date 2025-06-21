@@ -15,7 +15,7 @@ const Menu = () => {
     const [products, setProducts] = useState([]) //productos
     const [filters, setFilters] = useState("todos") //filtro
     const [selectedProduct, setSelectedProduct] = useState(null);
-const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
+    const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
 
 
     // Cargar carrito desde LocalStorage al iniciar
@@ -70,29 +70,6 @@ const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
         fetchUser()
     }, [])
 
-
-
-    /**  fetch usuario
-    useEffect(() => {
-        const fetchUser = async () => {
-            const token = localStorage.getItem("token")
-            if (!token) return
-
-            try {
-                const res = await fetch('http://localhost:3000/api/v1/auth/me', {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-                if (!res.ok) throw new Error('error al obtener el fetch')
-
-            } catch (e) {
-                console.error("error en el fetch del usuario", e)
-            }
-        }
-        fetchUser();
-    }, []); */
-
     //FETCH PRODUCTOS
     useEffect(() => {
 
@@ -143,7 +120,6 @@ const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
     }
 
 
-
     return (
         <>
             <div className='PageWrap'>
@@ -151,6 +127,7 @@ const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
                     img
                 </aside>
                 <main className="Menu">
+                    <h1>Logo? </h1>
                     {user ? <h2>Elige lo que más te apetezca {user.data.name}</h2> : <h2>Esperando cliente...</h2>}
                     {/* PENDIENTE FILTROS */}
                     <nav className="Menu-filters">

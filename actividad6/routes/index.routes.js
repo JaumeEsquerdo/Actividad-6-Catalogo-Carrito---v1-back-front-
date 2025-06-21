@@ -4,7 +4,7 @@ import { getUsuario, updateUsuario, createUsuario } from '../controllers/users.c
 import { getProducto, createProducto, getProductos, updateProductos, updateImage } from "../controllers/products.controller.js";
 import { registerUser, loginUser, getCurrentUser } from "../controllers/auth.controller.js";
 import { crearCompra, getCompras, pagarCompra } from "../controllers/compras.controller.js";
-import { getMesas, createMesa, updateMesa } from "../controllers/mesas.controller.js";
+import { getMesas, crearMesa, updateMesa } from "../controllers/mesas.controller.js";
 
 
 import { authMiddleWare } from "../middleware/auth.middleware.js";
@@ -39,7 +39,7 @@ router.put("/productos/:id/image", uploadImg.single('imgprod'), updateImage); //
 
 // Mesas
 router.get("/mesas", getMesas);
-router.post("/mesas", createMesa);
+router.post("/mesas", crearMesa);
 router.put("/mesas/:id", updateMesa);
 
 // Compras
