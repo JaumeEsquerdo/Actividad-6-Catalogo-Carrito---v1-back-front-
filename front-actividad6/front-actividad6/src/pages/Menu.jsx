@@ -37,6 +37,7 @@ const Menu = () => {
             try {
                 const res = await fetch(`http://localhost:3000/api/v1/mesas/${mesaId}`)
                 const responseAPI = await res.json()
+                console.log(responseAPI)
                 setMesa(responseAPI.data)
             } catch (e) {
                 console.error('Error al obtener la mesa:', e)
@@ -87,13 +88,50 @@ const Menu = () => {
         navigate('/')
     }
 
+
+    // funcion para la compra
+    const pagarCompra = async () => {
+        if (cart.length === 0) return alert("El carrito está vacío");
+
+        try {
+            const res = await fetch('http://localhost:3000/api/v1/compras', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    mesa: mesaId,
+                    productos: cart.map(({ _id, quantity }) => ({ producto: _id, cantidad: quantity }))
+                })
+
+            }); // Enviamos al backend la compra con la mesa y los productos (id y cantidad) del carrito actual
+
+            if (!res.ok) throw new Error('Error al enviar la compra');
+
+            const data = await res.json();
+            console.log('Compra registrada:', data);
+
+            setCart([]);
+            localStorage.removeItem(`cart_${mesaId}`);
+
+            alert('Compra realizada con éxito');
+
+        } catch (error) {
+            console.error(error);
+            alert('Error al realizar la compra');
+        }
+    };
+
+
+
     return (
         <div className="PageWrap">
             <aside className="ImgMenu">img</aside>
             <main className="Menu">
                 <h1 className="Menu-h1">SUSHIRO</h1>
-                <h2>{mesaId ? `Mesa ${mesa.numero} haciendo su pedido` : 'Esperando cliente...'}</h2>
-
+                <h2>
+                    {mesa && mesa.numero
+                        ? `Mesa ${mesa.numero} haciendo su pedido`
+                        : 'Esperando cliente...'}
+                </h2>
                 <nav className="Menu-filters">
                     {['todos', 'sushi', 'nigiri', 'otros'].map((f) => (
                         <button
@@ -136,6 +174,7 @@ const Menu = () => {
                     )}
                 </div>
 
+                <button onClick={pagarCompra}>Pagar compra</button>
                 <button onClick={logout}>Cambiar de mesa</button>
             </main>
         </div>
@@ -170,3 +209,11 @@ export const GaleriaMenu = ({ products, addToCart }) => {
         </div>
     )
 }
+
+
+/** f[0]         // 's'   ← primera letra
+f.slice(1)   // 'ushi' ← desde la posición 1 (segunda letra) hasta el final
+entonces..
+f[0].toUpperCase() + f.slice(1)
+= 'S' + 'ushi'
+= 'Sushi' */

@@ -38,8 +38,7 @@ router.put("/productos/:id", updateProductos);
 router.put("/productos/:id/image", uploadImg.single('imgprod'), updateImage); // ruta solo para actualizar la img del producto especifico
 
 // Mesas
-
-router.get("/")
+router.get("/mesas", getMesas)
 router.get("/mesas/:id", getMesaById);
 router.post("/mesas", crearMesa);
 router.put("/mesas/:id", updateMesa);
