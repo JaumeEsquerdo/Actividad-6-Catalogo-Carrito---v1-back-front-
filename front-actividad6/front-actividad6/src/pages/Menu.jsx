@@ -127,7 +127,7 @@ const Menu = () => {
                     img
                 </aside>
                 <main className="Menu">
-                    <h1>Logo? </h1>
+                    <h1 className='Menu-h1'>SUSHIRO</h1>
                     {user ? <h2>Elige lo que más te apetezca {user.data.name}</h2> : <h2>Esperando cliente...</h2>}
                     {/* PENDIENTE FILTROS */}
                     <nav className="Menu-filters">

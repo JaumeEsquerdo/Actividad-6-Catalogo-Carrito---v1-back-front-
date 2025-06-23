@@ -1,18 +1,21 @@
-#root{
+#root {
     --color-bg: #5682a0;
     --color-bg2: #5e86a1;
     --color-text: #DFD0B8;
     --color-text2: #b1ada7;
     --box-shadow: 0 0 0 12px rgba(239, 234, 234, 0.7);
-    --font-family: "Finger Paint", sans-serif;
+    --font-family:'Poppins', sans-serif;
+;
+    ;
 }
 
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
 }
-.Root{
+
+.Root {
     min-height: 100vh;
     background-color: var(--color-bg2);
     font-family: var(--font-family);
