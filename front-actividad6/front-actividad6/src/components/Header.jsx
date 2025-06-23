@@ -7,7 +7,7 @@ const header = () => {
 
     return (
         <header className="Header">
-            <h1 className="Header-h1">Sushiro!</h1>
+            <h1 className="Header-h1">SUSHIRO</h1>
 
             {/* <nav className="Header-nav">
                 <NavLink to={"/menu"} className={`Nav-link `} >Top</NavLink>
