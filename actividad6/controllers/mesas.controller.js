@@ -8,14 +8,14 @@ const responseAPI = {
 };
 
 export const crearMesa = async (req, res, next) => {
-    const { nombre, estado = 'libre' } = req.body;
+    const { numero, estado = 'libre' } = req.body;
 
-    if (!nombre) {
-        return res.status(400).json({ msg: 'El nombre de la mesa es obligatorio', status: 'error' });
+    if (numero === undefined) {
+        return res.status(400).json({ msg: 'El número de la mesa es obligatorio', status: 'error' });
     }
 
     try {
-        const nuevaMesa = await Mesa.create({ nombre, estado });
+        const nuevaMesa = await Mesa.create({ numero, estado });
         responseAPI.msg = 'Mesa creada correctamente';
         responseAPI.data = nuevaMesa;
         res.status(201).json(responseAPI);
@@ -27,7 +27,7 @@ export const crearMesa = async (req, res, next) => {
 
 export const getMesas = async (req, res, next) => {
     try {
-        const mesas = await Mesa.find().sort({ nombre: 1 });
+        const mesas = await Mesa.find().sort({ numero: 1 });
         responseAPI.msg = 'Mesas encontradas';
         responseAPI.data = mesas;
         responseAPI.cant = mesas.length;
@@ -40,10 +40,10 @@ export const getMesas = async (req, res, next) => {
 
 export const updateMesa = async (req, res, next) => {
     const { id } = req.params;
-    const { nombre, estado } = req.body;
+    const { numero, estado } = req.body;
 
     try {
-        const mesaActualizada = await Mesa.findByIdAndUpdate(id, { nombre, estado }, { new: true });
+        const mesaActualizada = await Mesa.findByIdAndUpdate(id, { numero, estado }, { new: true });
         if (!mesaActualizada) {
             return res.status(404).json({ msg: 'Mesa no encontrada', status: 'error' });
         }

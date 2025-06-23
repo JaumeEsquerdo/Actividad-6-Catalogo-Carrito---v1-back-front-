@@ -1,209 +1,172 @@
 import '@/css/menu.css'
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { NavLink, useNavigate, Link } from 'react-router-dom'
 
 const Menu = () => {
+    const navigate = useNavigate()
+    const mesaId = localStorage.getItem('mesaId')
 
-    const navigate = useNavigate();
+    const [mesa, setMesa] = useState(null)
+    const [cart, setCart] = useState([])
+    const [products, setProducts] = useState([])
+    const [filters, setFilters] = useState('todos')
 
-
-    const [user, setUser] = useState(null);
-    // const userId = "67e05d8d980f2bae50decf29"
-    const [cart, setCart] = useState([]) //carrito
-    const [products, setProducts] = useState([]) //productos
-    const [filters, setFilters] = useState("todos") //filtro
-    const [selectedProduct, setSelectedProduct] = useState(null);
-    const [showLoginModal, setShowLoginModal] = useState(false); // modal para login
-
-
-    // Cargar carrito desde LocalStorage al iniciar
     useEffect(() => {
-        if (user) {
-            const savedCart = localStorage.getItem(`cart${user._id}`) // para q se guarde con el id;
-            if (savedCart) {
-                setCart(JSON.parse(savedCart))
-            }
+        if (!mesaId) {
+            navigate('/') // si no hay mesa redirige a la selección
+            return
         }
 
-    }, [user])
-
-    // guardar carrito en LocalStorage cada vez que cambia
-    useEffect(() => {
-        if (user) {
-            console.log("Guardando carrito:", cart);
-
-            localStorage.setItem(`cart${user._id}`, JSON.stringify(cart))
+        // Si hay una mesa, intenta cargar el carrito al ui guardado de esa mesa desde localStorage
+        const savedCart = localStorage.getItem(`cart_${mesaId}`)
+        if (savedCart) {
+            setCart(JSON.parse(savedCart))
         }
+    }, [mesaId])
 
-    }, [cart, user])
-
-    // fetch usuario 
+    // recarga el contenido de la mesa y carrito
     useEffect(() => {
-        const fetchUser = async () => {
-            const token = localStorage.getItem("token")
-            if (!token) {
-                navigate("/login")
-                return
-            }
+        if (mesaId) {
+            localStorage.setItem(`cart_${mesaId}`, JSON.stringify(cart))
+        }
+    }, [cart, mesaId])
 
+    // obtener datos de la mesa elejida
+    useEffect(() => {
+        const fetchMesa = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/v1/auth/me`, {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-
-                if (!res.ok) throw new Error("Token inválido o expirado")
-
-                const userData = await res.json()
-                setUser(userData)
-
+                const res = await fetch(`http://localhost:3000/api/v1/mesas/${mesaId}`)
+                const responseAPI = await res.json()
+                setMesa(responseAPI.data)
             } catch (e) {
-                console.error("Error al traer el usuario:", e)
-                localStorage.removeItem("token")
-                navigate("/login")
+                console.error('Error al obtener la mesa:', e)
             }
         }
 
-        fetchUser()
-    }, [])
+        if (mesaId) {
+            fetchMesa()
+        }
+    }, [mesaId])
 
-    //FETCH PRODUCTOS
+
     useEffect(() => {
-
         const fetchProducts = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/v1/productos')
                 const responseAPI = await response.json()
-                //cuidado! tienes que guardar el contenido de dentro del array no lo de fuera! si no no puedes hacer nada con eso despues
-                console.log('CONSOLE RESPONSEAPI.DATA', responseAPI.data)
                 setProducts(responseAPI.data)
-                console.log('CONSOLE RESPONSEAPI.DATA', responseAPI.data)
             } catch (e) {
-                console.error(`error al obtener productos`, e)
+                console.error('error al obtener productos', e)
             }
         }
-        fetchProducts();
-    }, []);
-
+        fetchProducts()
+    }, [])
 
     const addToCart = (product) => {
-        if (!user) {
-            alert("Debes de iniciar sesión para agregar productos!")
-            return;
-        }
         setCart((prevCart) => {
-            const existingProduct = prevCart.find((item) => item._id === product._id
-            )
+            const existingProduct = prevCart.find(item => item._id === product._id)
             if (existingProduct) {
-                return prevCart.map((item) => item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item)
-
+                return prevCart.map(item =>
+                    item._id === product._id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
             } else {
                 return [...prevCart, { ...product, quantity: 1 }]
             }
         })
-    };
-
-    const filterProductos = products.filter((product) => {
-        console.log('Console de product', product)
-        return filters === "todos" ? true : product.tipo === filters
-    });
-
-    //limpiar con logout, pero no del localstorage
-    const logout = () => {
-        setUser(null)
-        setCart([])
-        navigate("/login")
-
     }
 
+    const filterProductos = products.filter(product =>
+        filters === 'todos' ? true : product.tipo === filters
+    )
+
+    const logout = () => {
+        localStorage.removeItem('mesaId')
+        localStorage.removeItem(`cart_${mesaId}`)
+        navigate('/')
+    }
 
     return (
-        <>
-            <div className='PageWrap'>
-                <aside className='ImgMenu'>
-                    img
-                </aside>
-                <main className="Menu">
-                    <h1 className='Menu-h1'>SUSHIRO</h1>
-                    {user ? <h2>Elige lo que más te apetezca {user.data.name}</h2> : <h2>Esperando cliente...</h2>}
-                    {/* PENDIENTE FILTROS */}
-                    <nav className="Menu-filters">
+        <div className="PageWrap">
+            <aside className="ImgMenu">img</aside>
+            <main className="Menu">
+                <h1 className="Menu-h1">SUSHIRO</h1>
+                <h2>{mesaId ? `Mesa ${mesa.numero} haciendo su pedido` : 'Esperando cliente...'}</h2>
+
+                <nav className="Menu-filters">
+                    {['todos', 'sushi', 'nigiri', 'otros'].map((f) => (
                         <button
-                            className={`Btn-link ${filters === "todos" ? "active" : ""}`}
-                            onClick={() => setFilters("todos")}
+                            key={f}
+                            className={`Btn-link ${filters === f ? 'active' : ''}`}
+                            onClick={() => setFilters(f)}
                         >
-                            Todos
+                            {f[0].toUpperCase() + f.slice(1)}
                         </button>
-                        <button
-                            className={`Btn-link ${filters === "sushi" ? "active" : ""}`}
-                            onClick={() => setFilters("sushi")}
-                        >
-                            Sushi
-                        </button>
-                        <button
-                            className={`Btn-link ${filters === "nigiri" ? "active" : ""}`}
-                            onClick={() => setFilters("nigiri")}
-                        >
-                            Nigiri
-                        </button>
-                        <button
-                            className={`Btn-link ${filters === "otros" ? "active" : ""}`}
-                            onClick={() => setFilters("otros")}
-                        >
-                            Otros platos
-                        </button>
-                    </nav>
-                    <Link to="/formImage">Form para subir img</Link>
+                    ))}
+                </nav>
 
+                <Link to="/formImage">Form para subir img</Link>
 
+                <div className="Order">
+                    <GaleriaMenu products={filterProductos} addToCart={addToCart} />
+                </div>
 
-
-                    <div className='Order'>
-                        <GaleriaMenu products={filterProductos} addToCart={addToCart} />
-                    </div>
-
-                    <div className='Order-div'>
-                        <h3>TU PEDIDO:</h3>
-                        {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
-                            :
-                            <ul className='Order-ul'>
-                                {console.log('console de cart', cart)}
+                <div className="Order-div">
+                    <h3>TU PEDIDO:</h3>
+                    {cart.length === 0 ? (
+                        <p>No hay productos en el carrito</p>
+                    ) : (
+                        <>
+                            <ul className="Order-ul">
                                 {cart.map((item) => (
                                     <li key={item._id}>
-                                        <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
+                                        <p className="Order-p">
+                                            {item.name} : {item.quantity} x {item.precio}€ ={' '}
+                                            {item.quantity * item.precio} €
+                                        </p>
                                     </li>
                                 ))}
                             </ul>
-                        }
-                        {
-                            cart.length !== 0 ? (<h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>) : ("")
-                        }
-                        {/* .reduce()  calcula el total acumulado sumando en cada iteracion el total anterior con el precio por la cantidad de cada producto. El 0 es la posición inicial */}
+                            <h3>
+                                Total:{' '}
+                                {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€
+                            </h3>
+                        </>
+                    )}
+                </div>
 
-                    </div>
-                    <button onClick={logout}>Salir de la sesión</button>
-                </main>
-            </div>
-        </>
-    );
+                <button onClick={logout}>Cambiar de mesa</button>
+            </main>
+        </div>
+    )
 }
 
-export default Menu;
+export default Menu
 
 export const GaleriaMenu = ({ products, addToCart }) => {
-    return (<div className="GaleriaMenu">
-        {products.length === 0 ? (<p>Cargando productos...</p>) : (
-            products.map((product) => (
-                <div key={product._id} className='GaleriaMenu-item' onClick={() => addToCart(product)}>
-                    <img className='GaleriaMenu-img' src={product.img || "/img/imagen-no-encontrada.jpg"} alt={product.name} />
-                    <p className='GaleriaMenu-p'>{product.name} - {`${parseFloat(product.precio)}`}€</p>
-                </div>
-            ))
-        )}
-
-    </div>);
+    return (
+        <div className="GaleriaMenu">
+            {products.length === 0 ? (
+                <p>Cargando productos...</p>
+            ) : (
+                products.map((product) => (
+                    <div
+                        key={product._id}
+                        className="GaleriaMenu-item"
+                        onClick={() => addToCart(product)}
+                    >
+                        <img
+                            className="GaleriaMenu-img"
+                            src={product.img || '/img/imagen-no-encontrada.jpg'}
+                            alt={product.name}
+                        />
+                        <p className="GaleriaMenu-p">
+                            {product.name} - {product.precio}€
+                        </p>
+                    </div>
+                ))
+            )}
+        </div>
+    )
 }
-

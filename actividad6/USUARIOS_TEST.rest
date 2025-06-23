@@ -2,14 +2,15 @@
 @uid=67d2134192e8a897b6d1f3ed
 
 
-### update usuario
-PUT {{dominio}}/api/v1/usuarios
+### create mesas
+POST {{dominio}}/api/v1/mesas
 Content-Type: application/json
 
 {
-    "nombre": "Jaume",
-    "email": "jaume@gmail.es"
+  "numero": 4,
+  "estado": "libre"
 }
+
 
 ### get usuario
 GET {{dominio}}/api/v1/usuarios/{{uid}}

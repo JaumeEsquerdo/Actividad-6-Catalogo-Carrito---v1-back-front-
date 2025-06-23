@@ -1,52 +1,59 @@
 import { createBrowserRouter } from 'react-router'
 
-// importe de páginas
+// Páginas cliente
+import MesaSelector from '@/pages/MesaSelector' // NUEVA página donde eligen la mesa
 import Menu from '@/pages/Menu'
-import Register from '@/pages/Register'
+
+// Admin
 import Login from '@/pages/Login'
-
-
-// importe de páginas especiales
-import Layout from '@/Layout'
-import ErrorPage from '@/pages/Errorpage'
+import Register from '@/pages/Register'
 import FormEditImg from '@/pages/FormEditImg'
 import FormImage from '@/pages/FormImage'
 
+// Estructura y errores
+import Layout from '@/Layout'
+import ErrorPage from '@/pages/Errorpage'
 
 const router = createBrowserRouter([
+    // Cliente: selección de mesa y menú
     {
         path: '/',
-        element: <Menu />,
-        index: true,// página principal sin Layout, para q no comparta header y footer
-    }
-    ,
+        element: <MesaSelector />, // Pantalla para elegir mesa (cliente)
+        index: true
+    },
+    {
+        path: '/menu',
+        element: <Menu /> // Una vez elegida la mesa, va al menú
+    },
+
+    // Admin (protegido por login)
     {
         element: <Layout />,
-        children:
-            [
-                {
-                    path: '/register',
-                    element: <Register />,
-                },
-                {
-                    path: '/login',
-                    element: <Login />,
-                },
-                {
-                    path: '/formEditingImg',
-                    element: <FormEditImg />,
-                }
-                ,
-                {
-                    path: '/formImage',
-                    element: <FormImage />,
-                }
-            ]
-    }
-    ,
+        children: [
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/register',
+                element: <Register />
+            },
+            {
+                path: '/formEditingImg',
+                element: <FormEditImg />
+            },
+            {
+                path: '/formImage',
+                element: <FormImage />
+            }
+        ]
+    },
+
+    // Página 404
     {
         path: '*',
         element: <ErrorPage />
     }
 ])
+
 export default router
