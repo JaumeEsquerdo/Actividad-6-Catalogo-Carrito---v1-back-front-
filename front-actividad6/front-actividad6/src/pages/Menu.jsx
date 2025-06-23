@@ -163,26 +163,25 @@ const Menu = () => {
 
                     <div className='Order'>
                         <GaleriaMenu products={filterProductos} addToCart={addToCart} />
+                    </div>
 
-                        <div className='Order-div'>
-                            <h3>TU PEDIDO:</h3>
-                            {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
-                                :
-                                <ul className='Order-ul'>
-                                    {console.log('console de cart', cart)}
-                                    {cart.map((item) => (
-                                        <li key={item._id}>
-                                            <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
-                                        </li>
-                                    ))}
-                                </ul>
-                            }
-                            {
-                                cart.length !== 0 ? (<h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>) : ("")
-                            }
-                            {/* .reduce()  calcula el total acumulado sumando en cada iteracion el total anterior con el precio por la cantidad de cada producto. El 0 es la posición inicial */}
-
-                        </div>
+                    <div className='Order-div'>
+                        <h3>TU PEDIDO:</h3>
+                        {cart.length === 0 ? (<p>No hay productos en el carrito</p>)
+                            :
+                            <ul className='Order-ul'>
+                                {console.log('console de cart', cart)}
+                                {cart.map((item) => (
+                                    <li key={item._id}>
+                                        <p className='Order-p'>{item.name} : {item.quantity} x {item.precio}€ = {`${parseFloat(item.quantity) * parseFloat(item.precio)} €`}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        }
+                        {
+                            cart.length !== 0 ? (<h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>) : ("")
+                        }
+                        {/* .reduce()  calcula el total acumulado sumando en cada iteracion el total anterior con el precio por la cantidad de cada producto. El 0 es la posición inicial */}
 
                     </div>
                     <button onClick={logout}>Salir de la sesión</button>
