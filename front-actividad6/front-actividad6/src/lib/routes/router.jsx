@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router'
 
 // importe de páginas
 import Menu from '@/pages/Menu'
-import Home from '@/pages/Home'
 import Register from '@/pages/Register'
 import Login from '@/pages/Login'
 
