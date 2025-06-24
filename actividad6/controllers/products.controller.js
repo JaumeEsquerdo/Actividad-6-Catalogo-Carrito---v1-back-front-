@@ -9,27 +9,29 @@ const responseAPI = {
 }
 
 export const createProducto = async (req, res, next) => {
-    const { name, precio, img, tipo, descripcion, valoresNutricionales } = req.body;
+    const { name, precio, tipo, descripcion, valoresNutricionales, img } = req.body;
+
 
     try {
         const nuevoProducto = await Producto.create({
             name,
             precio,
-            img,
             tipo,
             descripcion,
-            valoresNutricionales
+            valoresNutricionales,
+            img,
         });
 
-        responseAPI.msg = "Producto creado con éxito";
-        responseAPI.data = nuevoProducto;
-
-        res.status(201).json(responseAPI);
-    } catch (e) {
-        console.error('error creando producto', e);
-        next(e);
+        res.status(201).json({
+            msg: "Producto creado con éxito",
+            data: nuevoProducto,
+        });
+    } catch (error) {
+        next(error);
     }
-}
+};
+
+
 
 
 export const getProducto = async (req, res, next) => {

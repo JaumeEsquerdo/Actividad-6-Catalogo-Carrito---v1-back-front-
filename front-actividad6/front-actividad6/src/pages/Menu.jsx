@@ -11,6 +11,9 @@ const Menu = () => {
     const [products, setProducts] = useState([])
     const [filters, setFilters] = useState('todos')
 
+    const backendURL = "http://localhost:3000"; // o la URL de producción
+
+
     useEffect(() => {
         if (!mesaId) {
             navigate('/') // si no hay mesa redirige a la selección
@@ -146,7 +149,7 @@ const Menu = () => {
                 </nav>
 
                 <div className="Order">
-                    <GaleriaMenu products={filterProductos} addToCart={addToCart} />
+                    <GaleriaMenu backendURL={backendURL} products={filterProductos} addToCart={addToCart} />
                 </div>
 
                 <div className="Order-div">
@@ -182,25 +185,31 @@ const Menu = () => {
 
 export default Menu
 
-export const GaleriaMenu = ({ products, addToCart }) => {
+export const GaleriaMenu = ({ products, addToCart, backendURL }) => {
     return (
         <div className="GaleriaMenu">
-            {products.map((product) => (
-                <div key={product._id} className="Card">
-                    <div className="Card-imageWrapper">
-                        <img
-                            className="Card-img"
-                            src={`${product.img}` || '/img/imagen-no-encontrada.jpg'}
-                            alt={product.name}
-                        />
+            {products.map((product) => {
+                const imageUrl = `${backendURL}/uploads/${product.img}`; 
+                console.log('producto img', product.img)
+                return (
+                    <div key={product._id} className="Card">
+                        <div className="Card-imageWrapper">
+                            <img
+                                className="Card-img"
+                                src={imageUrl || '/img/imagen-no-encontrada.jpg'}
+                                alt={product.name}
+                            />
+                        </div>
+                        <p className="Card-name">{product.name}</p>
+                        <p className="Card-price">{product.precio}€</p>
+                        <button onClick={() => addToCart(product)}>Añadir</button>
                     </div>
-                    <p className="Card-name">{product.name}</p>
-                    <p className="Card-price">{product.precio}€</p>
-                </div>
-            ))}
+                );
+            })}
         </div>
-    )
-}
+    );
+};
+
 
 
 /** f[0]         // 's'   ← primera letra
