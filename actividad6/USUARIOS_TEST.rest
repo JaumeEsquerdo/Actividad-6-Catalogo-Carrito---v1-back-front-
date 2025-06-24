@@ -20,8 +20,8 @@ POST {{dominio}}/api/v1/productos
 Content-Type: application/json
 
 {
-    "name": "roll de atun",
-    "precio": 8,
+    "name": "roll de langosta",
+    "precio": 10,
     "img": "atun.jpg",
     "tipo": "roll"
 }

@@ -56,6 +56,7 @@ const Menu = () => {
                 const response = await fetch('http://localhost:3000/api/v1/productos')
                 const responseAPI = await response.json()
                 setProducts(responseAPI.data)
+                console.log('productos', responseAPI.data)
             } catch (e) {
                 console.error('error al obtener productos', e)
             }
@@ -144,8 +145,6 @@ const Menu = () => {
                     ))}
                 </nav>
 
-                <Link to="/formImage">Form para subir img</Link>
-
                 <div className="Order">
                     <GaleriaMenu products={filterProductos} addToCart={addToCart} />
                 </div>
@@ -186,26 +185,19 @@ export default Menu
 export const GaleriaMenu = ({ products, addToCart }) => {
     return (
         <div className="GaleriaMenu">
-            {products.length === 0 ? (
-                <p>Cargando productos...</p>
-            ) : (
-                products.map((product) => (
-                    <div
-                        key={product._id}
-                        className="GaleriaMenu-item"
-                        onClick={() => addToCart(product)}
-                    >
+            {products.map((product) => (
+                <div key={product._id} className="Card">
+                    <div className="Card-imageWrapper">
                         <img
-                            className="GaleriaMenu-img"
-                            src={product.img || '/img/imagen-no-encontrada.jpg'}
+                            className="Card-img"
+                            src={`${product.img}` || '/img/imagen-no-encontrada.jpg'}
                             alt={product.name}
                         />
-                        <p className="GaleriaMenu-p">
-                            {product.name} - {product.precio}€
-                        </p>
                     </div>
-                ))
-            )}
+                    <p className="Card-name">{product.name}</p>
+                    <p className="Card-price">{product.precio}€</p>
+                </div>
+            ))}
         </div>
     )
 }
