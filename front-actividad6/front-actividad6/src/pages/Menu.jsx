@@ -188,7 +188,7 @@ export default Menu
 const getStrokeColor = (tipo) => {
     switch (tipo) {
         case 'roll':
-            return '#FF6400'; // Naranja intenso para premium
+            return '#fe6767'; // Naranja intenso para premium
         case 'standard':
             return '#007ACC'; // Azul elegante para estándar
         case 'basic':
