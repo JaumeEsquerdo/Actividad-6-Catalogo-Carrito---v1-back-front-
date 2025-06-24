@@ -185,6 +185,7 @@ const Menu = () => {
 
 export default Menu
 
+// logica para cambiar color del stroke de los prodcutos segun el product.tipo
 const getStrokeColor = (tipo) => {
     switch (tipo) {
         case 'roll':
