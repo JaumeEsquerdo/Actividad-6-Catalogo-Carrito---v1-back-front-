@@ -20,10 +20,10 @@ POST {{dominio}}/api/v1/productos
 Content-Type: application/json
 
 {
-    "name": "roll de roles",
+    "name": "nigiri de atun",
     "precio": 12,
     "img": "imgprod-2025-04-15T10-05-34-837Z.png",
-    "tipo": "roll"
+    "tipo": "nigiri"
 }
 
 ### get producto
