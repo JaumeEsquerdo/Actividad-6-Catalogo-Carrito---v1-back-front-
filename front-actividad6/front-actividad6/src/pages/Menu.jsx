@@ -222,7 +222,7 @@ export const GaleriaMenu = ({ products, addToCart, backendURL }) => {
 
         // card del tipo como separador (se ejecuta la funcion del tipo q le añade su color correspondiente)
         items.push(
-            <div key={`title-${tipo}`} className="Card Card-tipo" style={{ borderColor: getStrokeColor(tipo) }}>
+            <div key={`title-${tipo}`} className="Card Card-tipo">
                 <h3 style={{ color: getStrokeColor(tipo) }}>{formatTipoNombre(tipo)}</h3>
             </div>
         );
