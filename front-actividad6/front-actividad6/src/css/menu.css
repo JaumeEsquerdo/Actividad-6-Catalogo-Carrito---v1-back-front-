@@ -84,7 +84,20 @@
     border-top-right-radius: 24px;
 }
 
+.Card-tipo{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+}
 
+.Card-h3{
+    font-family: 'Chewy', cursive;
+    font-size: 2rem;
+    
+}
 
 
 .GaleriaMenu {
