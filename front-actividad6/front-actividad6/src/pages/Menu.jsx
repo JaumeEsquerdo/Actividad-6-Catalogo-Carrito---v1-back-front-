@@ -82,6 +82,26 @@ const Menu = () => {
         })
     }
 
+    const removeOneFromCart = (productId) => {
+        setCart((prevCart) => {
+            return prevCart
+                .map(item => {
+                    if (item._id === productId) {
+                        const newQuantity = item.quantity - 1;
+                        if (newQuantity <= 0) return null; // Eliminar si llega a 0
+                        return { ...item, quantity: newQuantity };
+                    }
+                    return item;
+                })
+                .filter(Boolean); // Elimina los productos que se han quedado como null (por cantidad 0)
+        });
+    };
+
+    const removeProductCompletely = (productId) => {
+        setCart((prevCart) => prevCart.filter(item => item._id !== productId));
+    };
+
+
     const filterProductos = products.filter(product =>
         filters === 'todos' ? true : product.tipo === filters
     )
@@ -149,7 +169,7 @@ const Menu = () => {
                 </nav>
 
                 <div className="Order">
-                    <GaleriaMenu backendURL={backendURL} products={filterProductos} addToCart={addToCart} />
+                    <GaleriaMenu backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
                 </div>
 
                 <div className="Order-div">
@@ -202,7 +222,7 @@ const getStrokeColor = (tipo) => {
             return '#333333'; // gris oscuro por defecto
     }
 };
-export const GaleriaMenu = ({ products, addToCart, backendURL }) => {
+export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart, removeProductCompletely }) => {
     const tipoOrden = ['roll', 'ramen', 'donburi', 'tempura', 'nigiri'];
     const items = [];
     const formatTipoNombre = (tipo) => {
@@ -262,6 +282,8 @@ export const GaleriaMenu = ({ products, addToCart, backendURL }) => {
                     <p className="Card-name">{product.name}</p>
                     <p className="Card-price">{product.precio}€</p>
                     <button onClick={() => addToCart(product)}>Añadir</button>
+                    <button onClick={() => removeOneFromCart(product._id)}>➖</button>
+                    <button onClick={() => removeProductCompletely(product._id)}>🗑️</button>
                 </div>
             );
         });
