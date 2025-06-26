@@ -20,3 +20,19 @@
     background-color: var(--color-bg2);
     font-family: var(--font-family);
 }
+
+button{
+    background-color: #FFEBE5;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out ,color 0.3s ease-out;
+}
+
+
+button:active, button:hover{
+    background-color: #B6462E;
+    color: white;
+}
