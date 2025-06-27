@@ -10,6 +10,8 @@ const Menu = () => {
     const [cart, setCart] = useState([])
     const [products, setProducts] = useState([])
     const [filters, setFilters] = useState('todos')
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
+
 
     const backendURL = "http://localhost:3000"; // o la URL de producción
 
@@ -144,11 +146,25 @@ const Menu = () => {
         }
     };
 
-
+    // logica para expandir la img del producto a la izq
+    const imageUrl = productoSeleccionado?.img
+        ? `${backendURL}/uploads/${productoSeleccionado.img}`
+        : '/img/imagen-no-encontrada.jpg';
 
     return (
         <div className="PageWrap">
-            <aside className="ImgMenu">img</aside>
+            <aside className="ImgMenu">
+                {productoSeleccionado ? (
+                    <>
+                        <img src={imageUrl} alt={productoSeleccionado.name} className="Detalle-img" />
+                        <h2>{productoSeleccionado.name}</h2>
+                        <p>{productoSeleccionado.descripcion || 'Sin descripción'}</p>
+                        <p>{productoSeleccionado.precio}€</p>
+                    </>
+                ) : (
+                    <p>Haz clic en un producto para ver los detalles</p>
+                )}
+            </aside>
             <main className="Menu">
                 <h1 className="Menu-h1">SUSHIRO</h1>
                 <h2>
@@ -169,7 +185,7 @@ const Menu = () => {
                 </nav>
 
                 <div className="Order">
-                    <GaleriaMenu backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
+                    <GaleriaMenu setProductoSeleccionado={setProductoSeleccionado} backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
                 </div>
 
                 <div className="Order-div">
@@ -222,7 +238,7 @@ const getStrokeColor = (tipo) => {
             return '#333333'; // gris oscuro por defecto
     }
 };
-export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart, removeProductCompletely }) => {
+export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart, removeProductCompletely, setProductoSeleccionado }) => {
     const tipoOrden = ['roll', 'ramen', 'donburi', 'tempura', 'nigiri'];
     const items = [];
     const formatTipoNombre = (tipo) => {
@@ -255,7 +271,7 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
 
             items.push(
                 <div key={product._id} className="Card">
-                    <div className="Card-imageWrapper">
+                    <div className="Card-imageWrapper" onClick={() => setProductoSeleccionado(product)}>
                         <img
                             className="Card-img"
                             src={imageUrl || '/img/imagen-no-encontrada.jpg'}
@@ -278,9 +294,9 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
                                 strokeLinejoin="round"
                             />
                         </svg>
+                        <p className="Card-name">{product.name}</p>
+                        <p className="Card-price">{product.precio}€</p>
                     </div>
-                    <p className="Card-name">{product.name}</p>
-                    <p className="Card-price">{product.precio}€</p>
                     <button onClick={() => addToCart(product)}>Añadir</button>
                     <button onClick={() => removeOneFromCart(product._id)}>➖</button>
                     <button onClick={() => removeProductCompletely(product._id)}>🗑️</button>
