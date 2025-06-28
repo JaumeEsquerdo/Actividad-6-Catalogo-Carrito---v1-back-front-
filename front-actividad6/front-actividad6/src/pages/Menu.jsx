@@ -11,6 +11,7 @@ const Menu = () => {
     const [products, setProducts] = useState([])
     const [filters, setFilters] = useState('todos')
     const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
 
     const backendURL = "http://localhost:3000"; // o la URL de producción
@@ -173,7 +174,7 @@ const Menu = () => {
                         : 'Esperando cliente...'}
                 </h2>
                 <nav className="Menu-filters">
-                    {['todos', 'sushi', 'nigiri', 'otros'].map((f) => (
+                    {['todos', 'nigiri', 'ramen', 'domburi', 'tempura'].map((f) => (
                         <button
                             key={f}
                             className={`Btn-link ${filters === f ? 'active' : ''}`}
@@ -188,33 +189,38 @@ const Menu = () => {
                     <GaleriaMenu setProductoSeleccionado={setProductoSeleccionado} backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
                 </div>
 
-                <div className="Order-div">
-                    <h3>TU PEDIDO:</h3>
-                    {cart.length === 0 ? (
-                        <p>No hay productos en el carrito</p>
-                    ) : (
-                        <>
-                            <ul className="Order-ul">
-                                {cart.map((item) => (
-                                    <li key={item._id}>
-                                        <p className="Order-p">
-                                            {item.name} : {item.quantity} x {item.precio}€ ={' '}
-                                            {item.quantity * item.precio} €
-                                        </p>
-                                    </li>
-                                ))}
-                            </ul>
-                            <h3>
-                                Total:{' '}
-                                {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€
-                            </h3>
-                        </>
-                    )}
-                </div>
-
-                <button onClick={pagarCompra}>Pagar compra</button>
-                <button onClick={logout}>Cambiar de mesa</button>
+                {cart.length > 0 && (
+                    <div className="CartBar">
+                        <span>🛒 {cart.length} productos - {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</span>
+                        <button className="CartBar-button" onClick={() => setIsCartOpen(true)}>
+                            Ver carrito
+                        </button>
+                    </div>
+                )}
             </main>
+            <aside className={`CartAside ${isCartOpen ? 'open' : ''}`}>
+                <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button>
+                <h3>Tu pedido</h3>
+                {cart.length === 0 ? (
+                    <p>No hay productos en el carrito</p>
+                ) : (
+                    <>
+                        <ul className="Order-ul">
+                            {cart.map((item) => (
+                                <li key={item._id}>
+                                    <p className="Order-p">
+                                        {item.name} : {item.quantity} x {item.precio}€ ={' '}
+                                        {item.quantity * item.precio} €
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                        <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
+                        <button onClick={pagarCompra}>Pagar compra</button>
+                        <button onClick={logout}>Cambiar de mesa</button>
+                    </>
+                )}
+            </aside>
         </div>
     )
 }

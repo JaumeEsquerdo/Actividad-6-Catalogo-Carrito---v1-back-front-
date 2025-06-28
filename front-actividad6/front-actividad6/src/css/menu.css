@@ -15,6 +15,7 @@
 }
 
 .Menu {
+    position: relative;
     width: 50%;
     background-color: #fff;
     padding: 60px 40px;
@@ -160,4 +161,58 @@
 .Order-p {
     margin-bottom: 8px;
     font-size: 15px;
+}
+
+
+/* aside de carrito + barra fija de carrito */
+
+.CartBar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    background: #ffece6;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.CartBar-button {
+    background-color: #ff7e5f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Aside lateral del carrito */
+.CartAside {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background: white;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1001;
+}
+
+.CartAside.open {
+    right: 0;
+}
+
+.CloseAside {
+    background: none;
+    border: none;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
