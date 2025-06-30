@@ -193,7 +193,7 @@ const Menu = () => {
 
                 {cart.length > 0 && (
                     <div className="CartBar">
-                        <span>🛒 {cart.length} productos - {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</span>
+                        <span>🛒 {cart.length} platos - {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</span>
                         <button className="CartBar-button" onClick={() => setIsCartOpen(true)}>
                             Ver carrito
                         </button>
@@ -214,6 +214,10 @@ const Menu = () => {
                                         {item.name} : {item.quantity} x {item.precio}€ ={' '}
                                         {item.quantity * item.precio} €
                                     </p>
+                                    <div className="Order-actions">
+                                        <button onClick={() => removeOneFromCart(item._id)}>➖</button>
+                                        <button onClick={() => removeProductCompletely(item._id)}>🗑️</button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
@@ -306,8 +310,6 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
                     <p className="Card-name">{product.name}</p>
                     <p className="Card-price">{product.precio}€</p>
                     <button onClick={() => addToCart(product)}>Añadir</button>
-                    <button onClick={() => removeOneFromCart(product._id)}>➖</button>
-                    <button onClick={() => removeProductCompletely(product._id)}>🗑️</button>
                 </div>
             );
         });
