@@ -154,16 +154,18 @@ const Menu = () => {
 
     return (
         <div className="PageWrap">
-            <aside className="ImgMenu">
+            <aside className="DetalleProducto">
                 {productoSeleccionado ? (
                     <>
-                        <img src={imageUrl} alt={productoSeleccionado.name} className="Detalle-img" />
-                        <h2>{productoSeleccionado.name}</h2>
-                        <p>{productoSeleccionado.descripcion || 'Sin descripción'}</p>
-                        <p>{productoSeleccionado.precio}€</p>
+                        <img src={imageUrl} alt={productoSeleccionado.name} className="DetalleProducto-img" />
+                        <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
+                        <p className="DetalleProducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
+                        <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
+                        <button className='DetalleProducto-boton' onClick={() => addToCart(productoSeleccionado)}>Añadir</button>
+
                     </>
                 ) : (
-                    <p>Haz clic en un producto para ver los detalles</p>
+                    <p className="DetalleProducto-placeholder">Haz clic en un producto para ver los detalles</p>
                 )}
             </aside>
             <main className="Menu">
