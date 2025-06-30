@@ -300,9 +300,9 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        <p className="Card-name">{product.name}</p>
-                        <p className="Card-price">{product.precio}€</p>
                     </div>
+                    <p className="Card-name">{product.name}</p>
+                    <p className="Card-price">{product.precio}€</p>
                     <button onClick={() => addToCart(product)}>Añadir</button>
                     <button onClick={() => removeOneFromCart(product._id)}>➖</button>
                     <button onClick={() => removeProductCompletely(product._id)}>🗑️</button>
