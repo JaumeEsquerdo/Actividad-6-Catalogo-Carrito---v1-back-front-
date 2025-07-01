@@ -5,8 +5,31 @@
     --color-text2: #b1ada7;
     --box-shadow: 0 0 0 12px rgba(239, 234, 234, 0.7);
     --font-family:'Poppins', sans-serif;
-;
-    ;
+
+      /* Colores de fondo */
+  --color-bg: #FADA5E;           /* Fondo principal */
+  --color-bg-light: #FFF7C1;     /* Fondo claro, para tarjetas o secciones */
+  --color-bg-card: #FFF4A3;      /* Fondo para tarjetas */
+  --color-bg-cartbar: #F4D64E;   /* Fondo barra carrito */
+
+  /* Colores de texto */
+  --color-text-dark: #7A2745;    /* Texto llamativo y principal */
+  --color-text-muted: #A37D8C;   /* Texto secundario, más suave */
+  --color-text-light: #DFD0B8;   /* Texto muy claro */
+
+  /* Colores secundarios */
+  --color-secondary: #D36C8B;       /* Color secundario base */
+  --color-secondary-dark: #922E55;  /* Color secundario oscuro */
+
+  /* Botones y enlaces */
+  --color-btn-link-bg: #802612;   /* Fondo para botones tipo link */
+  --color-cartbar-btn: #922E55;   /* Botón en barra carrito */
+
+  /* Bordes y radios */
+  --color-border: #edb0c9;        /* Color para bordes */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 24px;
 }
 
 * {
