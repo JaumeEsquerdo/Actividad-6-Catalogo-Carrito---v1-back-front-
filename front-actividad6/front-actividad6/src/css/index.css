@@ -22,7 +22,7 @@
   --color-secondary-dark: #922E55;  /* Color secundario oscuro */
 
   /* Botones y enlaces */
-  --color-btn-link-bg: #802612;   /* Fondo para botones tipo link */
+  --color-btn-link-bg: #D36C8B;   /* Fondo para botones tipo link */
   --color-cartbar-btn: #922E55;   /* Botón en barra carrito */
 
   /* Bordes y radios */
@@ -45,7 +45,7 @@
 }
 
 button{
-    background-color: #FFEBE5;
+    background-color:var(--color-border);
     border: none;
     padding: 12px 16px;
     border-radius: 24px;
@@ -56,6 +56,6 @@ button{
 
 
 button:active, button:hover{
-    background-color: #B6462E;
+    background-color: var(--color-btn-link-bg);
     color: white;
 }
