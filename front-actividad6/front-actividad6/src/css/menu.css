@@ -168,6 +168,7 @@
 .Card-h3 {
     font-family: 'Chewy', cursive;
     font-size: 2rem;
+    pointer-events: none;
 }
 
 .GaleriaMenu {
