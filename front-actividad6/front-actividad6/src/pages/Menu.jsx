@@ -176,7 +176,7 @@ const Menu = () => {
                         : 'Esperando cliente...'}
                 </h2>
                 <nav className="Menu-filters">
-                    {['todos', 'nigiri', 'ramen', 'domburi', 'tempura'].map((f) => (
+                    {['todos', 'roll', 'nigiri', 'ramen', 'domburi', 'tempura'].map((f) => (
                         <button
                             key={f}
                             className={`Btn-link ${filters === f ? 'active' : ''}`}

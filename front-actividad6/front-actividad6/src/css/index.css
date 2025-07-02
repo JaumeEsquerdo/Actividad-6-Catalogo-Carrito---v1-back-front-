@@ -15,14 +15,15 @@
   /* Colores de texto */
   --color-text-dark: #7A2745;    /* Texto llamativo y principal */
   --color-text-muted: #41202e;   /* Texto secundario, más suave */
-  --color-text-light: #DFD0B8;   /* Texto muy claro */
+  --color-text-light: #fff;   /* Texto muy claro */
 
   /* Colores secundarios */
   --color-secondary: #D36C8B;       /* Color secundario base */
   --color-secondary-dark: #922E55;  /* Color secundario oscuro */
 
   /* Botones y enlaces */
-  --color-btn-link-bg: #D36C8B;   /* Fondo para botones tipo link */
+  --color-btn-link-bg: #D36C8B; /* Fondo para botones tipo link */
+   --color-btn-link-bg-op: #d36c8bc3;   /* con opacidad */
   --color-cartbar-btn: #922E55;   /* Botón en barra carrito */
 
   /* Bordes y radios */
