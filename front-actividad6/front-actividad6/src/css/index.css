@@ -21,11 +21,13 @@
   --color-secondary: #D36C8B;       /* Color secundario base */
   --color-secondary-dark: #922E55;  /* Color secundario oscuro */
 
-  /* Botones y enlaces */
-  --color-btn-link-bg: #D36C8B; /* Fondo para botones tipo link */
-   --color-btn-link-bg-op: #d36c8bc3;   /* con opacidad */
-  --color-cartbar-btn: #922E55;   /* Botón en barra carrito */
+ /* Botones de filtro */
+  --color-btn-link-bg: #d36c8b;
+  --color-btn-link-bg-op: #d36c8b88;
 
+    /* Botón acción */
+  --color-btn-primary: #F28C28;
+  --color-btn-primary-dark: #d97706;
   /* Bordes y radios */
   --color-border: #edb0c9;        /* Color para bordes */
   --radius-small: 4px;
@@ -41,7 +43,7 @@
 
 .Root {
     min-height: 100vh;
-    background-color: var(--color-bg2);
+    background-color: var(--color-bg-light);
     font-family: var(--font-family);
 }
 

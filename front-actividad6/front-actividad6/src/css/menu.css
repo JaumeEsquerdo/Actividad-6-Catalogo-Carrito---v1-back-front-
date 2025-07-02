@@ -61,17 +61,17 @@
 .DetalleProducto-boton {
     margin-top: 20px;
     padding: 12px 24px;
-    background-color: var(--color-btn-link-bg);
-    color: var(--color-text-light);
-    border: none;
-    border-radius: var(--radius-small);
-    font-size: 16px;
+    background-color: var(--color-btn-primary);
+    color: white;
+    border: 2px solid var(--color-btn-primary-dark);
+    border-radius: var(--radius-large);
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease-out;
 }
 
 .DetalleProducto-boton:hover {
-    background-color: var(--color-secondary-dark);
+    background-color: var(--color-btn-primary-dark);
 }
 
 .DetalleProducto-placeholder {
@@ -117,19 +117,18 @@
 .Btn-link {
     color: white;
     background-color: var(--color-btn-link-bg-op);
-    border: none;
+    border: 2px solid var(--color-btn-link-bg);
     padding: 12px 16px;
     border-radius: var(--radius-large);
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease-out, color 0.3s ease-out;
-    border: 2px solid var(--color-btn-link-bg);
+    transition: background-color 0.3s ease-out;
 }
 
 .Btn-link.active,
 .Btn-link:hover {
-    background-color: var(--color-cartbar-btn);
-    color: var(--color-text-light);
+    background-color: var(--color-btn-link-bg);
+    
 }
 
 .Order {
@@ -170,6 +169,21 @@
     border-bottom-left-radius: var(--radius-large);
 } */
 
+.Card-btn {
+    background-color: var(--color-btn-primary);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-btn-primary-dark);
+    padding: 12px 16px;
+    border-radius: var(--radius-large);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+.Card-btn:hover {
+    background-color: var(--color-btn-primary-dark);
+    color: white;
+}
 
 .Card-tipo {
     display: flex;

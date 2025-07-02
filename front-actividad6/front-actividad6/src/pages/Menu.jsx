@@ -309,7 +309,7 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
                     </div>
                     <p className="Card-name">{product.name}</p>
                     <p className="Card-price">{product.precio}€</p>
-                    <button onClick={() => addToCart(product)}>Añadir</button>
+                    <button className='Card-btn' onClick={() => addToCart(product)}>Añadir</button>
                 </div>
             );
         });
