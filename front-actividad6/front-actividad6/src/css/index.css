@@ -58,8 +58,8 @@
     background-color: var(--color-bg-light);
     font-family: var(--font-family);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    
 }
 
 button {
