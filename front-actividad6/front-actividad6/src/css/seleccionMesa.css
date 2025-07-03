@@ -1,0 +1,54 @@
+.SeleccionMesa {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--color-bg-light);
+    border-radius: var(--radius-large);
+    box-shadow: var(--box-shadow);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    font-family: var(--font-family);
+
+
+}
+
+.SeleccionMesa-h2 {
+    color: var(--color-text-dark);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.SeleccionMesa-ul {
+
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+/* Crea columnas que tengan al menos 120px de ancho y se expandan hasta llenar el espacio, ajustando el número de columnas según el ancho disponible */
+
+
+
+.SeleccionMesa-btn {
+
+    background-color: var(--color-btn-primary);
+    color: var(--color-text-light);
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-medium);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.SeleccionMesa-btn:hover {
+    background-color: var(--color-btn-primary-dark);
+    transform: scale(1.05);
+}
+
+.SeleccionMesa-btn:active {
+    transform: scale(0.98);
+}

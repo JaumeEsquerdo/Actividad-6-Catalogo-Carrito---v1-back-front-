@@ -1,6 +1,7 @@
 // src/pages/MesaSelector.jsx
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import '@/css/seleccionMesa.css'
 
 const MesaSelector = () => {
     const [mesas, setMesas] = useState([])
@@ -30,14 +31,14 @@ const MesaSelector = () => {
     }
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl font-bold mb-4">Selecciona tu mesa</h2>
-            <ul className="grid gap-3">
+        <div className="SeleccionMesa">
+            <h2 className="SeleccionMesa-h2">Selecciona tu mesa</h2>
+            <ul className="SeleccionMesa-ul">
                 {mesas.map((mesa) => (
                     <li key={mesa._id}>
                         <button
                             onClick={() => handleSeleccion(mesa._id)}
-                            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                            className="SeleccionMesa-btn"
                         >
                             Mesa {mesa.numero}
                         </button>
