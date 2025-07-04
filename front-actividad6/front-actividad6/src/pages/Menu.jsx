@@ -192,7 +192,10 @@ const Menu = () => {
 
                 {cart.length > 0 && (
                     <div className="CartBar">
+                        <div className='CartBar-info'>
+
                         <span>🛒 {cart.length} platos - {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</span>
+                        </div>
                         <button className="CartBar-button" onClick={() => setIsCartOpen(true)}>
                             Ver carrito
                         </button>
