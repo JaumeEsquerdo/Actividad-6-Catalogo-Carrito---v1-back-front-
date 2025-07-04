@@ -151,6 +151,9 @@ const Menu = () => {
         ? `${backendURL}/uploads/${productoSeleccionado.img}`
         : '/img/imagen-no-encontrada.jpg';
 
+    /* constantes para el carro de compras */
+    const totalPlatos = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const totalPrecio = cart.reduce((total, item) => total + item.quantity * item.precio, 0);
     return (
         <div className="PageWrap">
             <aside className="DetalleProducto">
@@ -193,8 +196,7 @@ const Menu = () => {
                 {cart.length > 0 && (
                     <div className="CartBar">
                         <div className='CartBar-info'>
-
-                        <span>🛒 {cart.length} platos - {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</span>
+                            🛒 {totalPlatos} {totalPlatos === 1 ? 'plato' : 'platos'} - {totalPrecio}€
                         </div>
                         <button className="CartBar-button" onClick={() => setIsCartOpen(true)}>
                             Ver carrito
