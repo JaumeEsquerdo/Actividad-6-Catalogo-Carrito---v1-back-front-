@@ -178,7 +178,7 @@ const Menu = () => {
                         : 'Esperando cliente...'}
                 </h2>
                 <nav className="Menu-filters">
-                    {['todos', 'roll', 'nigiri', 'ramen', 'domburi', 'tempura'].map((f) => (
+                    {['todos', 'roll', 'nigiri', 'ramen', 'domburi', 'tempura','bebidas'].map((f) => (
                         <button
                             key={f}
                             className={`Btn-link ${filters === f ? 'active' : ''}`}
@@ -250,12 +250,14 @@ const getStrokeColor = (tipo) => {
             return '#6A4C93'; // púrpura oscuro
         case 'tempura':
             return '#00A676'; // verde esmeralda
+            case 'bebidas':
+            return '#00A371'; // 
         default:
             return '#333333'; // gris oscuro por defecto
     }
 };
 export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart, removeProductCompletely, setProductoSeleccionado }) => {
-    const tipoOrden = ['roll', 'ramen', 'donburi', 'tempura', 'nigiri'];
+    const tipoOrden = ['roll', 'ramen', 'donburi', 'tempura', 'nigiri', 'bebidas'];
     const items = [];
     const formatTipoNombre = (tipo) => {
         const map = {
@@ -263,7 +265,8 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
             nigiri: 'Nigiri',
             ramen: 'Ramen',
             donburi: 'Donburi',
-            tempura: 'Tempura'
+            tempura: 'Tempura',
+            bebida: 'Bebidas'
         };
         return map[tipo] || tipo;
     };
