@@ -1,130 +1,106 @@
-import { useState } from "react";
+// import { useState, useEffect } from "react";
 
+// const FormProducto = () => {
+//     const [formData, setFormData] = useState({
+//         name: "",
+//         descripcion: "",
+//         img: "",
+//         precio: 0,
+//         tipo: ""
+//     });
 
-const FormEditImg = () => {
+//     const [imageList, setImageList] = useState([]);
+//     const [imageUrlPreview, setImageUrlPreview] = useState("/no-image.png");
 
-    const [formData, setFormData] = useState({
-        name: "",
-        img: "",
-        precio: 0,
-        tipo: ""
+//     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
-    })
-    const [imageUrl, setImageUrl] = useState("/no-image.png");
+//     useEffect(() => {
+//         const fetchImages = async () => {
+//             try {
+//                 const res = await fetch(`${BACKEND_URL}/api/v1/imagenes`);
+//                 const data = await res.json();
+//                 setImageList(data.images);
+//             } catch (e) {
+//                 console.error("Error al cargar imágenes", e);
+//             }
+//         };
 
-    const [imgId] = useState("67d306af36bc312ea6369f37");
+//         fetchImages();
+//     }, []);
 
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+//         try {
+//             const response = await fetch(`${BACKEND_URL}/api/v1/productos`, {
+//                 method: "POST",
+//                 headers: {
+//                     "Content-Type": "application/json"
+//                 },
+//                 body: JSON.stringify(formData)
+//             });
 
-        // const datosFormu = new FormData();
+//             if (response.ok) {
+//                 const data = await response.json();
+//                 console.log("Producto creado:", data);
+//             }
 
-        // Object.entries(formData).forEach( ([kew, value])=>{
-        //     datosFormu.append(key, value);
-        // })
+//         } catch (e) {
+//             console.error("Error al enviar el formulario", e);
+//         }
+//     };
 
-        try {
+//     return (
+//         <>
+//             <h3>Crear producto</h3>
 
-            const response = await fetch(`${BACKEND_URL}/api/v1/productos/${imgId}`, {
-                method: "PUT",
-                headers: {
-                    'Content-Type': "application/json"
-                },
-                body: JSON.stringify(formData)
+//             <form onSubmit={handleSubmit}>
+//                 <input type="text"
+//                     value={formData.name}
+//                     placeholder="Nombre"
+//                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+//                 />
 
-            })
+//                 <input type="number"
+//                     value={formData.precio}
+//                     placeholder="Precio"
+//                     onChange={(e) => setFormData({ ...formData, precio: e.target.value })}
+//                 />
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log("datos del backend son:", data);
+//                 <input type="text"
+//                     value={formData.tipo}
+//                     placeholder="Tipo"
+//                     onChange={(e) => setFormData({ ...formData, tipo: e.target.value })}
+//                 />
 
-            }
+//                 <textarea
+//                     value={formData.descripcion}
+//                     placeholder="Descripción"
+//                     onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
+//                 />
 
-        } catch (e) {
-            console.error("Error al enviar el formulario", e)
-        }
-    }
+//                 <h4>Seleccionar imagen:</h4>
+//                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+//                     {imageList.map(img => (
+//                         <div key={img.filename} style={{ cursor: 'pointer' }}
+//                             onClick={() => {
+//                                 setFormData({ ...formData, img: img.filename });
+//                                 setImageUrlPreview(img.url);
+//                             }}>
+//                             <img src={img.url} alt={img.filename} width={100} style={{
+//                                 border: formData.img === img.filename ? '2px solid blue' : '1px solid #ccc'
+//                             }} />
+//                         </div>
+//                     ))}
+//                 </div>
 
-    const handleImageUpload = async (e) => {
-        const file = e.target.files[0]
-        //console.log(file)
-        if (!file) return;
+//                 <h4>Vista previa:</h4>
+//                 <img src={imageUrlPreview} alt="preview" width={200} />
 
-        const formDataImg = new FormData();
-        formDataImg.append('imgprod', file);
+//                 <button type="submit">Guardar producto</button>
+//             </form>
+//         </>
+//     );
+// };
 
-        try {
-
-            const response = await fetch(`${BACKEND_URL}/api/v1/productos/${imgId}/image`, {
-                method: "PUT",
-                body: formDataImg
-            })
-
-            if (response.ok) {
-                const jsonData = await response.json();
-                console.log("imagen de subida:", jsonData);
-                setImageUrl(jsonData.data.imageUrl)
-
-            }
-
-        } catch (e) {
-            console.error("Error al enviar el formulario de la img", e)
-        }
-
-
-
-    }
-
-
-    return (
-
-        <>
-            <h3>Formulario para editar Imagen: {formData.title}</h3>
-
-            <form onSubmit={handleSubmit}>
-
-                <label>
-                    <input type="text"
-                        value={formData.name}
-                        id="nombre-input"
-                        placeholder="Nombre"
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-                </label>
-
-                <label>
-                    <input type="number"
-                        value={formData.precio}
-                        id="precio-input"
-                        placeholder="Precio"
-                        onChange={(e) => setFormData({ ...formData, precio: e.target.value })} />
-                </label>
-
-                <label>
-                    <input type="text"
-                        value={formData.tipo}
-                        id="tipo-input"
-                        placeholder="tipo"
-                        onChange={(e) => setFormData({ ...formData, tipo: e.target.value })} />
-                </label>
-
-                <label >
-                    <input type="file"
-                        id="image-input"
-                        placeholder="Imágen"
-                        accept="image/*"
-                        onChange={handleImageUpload} />
-                </label>
-
-                <button type="submit">Enviar</button>
-            </form>
-
-            <h4>Vista previa de la img</h4>
-            <img src={imageUrl} alt={formData.title} />
-
-        </>
-    );
-}
-
-export default FormEditImg;
+// export default FormProducto;

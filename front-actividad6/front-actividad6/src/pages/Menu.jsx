@@ -240,7 +240,7 @@ export default Menu
 // logica para cambiar color del stroke de los prodcutos segun el product.tipo
 const getStrokeColor = (tipo) => {
     switch (tipo) {
-        case 'roll':
+        case 'rolls':
             return '#fe6767'; // rojo coral
         case 'nigiri':
             return '#FF914D'; // naranja salmón
@@ -257,11 +257,11 @@ const getStrokeColor = (tipo) => {
     }
 };
 export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart, removeProductCompletely, setProductoSeleccionado }) => {
-    const tipoOrden = ['roll', 'ramen', 'donburi', 'tempura', 'nigiri', 'bebidas'];
+    const tipoOrden = ['rolls', 'ramen', 'donburi', 'tempura', 'nigiri', 'bebidas'];
     const items = [];
     const formatTipoNombre = (tipo) => {
         const map = {
-            roll: 'Sushi Rolls',
+            rolls: 'Sushi Rolls',
             nigiri: 'Nigiri',
             ramen: 'Ramen',
             donburi: 'Donburi',

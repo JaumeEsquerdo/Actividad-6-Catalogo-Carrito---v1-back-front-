@@ -7,7 +7,7 @@ import Menu from '@/pages/Menu'
 // Admin
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
-import FormEditImg from '@/pages/FormEditImg'
+// import FormEditImg from '@/pages/FormEditImg'
 import FormImage from '@/pages/FormImage'
 
 // Estructura y errores
@@ -38,10 +38,10 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register />
             },
-            {
-                path: '/formEditingImg',
-                element: <FormEditImg />
-            },
+            // {
+            //     path: '/formEditingImg',
+            //     element: <FormEditImg />
+            // },
             {
                 path: '/formImage',
                 element: <FormImage />

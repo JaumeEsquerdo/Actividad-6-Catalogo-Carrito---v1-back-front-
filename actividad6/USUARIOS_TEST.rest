@@ -20,10 +20,11 @@ POST {{dominio}}/api/v1/productos
 Content-Type: application/json
 
 {
-    "name": "Nigiri de Salmón",
-    "precio": 12,
-    "img": "imgprod-2025-04-15T10-05-34-837Z.png",
-    "tipo": "nigiri"
+    "name": "Philadelphia Roll",
+    "descripcion": "Roll con salmón, queso crema y pepino.",
+    "precio": 16,
+    "img": "imgprod-2025-07-06T00-20-23-994Z.jpg",
+    "tipo": "rolls"
 }
 
 ### get producto
