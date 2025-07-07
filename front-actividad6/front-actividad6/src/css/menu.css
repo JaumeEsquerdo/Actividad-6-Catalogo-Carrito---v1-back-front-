@@ -4,6 +4,12 @@
     overflow: hidden;
 }
 
+.PageImg{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 /* DETALLES DEL PRODUCTO */
 .DetalleProducto {
     width: 50%;
@@ -17,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    /* padding: 40px; */
     box-sizing: border-box;
     overflow-y: auto;
     position: sticky;

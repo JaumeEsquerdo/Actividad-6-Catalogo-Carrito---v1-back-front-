@@ -167,7 +167,8 @@ const Menu = () => {
 
                     </>
                 ) : (
-                    <p className="DetalleProducto-placeholder">Haz clic en un producto para ver los detalles</p>
+                    <img className='PageImg' src="/img/sushi-table.jpg" alt="Mesas del restaurante" />
+                    // <p className="DetalleProducto-placeholder">Haz clic en un producto para ver los detalles</p>
                 )}
             </aside>
             <main className="Menu">
