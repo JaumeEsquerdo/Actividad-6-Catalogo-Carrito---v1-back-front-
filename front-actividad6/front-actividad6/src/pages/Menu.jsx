@@ -157,20 +157,25 @@ const Menu = () => {
     return (
         <div className="PageWrap">
             <aside className="DetalleProducto">
-                {productoSeleccionado ? (
-                    <>
+                <img className='PageImg' src="/img/sushi-table.jpg" alt="Mesas del restaurante" />
+
+                {productoSeleccionado && (
+                    <div className="ModalProducto">
+                        <button
+                            className="CerrarModal"
+                            onClick={() => setProductoSeleccionado(null)}
+                        >
+                            ✕
+                        </button>
                         <img src={imageUrl} alt={productoSeleccionado.name} className="DetalleProducto-img" />
                         <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
                         <p className="DetalleProducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
                         <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
                         <button className='DetalleProducto-boton' onClick={() => addToCart(productoSeleccionado)}>Añadir</button>
-
-                    </>
-                ) : (
-                    <img className='PageImg' src="/img/sushi-table.jpg" alt="Mesas del restaurante" />
-                    // <p className="DetalleProducto-placeholder">Haz clic en un producto para ver los detalles</p>
+                    </div>
                 )}
             </aside>
+
             <main className="Menu">
                 <h1 className="Menu-h1">SUSHIRO</h1>
                 <h2 className='Menu-h2'>
@@ -179,7 +184,7 @@ const Menu = () => {
                         : 'Esperando cliente...'}
                 </h2>
                 <nav className="Menu-filters">
-                    {['todos', 'rolls', 'nigiri', 'ramen', 'donburi', 'tempura','bebidas'].map((f) => (
+                    {['todos', 'rolls', 'nigiri', 'ramen', 'donburi', 'tempura', 'bebidas'].map((f) => (
                         <button
                             key={f}
                             className={`Btn-link ${filters === f ? 'active' : ''}`}
@@ -251,7 +256,7 @@ const getStrokeColor = (tipo) => {
             return '#6A4C93'; // púrpura oscuro
         case 'tempura':
             return '#00A676'; // verde esmeralda
-            case 'bebidas':
+        case 'bebidas':
             return '#00A371'; // 
         default:
             return '#333333'; // gris oscuro por defecto
