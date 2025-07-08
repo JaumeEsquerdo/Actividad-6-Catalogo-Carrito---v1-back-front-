@@ -20,11 +20,11 @@ POST {{dominio}}/api/v1/productos
 Content-Type: application/json
 
 {
-    "name": "Philadelphia Roll",
-    "descripcion": "Roll con salmón, queso crema y pepino.",
-    "precio": 16,
-    "img": "imgprod-2025-07-06T00-20-23-994Z.jpg",
-    "tipo": "rolls"
+    "name": "Tempura Udon con Curry",
+    "descripcion": "Fideos udon con caldo de curry y tempura de camarón.",
+    "precio": 14,
+    "img": "imgprod-2025-07-08T15-49-40-624Z.jpeg",
+    "tipo": "tempura"
 }
 
 ### get producto
