@@ -159,17 +159,17 @@ const Menu = () => {
     const getStrokeColor = (tipo) => {
         switch (tipo) {
             case 'rolls':
-                return '#fe6767'; // rojo coral
+                return '#B4434A'; // rojo 
             case 'nigiri':
-                return '#FF914D'; // naranja salmón
+                return '#AD1457'; //  vino
             case 'ramen':
-                return '#3A86FF'; // azul eléctrico
+                return '#2B5FAD'; // azul 
             case 'donburi':
                 return '#6A4C93'; // púrpura oscuro
             case 'tempura':
-                return '#00A676'; // verde esmeralda
+                return '#B04A1D'; // terracota oscuro
             case 'bebidas':
-                return '#00A371'; // 
+                return '#237A57'; // verde apagado
             default:
                 return '#333333'; // gris oscuro por defecto
         }
@@ -197,7 +197,7 @@ const Menu = () => {
                             <p className="DetalleProducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
                             <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
                         </div>
-                        
+
                         <button className='DetalleProducto-boton' onClick={() => addToCart(productoSeleccionado)}>Añadir</button>
                     </div>
                 )}
