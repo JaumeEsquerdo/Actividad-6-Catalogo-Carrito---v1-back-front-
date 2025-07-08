@@ -154,6 +154,27 @@ const Menu = () => {
     /* constantes para el carro de compras */
     const totalPlatos = cart.reduce((acc, item) => acc + item.quantity, 0);
     const totalPrecio = cart.reduce((total, item) => total + item.quantity * item.precio, 0);
+
+    // logica para cambiar color del stroke de los prodcutos segun el product.tipo
+    const getStrokeColor = (tipo) => {
+        switch (tipo) {
+            case 'rolls':
+                return '#fe6767'; // rojo coral
+            case 'nigiri':
+                return '#FF914D'; // naranja salmón
+            case 'ramen':
+                return '#3A86FF'; // azul eléctrico
+            case 'donburi':
+                return '#6A4C93'; // púrpura oscuro
+            case 'tempura':
+                return '#00A676'; // verde esmeralda
+            case 'bebidas':
+                return '#00A371'; // 
+            default:
+                return '#333333'; // gris oscuro por defecto
+        }
+    };
+
     return (
         <div className="PageWrap">
             <aside className="DetalleProducto">
@@ -167,10 +188,16 @@ const Menu = () => {
                         >
                             ✕
                         </button>
-                        <img src={imageUrl} alt={productoSeleccionado.name} className="DetalleProducto-img" />
-                        <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
-                        <p className="DetalleProducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
-                        <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
+                        <img src={imageUrl} alt={productoSeleccionado.name} style={{
+                            border: `12px solid ${getStrokeColor(productoSeleccionado.tipo)}`
+                        }} className="DetalleProducto-img" />
+
+                        <div className="DetalleProducto-detalles">
+                            <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
+                            <p className="DetalleProducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
+                            <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
+                        </div>
+                        
                         <button className='DetalleProducto-boton' onClick={() => addToCart(productoSeleccionado)}>Añadir</button>
                     </div>
                 )}
@@ -196,7 +223,7 @@ const Menu = () => {
                 </nav>
 
                 <div className="Order">
-                    <GaleriaMenu setProductoSeleccionado={setProductoSeleccionado} backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
+                    <GaleriaMenu getStrokeColor={getStrokeColor} setProductoSeleccionado={setProductoSeleccionado} backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
                 </div>
 
                 {cart.length > 0 && (
@@ -243,26 +270,8 @@ const Menu = () => {
 
 export default Menu
 
-// logica para cambiar color del stroke de los prodcutos segun el product.tipo
-const getStrokeColor = (tipo) => {
-    switch (tipo) {
-        case 'rolls':
-            return '#fe6767'; // rojo coral
-        case 'nigiri':
-            return '#FF914D'; // naranja salmón
-        case 'ramen':
-            return '#3A86FF'; // azul eléctrico
-        case 'donburi':
-            return '#6A4C93'; // púrpura oscuro
-        case 'tempura':
-            return '#00A676'; // verde esmeralda
-        case 'bebidas':
-            return '#00A371'; // 
-        default:
-            return '#333333'; // gris oscuro por defecto
-    }
-};
-export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart, removeProductCompletely, setProductoSeleccionado }) => {
+
+export const GaleriaMenu = ({ getStrokeColor, products, addToCart, backendURL, removeOneFromCart, removeProductCompletely, setProductoSeleccionado }) => {
     const tipoOrden = ['rolls', 'ramen', 'donburi', 'tempura', 'nigiri', 'bebidas'];
     const items = [];
     const formatTipoNombre = (tipo) => {
@@ -272,7 +281,7 @@ export const GaleriaMenu = ({ products, addToCart, backendURL, removeOneFromCart
             ramen: 'Ramen',
             donburi: 'Donburi',
             tempura: 'Tempura',
-            bebida: 'Bebidas'
+            bebidas: 'Bebidas'
         };
         return map[tipo] || tipo;
     };

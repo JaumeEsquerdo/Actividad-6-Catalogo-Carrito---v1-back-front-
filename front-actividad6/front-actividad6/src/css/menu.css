@@ -28,11 +28,11 @@
 }
 
 .DetalleProducto-nombre {
+    margin-top: 20px;
     font-size: 28px;
     font-weight: 600;
     color: var(--color-text-dark);
     text-align: center;
-    margin-bottom: 15px;
 }
 
 .DetalleProducto-descripcion {
@@ -40,7 +40,6 @@
     color: var(--color-text-muted);
     text-align: center;
     max-width: 400px;
-    margin-bottom: 15px;
     line-height: 1.5;
 }
 
@@ -48,11 +47,9 @@
     font-size: 22px;
     font-weight: bold;
     color: var(--color-secondary);
-    margin-top: 10px;
 }
 
 .DetalleProducto-boton {
-    margin-top: 20px;
     padding: 12px 24px;
     background-color: var(--color-btn-primary);
     color: white;
@@ -90,13 +87,20 @@
     height: 100%;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(4px);
-    padding: 20px;
+    padding: 60px;
     z-index: 10;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     color: #000;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.DetalleProducto-detalles{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 12px;
 }
@@ -109,8 +113,7 @@
     object-fit: cover;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     /* border-radius: 48px 48px 0 0; */
-    border-radius: 40% 0;
-    border: 12px solid #fe6767;
+    border-radius: 48% 0;
 }
 
 .CerrarModal {
