@@ -261,9 +261,9 @@ const Menu = () => {
 
                         <div className='Cart-footer'>
                             <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
-                            <button onClick={pagarCompra}>Pagar compra</button>
+                            <button className='Cart-payment' onClick={pagarCompra}>Pagar compra</button>
                         </div>
-                        <button onClick={logout}>Cambiar de mesa</button>
+                        <button className='Cart-table' onClick={logout}>Cambiar de mesa</button>
                     </>
                 )}
             </aside>

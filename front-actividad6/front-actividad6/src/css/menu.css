@@ -392,8 +392,19 @@
 .Cart-footer {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin-top: 20px;
+}
+
+.Cart-payment{
+    background-color: var(--color-secondary-dark);
+    color: #fff;
+
+}
+
+.Cart-table{
+    margin: 10px auto;
 }
 
 .CartAside.open {
