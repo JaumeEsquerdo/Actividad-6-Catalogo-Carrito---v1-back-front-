@@ -246,20 +246,23 @@ const Menu = () => {
                     <>
                         <ul className="Order-ul">
                             {cart.map((item) => (
-                                <li key={item._id}>
+                                <li key={item._id} className='Order-li'>
                                     <p className="Order-p">
                                         {item.name} : {item.quantity} x {item.precio}€ ={' '}
                                         {item.quantity * item.precio} €
                                     </p>
                                     <div className="Order-actions">
-                                        <button onClick={() => removeOneFromCart(item._id)}>➖</button>
-                                        <button onClick={() => removeProductCompletely(item._id)}>🗑️</button>
+                                        <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>➖</button>
+                                        <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>🗑️</button>
                                     </div>
                                 </li>
                             ))}
                         </ul>
-                        <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
-                        <button onClick={pagarCompra}>Pagar compra</button>
+
+                        <div className='Cart-footer'>
+                            <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
+                            <button onClick={pagarCompra}>Pagar compra</button>
+                        </div>
                         <button onClick={logout}>Cambiar de mesa</button>
                     </>
                 )}
