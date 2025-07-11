@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
+import CloseButton from '@/components/CloseButton'
+import { useUI } from '@/context/UIContext';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -10,10 +12,11 @@ const Menu = () => {
     const [products, setProducts] = useState([])
     const [filters, setFilters] = useState('todos')
     const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
-    const [isCartOpen, setIsCartOpen] = useState(false);
+    // const [isCartOpen, setIsCartOpen] = useState(false);
 
 
     const backendURL = "http://localhost:3000"; // o la URL de producción
+    const { openCart, isCartOpen, toggleCart } = useUI();
 
 
     useEffect(() => {
@@ -231,15 +234,18 @@ const Menu = () => {
                         <div className='CartBar-info'>
                             🛒 {totalPlatos} {totalPlatos === 1 ? 'plato' : 'platos'} - {totalPrecio}€
                         </div>
-                        <button className="CartBar-button" onClick={() => setIsCartOpen(true)}>
+                        <button className="CartBar-button" onClick={openCart}>
                             Ver carrito
                         </button>
                     </div>
                 )}
             </main>
             <aside className={`CartAside ${isCartOpen ? 'open' : ''}`}>
-                <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button>
-                <h3>Tu pedido</h3>
+                <div className='CardAside-header'>
+                    <h3>Tu pedido</h3>
+                    {/* <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button> */}
+                    <CloseButton target="cart" />
+                </div>
                 {cart.length === 0 ? (
                     <p>No hay productos en el carrito</p>
                 ) : (

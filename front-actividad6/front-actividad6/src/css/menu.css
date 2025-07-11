@@ -382,13 +382,15 @@
     margin-bottom: 10px;
 }
 
-.Order-actions{
+.Order-actions {
     display: flex;
     gap: 4px;
 }
-.Order-btn{
+
+.Order-btn {
     padding: 4px 4px;
 }
+
 .Cart-footer {
     display: flex;
     flex-direction: column;
@@ -397,13 +399,13 @@
     margin-top: 20px;
 }
 
-.Cart-payment{
+.Cart-payment {
     background-color: var(--color-secondary-dark);
     color: #fff;
 
 }
 
-.Cart-table{
+.Cart-table {
     margin: 10px auto;
 }
 
@@ -411,12 +413,33 @@
     right: 0;
 }
 
+.CardAside-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 12px;
+}
+
 .CloseAside {
     background: none;
     border: none;
     font-size: 24px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+
     cursor: pointer;
+}
+
+.CloseAside .line {
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #333;
+    /* Cambiá el color según tu diseño */
+    border-radius: 1px;
 }

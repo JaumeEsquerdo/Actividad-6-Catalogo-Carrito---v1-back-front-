@@ -19,7 +19,6 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <MesaSelector />, // Pantalla para elegir mesa (cliente)
-        index: true
     },
     {
         path: '/menu',
