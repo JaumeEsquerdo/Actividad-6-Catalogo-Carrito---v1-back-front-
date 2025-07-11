@@ -17,7 +17,7 @@ const lineVariants = {
 
 
 const CloseButton = ({ target }) => {
-    const { closeCart, closeProductDetails } = useUI();
+    const { closeCart, clearSelectedProduct } = useUI();
 
     const handleClick = () => {
         switch (target) {
@@ -25,7 +25,7 @@ const CloseButton = ({ target }) => {
                 closeCart();
                 break;
             case 'product':
-                closeProductDetails();
+                clearSelectedProduct();
                 break;
             default:
                 console.warn(`CloseButton: target "${target}" no reconocido.`);

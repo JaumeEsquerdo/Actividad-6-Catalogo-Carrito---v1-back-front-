@@ -11,12 +11,13 @@ const Menu = () => {
     const [cart, setCart] = useState([])
     const [products, setProducts] = useState([])
     const [filters, setFilters] = useState('todos')
-    const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
+    // const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
     // const [isCartOpen, setIsCartOpen] = useState(false);
 
 
     const backendURL = "http://localhost:3000"; // o la URL de producción
-    const { openCart, isCartOpen, toggleCart } = useUI();
+    const { openCart, isCartOpen, selectProduct,
+        clearSelectedProduct, productoSeleccionado, setProductoSeleccionado } = useUI();
 
 
     useEffect(() => {
@@ -185,12 +186,14 @@ const Menu = () => {
 
                 {productoSeleccionado && (
                     <div className="ModalProducto">
-                        <button
+                        {/* <button
                             className="CerrarModal"
                             onClick={() => setProductoSeleccionado(null)}
                         >
                             ✕
-                        </button>
+                        </button> */}
+                        <CloseButton target="product" onClick={clearSelectedProduct} />
+
                         <img src={imageUrl} alt={productoSeleccionado.name} style={{
                             border: `12px solid ${getStrokeColor(productoSeleccionado.tipo)}`
                         }} className="DetalleProducto-img" />
@@ -280,7 +283,7 @@ const Menu = () => {
 export default Menu
 
 
-export const GaleriaMenu = ({ getStrokeColor, products, addToCart, backendURL, removeOneFromCart, removeProductCompletely, setProductoSeleccionado }) => {
+export const GaleriaMenu = ({ getStrokeColor, products, addToCart, backendURL, setProductoSeleccionado }) => {
     const tipoOrden = ['rolls', 'ramen', 'donburi', 'tempura', 'nigiri', 'bebidas'];
     const items = [];
     const formatTipoNombre = (tipo) => {
