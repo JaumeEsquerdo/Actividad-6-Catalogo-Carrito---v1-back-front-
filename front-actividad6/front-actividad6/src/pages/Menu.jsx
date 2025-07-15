@@ -13,6 +13,8 @@ const Menu = () => {
     const [filters, setFilters] = useState('todos')
     // const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
     // const [isCartOpen, setIsCartOpen] = useState(false);
+    const [showToast, setShowToast] = useState(false); // toast de compra
+
 
 
     const backendURL = "http://localhost:3000"; // o la URL de producción
@@ -142,7 +144,9 @@ const Menu = () => {
             setCart([]);
             localStorage.removeItem(`cart_${mesaId}`);
 
-            alert('Compra realizada con éxito');
+            // Mostrar toast
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 3000);
 
         } catch (error) {
             console.error(error);
