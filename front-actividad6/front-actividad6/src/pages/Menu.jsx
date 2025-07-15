@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
 import CloseButton from '@/components/CloseButton'
 import { useUI } from '@/context/UIContext';
+import { Toast } from '@/components/Toast';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -141,12 +142,13 @@ const Menu = () => {
             const data = await res.json();
             console.log('Compra registrada:', data);
 
-            setCart([]);
-            localStorage.removeItem(`cart_${mesaId}`);
-
-            // Mostrar toast
             setShowToast(true);
-            setTimeout(() => setShowToast(false), 3000);
+
+            setTimeout(() => {
+                setShowToast(false);
+                setCart([]);
+                localStorage.removeItem(`cart_${mesaId}`);
+            }, 2000); // mismo valor que `duration`
 
         } catch (error) {
             console.error(error);
@@ -277,6 +279,7 @@ const Menu = () => {
                             <button className='Cart-payment' onClick={pagarCompra}>Pagar compra</button>
                         </div>
                         <button className='Cart-table' onClick={logout}>Cambiar de mesa</button>
+                        <Toast show={showToast} onClose={() => setShowToast(false)} />
                     </>
                 )}
             </aside>

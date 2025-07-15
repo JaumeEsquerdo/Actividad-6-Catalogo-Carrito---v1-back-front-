@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import '@/css/toast.css'
 
 export const Toast = ({ show, onClose, message = 'Compra realizada con éxito', duration = 3000 }) => {
 
@@ -8,11 +9,14 @@ export const Toast = ({ show, onClose, message = 'Compra realizada con éxito', 
                 onClose(); // se oculta despues de la duración
             }, duration);
 
-            return () => clearTimeout(timer); // Limpieza
+            return () => clearTimeout(timer); //limpieza
         }
     }, [show, duration, onClose]);
 
-    if (!show) return null;
+    if (!show){
+        console.log('Toast visible');
+        return null;
+    } 
 
     return (
         <div className="Toast-overlay">
