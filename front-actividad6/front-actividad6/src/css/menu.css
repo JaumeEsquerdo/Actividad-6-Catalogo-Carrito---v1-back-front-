@@ -259,11 +259,15 @@
 }
 
 .Card-imageWrapper {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.Card-media{
     position: relative;
     width: 140px;
     height: 140px;
-    overflow: hidden;
-    cursor: pointer;
+
 }
 
 .Card-img {
@@ -290,6 +294,7 @@
 }
 
 .Card-price {
+    pointer-events: none;
     font-size: 14px;
     color: var(--color-text-muted);
 }
