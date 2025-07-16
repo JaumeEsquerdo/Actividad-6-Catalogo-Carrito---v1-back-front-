@@ -85,7 +85,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 244, 163, 0.8);
+    background: #fff4a3cc;
     backdrop-filter: blur(4px);
     padding: 40px;
     z-index: 10;
@@ -291,6 +291,11 @@
     font-weight: bold;
     color: var(--color-text-dark);
     margin-top: 10px;
+    transition: color 0.3s ease-out;
+}
+
+.Card-name:hover{
+    color: var(--color-secondary);
 }
 
 .Card-price {
