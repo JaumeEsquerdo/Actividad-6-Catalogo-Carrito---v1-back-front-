@@ -338,9 +338,9 @@
 }
 
 .CartBar-button {
-    background-color: var(--color-btn-primary-dark);
+    background-color: var(--color-btn-link-bg);
     color: #fff;
-    border: 2px solid var(--color-btn-primary);
+    border: 2px solid var(--color-text-dark);
     padding: 6px 12px;
     border-radius: var(--radius-medium);
     cursor: pointer;
@@ -349,7 +349,7 @@
 }
 
 .CartBar-button:hover {
-    background-color: var(--color-btn-primary, #a84300);
+    background-color: var(--color-text-dark, #a84300);
 }
 
 /* Aside lateral del carrito */
@@ -357,7 +357,7 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 300px;
+    width: 360px;
     height: 100%;
     background: var(--color-bg-light);
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
@@ -373,7 +373,6 @@
 
 
 .Order-p {
-    margin-bottom: 8px;
     font-size: 1rem;
 }
 
@@ -390,6 +389,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    gap: 24px;
 }
 
 .Order-actions {
@@ -398,7 +398,7 @@
 }
 
 .Order-btn {
-    padding: 4px 4px;
+    padding: 4.8px 4.8px;
 }
 
 .Cart-footer {
@@ -412,11 +412,23 @@
 .Cart-payment {
     background-color: var(--color-secondary-dark);
     color: #fff;
-
+    border: 2px solid var(--color-secondary);
+    transition: background-color 0.3s ease-out;
+}
+.Cart-payment:hover{
+    background-color: var(--color-secondary);
 }
 
 .Cart-table {
     margin: 10px auto;
+    background-color: var(--color-btn-primary-20);
+    color: #333;
+    transition: background-color 0.3 ease-out, color 0.3 ease-out;
+    border: 2px solid var(--color-btn-primary);
+}
+.Cart-table:hover{
+    background-color: var(--color-btn-primary);
+    color: #333;
 }
 
 .CartAside.open {
