@@ -4,7 +4,9 @@ import CloseButton from '@/components/CloseButton'
 import { useUI } from '@/context/UIContext';
 import { Toast } from '@/components/Toast';
 import { GaleriaMenu } from '@/components/GaleriaMenu';
-import {DetalleproductoSeleccionadoModal} from '@/components/DetalleProductoSeleccionadoModal';
+import { DetalleproductoSeleccionadoModal } from '@/components/DetalleProductoSeleccionadoModal';
+import { CartAside } from '@/components/CartAside';
+import { CartBar } from '@/components/CartBar';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -197,7 +199,7 @@ const Menu = () => {
                     onClose={clearSelectedProduct}
                     addToCart={addToCart}
                     getStrokeColor={getStrokeColor}
-                    imageUrl= {imageUrl}
+                    imageUrl={imageUrl}
                 />
             </aside>
 
@@ -225,50 +227,14 @@ const Menu = () => {
                 </div>
 
                 {cart.length > 0 && (
-                    <div className="CartBar">
-                        <div className='CartBar-info'>
-                            🛒 {totalPlatos} {totalPlatos === 1 ? 'plato' : 'platos'} - {totalPrecio}€
-                        </div>
-                        <button className="CartBar-button" onClick={openCart}>
-                            Ver carrito
-                        </button>
-                    </div>
+                    <CartBar openCart={openCart} totalPrecio={totalPrecio} totalPlatos={totalPlatos} />
                 )}
             </main>
-            <aside className={`CartAside ${isCartOpen ? 'open' : ''}`}>
-                <div className='CardAside-header'>
-                    <h3>Tu pedido</h3>
-                    {/* <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button> */}
-                    <CloseButton target="cart" />
-                </div>
-                {cart.length === 0 ? (
-                    <p>No hay productos en el carrito</p>
-                ) : (
-                    <>
-                        <ul className="Order-ul">
-                            {cart.map((item) => (
-                                <li key={item._id} className='Order-li'>
-                                    <p className="Order-p">
-                                        {item.name} : {item.quantity} x {item.precio}€ ={' '}
-                                        {item.quantity * item.precio} €
-                                    </p>
-                                    <div className="Order-actions">
-                                        <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>➖</button>
-                                        <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>🗑️</button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
 
-                        <div className='Cart-footer'>
-                            <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
-                            <button className='Cart-payment' onClick={pagarCompra}>Pagar compra</button>
-                        </div>
-                        <button className='Cart-table' onClick={logout}>Cambiar de mesa</button>
-                        <Toast show={showToast} onClose={() => setShowToast(false)} />
-                    </>
-                )}
-            </aside>
+            <CartAside cart={cart} removeOneFromCart={removeOneFromCart} removeProductCompletely={removeProductCompletely}
+                pagarCompra={pagarCompra} logout={logout} showToast={showToast} setShowToast={setShowToast}
+                isCartOpen={isCartOpen}
+            />
         </div>
     )
 }
@@ -276,7 +242,9 @@ const Menu = () => {
 export default Menu
 
 
-
+/* PARA CUANDO USAR OPERADOR LOGICO FUERA O DENTRO DEL COMPONENTE
+- Si el componente depende del estado del padre, condición fuera.
+- Si el componente conoce su lógica de render, condición dentro. */
 
 
 /** f[0]         // 's'   ← primera letra
