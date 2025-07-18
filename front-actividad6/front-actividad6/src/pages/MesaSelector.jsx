@@ -30,10 +30,10 @@ const MesaSelector = () => {
     }
 
     return (
-       
+
         <main className='SeleccionMesa-wrapper'>
 
-        
+
             <h1 className="Menu-h1 Header-title">SUSHIRO</h1>
             <div className="SeleccionMesa">
                 <h2 className="SeleccionMesa-h2">Selecciona tu mesa</h2>
@@ -51,8 +51,8 @@ const MesaSelector = () => {
                 </ul>
 
             </div>
-            </main>
-       
+        </main>
+
     )
 }
 
