@@ -7,6 +7,8 @@ import { GaleriaMenu } from '@/components/GaleriaMenu';
 import { DetalleproductoSeleccionadoModal } from '@/components/DetalleProductoSeleccionadoModal';
 import { CartAside } from '@/components/CartAside';
 import { CartBar } from '@/components/CartBar';
+import { MenuFilters } from '@/components/MenuFilters';
+import { MesaHeader } from '@/components/MesaHeader';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -204,23 +206,10 @@ const Menu = () => {
             </aside>
 
             <main className="Menu">
-                <h1 className="Menu-h1">SUSHIRO</h1>
-                <h2 className='Menu-h2'>
-                    {mesa && mesa.numero
-                        ? `Mesa ${mesa.numero} haciendo su pedido`
-                        : 'Esperando cliente...'}
-                </h2>
-                <nav className="Menu-filters">
-                    {['todos', 'rolls', 'nigiri', 'ramen', 'donburi', 'tempura', 'bebidas'].map((f) => (
-                        <button
-                            key={f}
-                            className={`Btn-link ${filters === f ? 'active' : ''}`}
-                            onClick={() => setFilters(f)}
-                        >
-                            {f[0].toUpperCase() + f.slice(1)}
-                        </button>
-                    ))}
-                </nav>
+                <MesaHeader mesa={mesa} />
+
+                <MenuFilters filters={filters} setFilters={setFilters} />
+
 
                 <div className="Order">
                     <GaleriaMenu getStrokeColor={getStrokeColor} setProductoSeleccionado={setProductoSeleccionado} backendURL={backendURL} products={filterProductos} addToCart={addToCart} removeProductCompletely={removeProductCompletely} removeOneFromCart={removeOneFromCart} />
