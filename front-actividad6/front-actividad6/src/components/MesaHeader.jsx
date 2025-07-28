@@ -4,7 +4,13 @@ export const MesaHeader = ({ mesa }) => {
         <header className="Menu-header">
             <h1 className="Menu-h1">SUSHIRO</h1>
             <div className="Header-icons">
-                iconos de salir / cambiar mesa y de ver pedidos realizados
+                <span className="material-symbols-outlined Header-icon">
+                    list_alt
+                </span>
+
+                <span className="material-symbols-outlined Header-icon">
+                    exit_to_app
+                </span>
             </div>
         </header>
         <h2 className='Menu-h2'>
