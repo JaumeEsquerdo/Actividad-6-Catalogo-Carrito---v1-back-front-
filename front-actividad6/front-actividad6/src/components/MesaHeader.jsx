@@ -1,4 +1,4 @@
-export const MesaHeader = ({ mesa }) => {
+export const MesaHeader = ({ mesa, logout }) => {
     return (<>
 
         <header className="Menu-header">
@@ -8,7 +8,7 @@ export const MesaHeader = ({ mesa }) => {
                     list_alt
                 </span>
 
-                <span className="material-symbols-outlined Header-icon">
+                <span onClick={logout} className="material-symbols-outlined Header-icon">
                     exit_to_app
                 </span>
             </div>

@@ -5,7 +5,6 @@ export const CartAside = ({ cart,
     removeOneFromCart,
     removeProductCompletely,
     pagarCompra,
-    logout,
     showToast,
     setShowToast,
     isCartOpen
@@ -41,7 +40,7 @@ export const CartAside = ({ cart,
                         <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
                         <button className='Cart-payment' onClick={pagarCompra}>Pagar compra</button>
                     </div>
-                    <button className='Cart-table' onClick={logout}>Cambiar de mesa</button>
+
                     <Toast show={showToast} onClose={() => setShowToast(false)} />
                 </>
             )}

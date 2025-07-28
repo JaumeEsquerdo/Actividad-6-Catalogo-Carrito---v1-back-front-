@@ -206,7 +206,7 @@ const Menu = () => {
             </aside>
 
             <main className="Menu">
-                <MesaHeader mesa={mesa} />
+                <MesaHeader mesa={mesa} logout = {logout} />
 
                 <MenuFilters filters={filters} setFilters={setFilters} />
 
@@ -221,7 +221,7 @@ const Menu = () => {
             </main>
 
             <CartAside cart={cart} removeOneFromCart={removeOneFromCart} removeProductCompletely={removeProductCompletely}
-                pagarCompra={pagarCompra} logout={logout} showToast={showToast} setShowToast={setShowToast}
+                pagarCompra={pagarCompra} showToast={showToast} setShowToast={setShowToast}
                 isCartOpen={isCartOpen}
             />
         </div>
