@@ -1,5 +1,7 @@
 import { Toast } from "./Toast";
 import CloseButton from "./CloseButton";
+import { useUI } from "@/context/UIContext";
+import { useEffect, useRef } from "react";
 
 export const CartAside = ({ cart,
     removeOneFromCart,
@@ -7,11 +9,35 @@ export const CartAside = ({ cart,
     pagarCompra,
     showToast,
     setShowToast,
-    isCartOpen
 }) => {
+
+    const asideRef = useRef(null);
+    const { closeCart, isCartOpen } = useUI();
+
+    useEffect(() => {
+        //primero se declara la funcion
+        const handleClickOutside = (event) => {
+            if (
+                asideRef.current &&
+                !asideRef.current.contains(event.target) // si el aside esta activo y el click no ha sido dentro del aside...
+            ) {
+                closeCart();
+            }
+        };
+
+        // y en el caso de que se tenga que utilizar, es decir si el codigo llega aqui, se ejecuta lo de arriba
+        if (isCartOpen) {
+            document.addEventListener("mousedown", handleClickOutside); //solo añade el evento click al documento si el carrito está abierto (esto mentalmente parece q debe estar antes q la funcion pero no puede porq si no no ejecuta nada la funcion, no sabe q existe)
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isCartOpen, closeCart]);
+
     return (
 
-        <aside className={`CartAside ${isCartOpen ? 'open' : ''}`}>
+        <aside  ref={asideRef} className={`CartAside ${isCartOpen ? 'open' : ''}`}>
             <div className='CardAside-header'>
                 <h3>Tu pedido</h3>
                 {/* <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button> */}

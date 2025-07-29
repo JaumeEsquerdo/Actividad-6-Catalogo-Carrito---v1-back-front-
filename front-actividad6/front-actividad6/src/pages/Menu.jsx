@@ -28,7 +28,7 @@ const Menu = () => {
 
 
     const backendURL = "http://localhost:3000"; // o la URL de producción
-    const { openCart, isCartOpen, selectProduct,
+    const { openCart, selectProduct,
         clearSelectedProduct, productoSeleccionado, setProductoSeleccionado } = useUI();
 
 
@@ -230,7 +230,7 @@ const Menu = () => {
 
             <CartAside cart={cart} removeOneFromCart={removeOneFromCart} removeProductCompletely={removeProductCompletely}
                 pagarCompra={pagarCompra} showToast={showToast} setShowToast={setShowToast}
-                isCartOpen={isCartOpen}
+                
             />
         </div>
     )
