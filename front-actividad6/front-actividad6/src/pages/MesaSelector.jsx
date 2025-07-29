@@ -25,8 +25,12 @@ const MesaSelector = () => {
     }, [])
 
     const handleSeleccion = (idMesa) => {
-        localStorage.setItem('mesaId', idMesa)
-        navigate('/menu')
+        const sesionId = crypto.randomUUID(); // generar ID de sesión único
+
+        localStorage.setItem('mesaId', idMesa);
+        localStorage.setItem('sesionId', sesionId);
+
+        navigate('/menu') 
     }
 
     return (

@@ -135,12 +135,15 @@ const Menu = () => {
     const pagarCompra = async () => {
         if (cart.length === 0) return alert("El carrito está vacío");
 
+        const sesionId = localStorage.getItem('sesionId');
+
         try {
             const res = await fetch('http://localhost:3000/api/v1/compras', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     mesa: mesaId,
+                    sesionId: sesionId,
                     productos: cart.map(({ _id, quantity }) => ({ producto: _id, cantidad: quantity }))
                 })
 

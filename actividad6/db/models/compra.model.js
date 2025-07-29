@@ -26,6 +26,8 @@ const compraSchema = new mongoose.Schema(
                 cantidad: { type: Number, default: 1 },
             },
         ],
+        sesionId: { type: String } // un string único para cada "visita"
+
     },
     options
 );

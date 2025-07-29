@@ -10,11 +10,11 @@ const responseAPI = {
 
 // POST /compras → crear una nueva compra (estado: "pendiente")
 export const crearCompra = async (req, res, next) => {
-    const { mesa, productos } = req.body;
+    const { mesa, productos, sesionId  } = req.body;
 
     try {
         // Validación rápida
-        if (!mesa || !productos || productos.length === 0) {
+        if (!mesa || !productos || productos.length === 0 || !sesionId) {
             return res.status(400).json({
                 msg: 'Debes enviar una mesa y al menos un producto',
                 status: 'error',
@@ -37,6 +37,7 @@ export const crearCompra = async (req, res, next) => {
             mesa,
             productos,
             estado: 'pendiente', // por defecto
+            sesionId,
         });
 
         responseAPI.msg = 'Compra registrada correctamente';
