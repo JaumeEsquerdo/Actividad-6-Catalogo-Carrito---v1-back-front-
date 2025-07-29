@@ -9,6 +9,7 @@ import { CartAside } from '@/components/CartAside';
 import { CartBar } from '@/components/CartBar';
 import { MenuFilters } from '@/components/MenuFilters';
 import { MesaHeader } from '@/components/MesaHeader';
+import { LogoutConfirmModal } from '@/components/LogoutConfirmModal';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -21,6 +22,8 @@ const Menu = () => {
     // const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
     // const [isCartOpen, setIsCartOpen] = useState(false);
     const [showToast, setShowToast] = useState(false); // toast de compra
+
+    const [modalAbierto, setModalAbierto] = useState(false); // para que se rendereice o no la pregunta de cerrar sesion de la mesa (modal)
 
 
 
@@ -206,7 +209,9 @@ const Menu = () => {
             </aside>
 
             <main className="Menu">
-                <MesaHeader mesa={mesa} logout = {logout} />
+                <MesaHeader mesa={mesa} setModalAbierto={setModalAbierto} />
+                <LogoutConfirmModal isOpen={modalAbierto}
+                    onCancel={() => setModalAbierto(false)} onConfirm={logout} />
 
                 <MenuFilters filters={filters} setFilters={setFilters} />
 

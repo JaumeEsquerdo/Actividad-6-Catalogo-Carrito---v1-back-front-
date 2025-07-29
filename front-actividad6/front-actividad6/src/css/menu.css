@@ -142,7 +142,8 @@
     justify-content: space-between;
     overflow-y: auto;
 }
-.Menu-header{
+
+.Menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -156,15 +157,44 @@
     pointer-events: none;
 }
 
-.Header-icons{
+.Tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.Tooltip-text {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.Tooltip:hover .Tooltip-text {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+.Header-icons {
     display: flex;
     gap: 20px;
     align-items: center;
 }
-.Header-icon{
+
+.Header-icon {
     color: var(--color-secondary-dark);
     cursor: pointer;
 }
+
 .Menu-h2 {
     font-size: 1.2rem;
     margin-bottom: 10px;
@@ -277,7 +307,7 @@
     cursor: pointer;
 }
 
-.Card-media{
+.Card-media {
     position: relative;
     width: 140px;
     height: 140px;
@@ -308,7 +338,7 @@
     transition: color 0.3s ease-out;
 }
 
-.Card-name:hover{
+.Card-name:hover {
     color: var(--color-secondary);
 }
 
@@ -429,7 +459,8 @@
     border: 2px solid var(--color-secondary);
     transition: background-color 0.3s ease-out;
 }
-.Cart-payment:hover{
+
+.Cart-payment:hover {
     background-color: var(--color-secondary);
 }
 
@@ -440,7 +471,8 @@
     transition: background-color 0.3 ease-out, color 0.3 ease-out;
     border: 2px solid var(--color-btn-primary);
 }
-.Cart-table:hover{
+
+.Cart-table:hover {
     background-color: var(--color-btn-primary);
     color: #333;
 }
@@ -478,4 +510,29 @@
     background-color: #333;
     /* Cambiá el color según tu diseño */
     border-radius: 1px;
+}
+
+/* overlay cerrar mesa */
+
+.ModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ModalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 800px;
+    width: 60%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
