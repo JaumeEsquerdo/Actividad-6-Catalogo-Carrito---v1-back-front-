@@ -18,8 +18,12 @@
     padding: 24px 32px;
     border-radius: var(--radius-large);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: var(--font-family);
+    min-height: 140px;
     animation: toastIn 0.3s ease-out;
 }
 
