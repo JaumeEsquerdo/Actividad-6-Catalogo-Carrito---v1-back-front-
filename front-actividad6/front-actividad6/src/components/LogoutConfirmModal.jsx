@@ -12,10 +12,10 @@ export const LogoutConfirmModal = ({ isOpen, onCancel, onConfirm }) => {
     return (
         <div className="ModalOverlay" onClick={handleOverlayClick}>
             <div className="ModalContent" onClick={handleContentClick}>
-                <h2>¿Estás seguro de que quieres cerrar sesión?</h2>
+                <h2 className="Menu-h2">¿Estás seguro de que quieres salir de la mesa?</h2>
                 <div className="ModalButtons">
-                    <button onClick={onCancel}>Cancelar</button>
-                    <button onClick={onConfirm}>Cerrar sesión</button>
+                    <button className="Button-cancel" onClick={onCancel}>Cancelar</button>
+                    <button className="Button-confirm" onClick={onConfirm}>Cerrar sesión</button>
                 </div>
             </div>
         </div>

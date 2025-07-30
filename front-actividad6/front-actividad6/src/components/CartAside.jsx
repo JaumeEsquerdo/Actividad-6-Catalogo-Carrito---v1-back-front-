@@ -51,8 +51,8 @@ export const CartAside = ({ cart,
                         {cart.map((item) => (
                             <li key={item._id} className='Order-li'>
                                 <p className="Order-p">
-                                    {item.name} : {item.quantity} x {item.precio}€ ={' '}
-                                    {item.quantity * item.precio} €
+                                    - {item.name} : {item.quantity} x {item.precio}€ ={' '}
+                                    {item.quantity * item.precio}€
                                 </p>
                                 <div className="Order-actions">
                                     <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>➖</button>
@@ -64,7 +64,7 @@ export const CartAside = ({ cart,
 
                     <div className='Cart-footer'>
                         <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
-                        <button className='Cart-payment' onClick={pagarCompra}>Pagar compra</button>
+                        <button className='Button-confirm' onClick={pagarCompra}>Pagar compra</button>
                     </div>
 
                     <Toast show={showToast} onClose={() => setShowToast(false)} />
