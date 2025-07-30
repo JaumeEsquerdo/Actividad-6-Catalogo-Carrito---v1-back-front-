@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import '@/css/toast.css'
 
-export const Toast = ({ show, onClose, message = 'Compra realizada con éxito', duration = 3000 }) => {
+export const Toast = ({ show, onClose, message = 'Compra realizada con éxito', duration = 8000 }) => {
 
     useEffect(() => {
         if (show) {
@@ -13,16 +13,21 @@ export const Toast = ({ show, onClose, message = 'Compra realizada con éxito', 
         }
     }, [show, duration, onClose]);
 
-    if (!show){
+    if (!show) {
         console.log('Toast visible');
         return null;
-    } 
+    }
 
     return (
         <div className="Toast-overlay">
             <div className="Toast-card">
-                <h3>✅ {message}</h3>
-                <p>Tu pedido se ha registrado correctamente.</p>
+                <header className="Toast-header">
+                    <span className="material-symbols-outlined Toast-icon">
+                        check_circle
+                    </span>
+                    <h3 className="Toast-confirm">{message}</h3>
+                </header>
+                <p className="Toast-text">Tu pedido se ha registrado correctamente.</p>
             </div>
         </div>);
 }

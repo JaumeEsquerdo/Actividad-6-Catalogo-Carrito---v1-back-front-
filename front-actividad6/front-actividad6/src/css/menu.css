@@ -414,14 +414,31 @@
     justify-content: space-between;
 }
 
-
-
-.Order-p {
-    font-size: 1rem;
+.Order-h3{
+    font-size: 1.6rem;
+    color: var(--color-secondary);
 }
 
+.Order-line{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 2px;
+}
+
+.Order-name {
+    font-size: 1rem;
+    color: var(--color-secondary);
+}
+
+.Order-calc{
+    color: var(--color-secondary-dark);
+}
 
 .Order-ul {
+    width: 100%;
     margin: 20px auto;
     list-style: none;
     padding-left: 0;
@@ -486,8 +503,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    padding: 8px 12px;
+    margin: 20px auto;
 }
 
 .CloseAside {

@@ -23,6 +23,8 @@
     --color-text-light: #fff;
     /* Texto muy claro */
 
+    /* color de exito de compra  */
+    --color-success: #308a40;
     /* Colores secundarios */
     --color-secondary: #580f24;
     /* Color secundario base */

@@ -37,9 +37,9 @@ export const CartAside = ({ cart,
 
     return (
 
-        <aside  ref={asideRef} className={`CartAside ${isCartOpen ? 'open' : ''}`}>
+        <aside ref={asideRef} className={`CartAside ${isCartOpen ? 'open' : ''}`}>
             <div className='CardAside-header'>
-                <h3>Tu pedido</h3>
+                <h3 className="Order-h3">Tu pedido</h3>
                 {/* <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button> */}
                 <CloseButton target="cart" />
             </div>
@@ -50,10 +50,10 @@ export const CartAside = ({ cart,
                     <ul className="Order-ul">
                         {cart.map((item) => (
                             <li key={item._id} className='Order-li'>
-                                <p className="Order-p">
-                                    - {item.name} : {item.quantity} x {item.precio}€ ={' '}
-                                    {item.quantity * item.precio}€
-                                </p>
+                                <div className="Order-line">
+                                    <p className="Order-name">{item.name}</p>
+                                    <p className="Order-calc">{item.quantity} x {item.precio}€ = {item.quantity * item.precio}€</p>
+                                </div>
                                 <div className="Order-actions">
                                     <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>➖</button>
                                     <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>🗑️</button>
