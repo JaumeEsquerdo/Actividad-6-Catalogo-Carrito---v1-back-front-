@@ -10,6 +10,7 @@ import { CartBar } from '@/components/CartBar';
 import { MenuFilters } from '@/components/MenuFilters';
 import { MesaHeader } from '@/components/MesaHeader';
 import { LogoutConfirmModal } from '@/components/LogoutConfirmModal';
+import { HistorialModal } from '@/components/HistorialModall';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -24,6 +25,7 @@ const Menu = () => {
     const [showToast, setShowToast] = useState(false); // toast de compra
 
     const [modalAbierto, setModalAbierto] = useState(false); // para que se rendereice o no la pregunta de cerrar sesion de la mesa (modal)
+    const [modalHistorialAbierto, setModalHistorialAbierto] = useState(false); // modal de historial
 
 
 
@@ -212,9 +214,11 @@ const Menu = () => {
             </aside>
 
             <main className="Menu">
-                <MesaHeader mesa={mesa} setModalAbierto={setModalAbierto} />
+                <MesaHeader mesa={mesa} setModalAbierto={setModalAbierto} setModalHistorialAbierto={setModalHistorialAbierto} />
                 <LogoutConfirmModal isOpen={modalAbierto}
                     onCancel={() => setModalAbierto(false)} onConfirm={logout} />
+                <HistorialModal isOpen={modalHistorialAbierto} onClose={() => setModalHistorialAbierto(false)} />
+
 
                 <MenuFilters filters={filters} setFilters={setFilters} />
 
@@ -230,7 +234,7 @@ const Menu = () => {
 
             <CartAside cart={cart} removeOneFromCart={removeOneFromCart} removeProductCompletely={removeProductCompletely}
                 pagarCompra={pagarCompra} showToast={showToast} setShowToast={setShowToast}
-                
+
             />
         </div>
     )

@@ -1,12 +1,16 @@
 
-export const MesaHeader = ({ mesa, setModalAbierto }) => {
+export const MesaHeader = ({ mesa, setModalAbierto, setModalHistorialAbierto }) => {
+
+
     return (<>
 
         <header className="Menu-header">
             <h1 className="Menu-h1">SUSHIRO</h1>
             <div className="Header-icons">
                 <div className="Tooltip">
-                    <span className="material-symbols-outlined Header-icon">
+                    <span
+                        onClick={() => setModalHistorialAbierto(true)}
+                        className="material-symbols-outlined Header-icon">
                         list_alt
                     </span>
                     <span className="Tooltip-text">Ver historial</span>
@@ -24,6 +28,7 @@ export const MesaHeader = ({ mesa, setModalAbierto }) => {
                 </div>
             </div>
         </header>
+
         <h2 className='Menu-h2'>
             {mesa && mesa.numero
                 ? `Mesa ${mesa.numero} haciendo su pedido`
