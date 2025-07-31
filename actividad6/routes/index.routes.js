@@ -3,7 +3,7 @@ import { Router } from "express" //importar libreria
 import { getUsuario, updateUsuario, createUsuario } from '../controllers/users.controller.js'
 import { getProducto, createProducto, getProductos, updateProductos, updateImage } from "../controllers/products.controller.js";
 import { registerUser, loginUser, getCurrentUser } from "../controllers/auth.controller.js";
-import { crearCompra, getCompras, pagarCompra } from "../controllers/compras.controller.js";
+import { crearCompra, getCompras, pagarCompra, obtenerHistorialPorSesion } from "../controllers/compras.controller.js";
 import { getMesas, crearMesa, updateMesa, getMesaById } from "../controllers/mesas.controller.js";
 
 
@@ -45,6 +45,7 @@ router.put("/mesas/:id", updateMesa);
 
 // Compras
 router.post("/compras", crearCompra);
+router.get('/compras/sesion/:sesionId', obtenerHistorialPorSesion); // historial por sesionId
 router.get("/compras", getCompras);
 router.put("/compras/:id/pagar", pagarCompra);
 

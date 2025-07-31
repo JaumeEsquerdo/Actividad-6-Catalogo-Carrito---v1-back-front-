@@ -75,6 +75,42 @@ export const getCompras = async (req, res, next) => {
     }
 };
 
+/* GET historial de compras por sesion! */
+export const obtenerHistorialPorSesion = async (req, res, next) => {
+    const { sesionId } = req.params;
+
+    const responseAPI = {
+        msg: '',
+        data: [],
+        status: 'ok',
+        cant: null,
+    };
+
+    try {
+        if (!sesionId) {
+            responseAPI.msg = 'Falta el ID de sesión';
+            responseAPI.status = 'error';
+            return res.status(400).json(responseAPI);
+        }
+
+        const compras = await Compra.find({ sesionId })
+            .populate('productos.producto')
+            .sort({ fecha: -1 }); /* -1 para poner primero el más actual */
+
+        responseAPI.msg = 'Historial de la sesión obtenido correctamente';
+        responseAPI.data = compras;
+        responseAPI.cant = compras.length;
+
+        res.status(200).json(responseAPI);
+    } catch (err) {
+        console.error('Error al obtener historial por sesión:', err);
+        responseAPI.msg = 'Error interno al obtener historial';
+        responseAPI.status = 'error';
+        res.status(500).json(responseAPI);
+        next(err);
+    }
+};
+
 
 // PUT /compras/:id → marcar una compra como "pagado"
 export const pagarCompra = async (req, res, next) => {
