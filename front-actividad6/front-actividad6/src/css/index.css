@@ -1,12 +1,12 @@
 #root {
     --color-bg2: #5e86a1;
-    --color-text: #DFD0B8;
-    --color-text2: #b1ada7;
+    --color-text: #dfd1b9;
+    --color-text2: #666;
     --box-shadow: 0 0 0 12px #D36C8Bb3;
     --font-family: 'Poppins', sans-serif;
 
     /* Colores de fondo */
-    --color-bg: #FADA5E;
+    --color-bg: #ffe682;
     /* Fondo principal */
     --color-bg-light: #FFF7C1;
     /* Fondo claro, para tarjetas o secciones */
@@ -32,8 +32,8 @@
     /* Color secundario oscuro */
 
     /* Botones de filtro */
-    --color-btn-link-bg: #d36c8b;
-    --color-btn-link-bg-op: #d36c8b88;
+    --color-btn-link-bg: #a1274e;
+    --color-btn-link-bg-op: #f3b3c688;
 
     /* Botón acción */
     --color-btn-primary: #F28C28;

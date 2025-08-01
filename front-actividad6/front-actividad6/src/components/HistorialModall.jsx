@@ -40,11 +40,12 @@ export const HistorialModal = ({ isOpen, onClose }) => {
 
         <div className="Historial-overlay">
             <div className="Historial-modal" ref={modalRef}>
-                <h2>Historial de esta sesión</h2>
+                <h2 className='Historial-h2'>Historial de esta sesión</h2>
                 {compras.length === 0 ? (
                     <p>No hay compras registradas aún.</p>
                 ) : (
                     <ul className="Historial-list">
+                        <p className="Historial-subtitulo">De más reciente a más antiguo</p>
                         {compras.map((compra) => (
                             <li key={compra._id} className="Historial-compra">
                                 <p className="Historial-fecha">
@@ -58,8 +59,8 @@ export const HistorialModal = ({ isOpen, onClose }) => {
                                     return (
                                         <>
                                             <ul>
-                                                {compra.productos.map((item, index) => (
-                                                    <li key={index} className="Historial-producto">
+                                                {compra.productos.map((item, i) => (
+                                                    <li key={i} className="Historial-producto">
                                                         <strong>{item.producto?.name}</strong> – {item.cantidad} x {item.producto?.precio}€ ={' '}
                                                         <span className="Historial-total">
                                                             {(item.cantidad * item.producto?.precio).toFixed(2)}€
@@ -93,8 +94,8 @@ export const HistorialModal = ({ isOpen, onClose }) => {
                                     return (
                                         <>
                                             <ul>
-                                                {compra.productos.map((item, index) => (
-                                                    <li key={index} className="Historial-producto">
+                                                {compra.productos.map((item, i) => (
+                                                    <li key={i} className="Historial-producto">
                                                         <strong>{item.producto?.name}</strong> – {item.cantidad} x {item.producto?.precio}€ ={' '}
                                                         <span className="Historial-total">
                                                             {(item.cantidad * item.producto?.precio).toFixed(2)}€
@@ -116,3 +117,5 @@ export const HistorialModal = ({ isOpen, onClose }) => {
     return acumulador + loQueQuierasSumar;
 }, valorInicial);
  */
+
+/* {' '} para q haya un espacio seguro */
