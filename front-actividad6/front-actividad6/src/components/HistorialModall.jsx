@@ -50,16 +50,29 @@ export const HistorialModal = ({ isOpen, onClose }) => {
                                 <p className="Historial-fecha">
                                     {new Date(compra.fecha).toLocaleString()}
                                 </p>
-                                <ul>
-                                    {compra.productos.map((item, index) => (
-                                        <li key={index} className="Historial-producto">
-                                            <strong>{item.producto?.name}</strong> – {item.cantidad} x {item.producto?.precio}€ ={' '}
-                                            <span className="Historial-total">
-                                                {item.cantidad * item.producto?.precio}€
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                {(() => {
+                                    const totalCompra = compra.productos.reduce((total, item) => {
+                                        return total + item.cantidad * (item.producto?.precio || 0);
+                                    }, 0);
+
+                                    return (
+                                        <>
+                                            <ul>
+                                                {compra.productos.map((item, index) => (
+                                                    <li key={index} className="Historial-producto">
+                                                        <strong>{item.producto?.name}</strong> – {item.cantidad} x {item.producto?.precio}€ ={' '}
+                                                        <span className="Historial-total">
+                                                            {(item.cantidad * item.producto?.precio).toFixed(2)}€
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            <p className="Historial-totalCompra">
+                                                Total: <strong>{totalCompra.toFixed(2)}€</strong>
+                                            </p>
+                                        </>
+                                    );
+                                })()}
                             </li>
                         ))}
                     </ul>
@@ -68,5 +81,38 @@ export const HistorialModal = ({ isOpen, onClose }) => {
             </div>
         </div>
     );
-}
+};
 
+
+
+/* {(() => {
+                                    const totalCompra = compra.productos.reduce((total, item) => {
+                                        return total + item.cantidad * (item.producto?.precio || 0);
+                                    }, 0);
+
+                                    return (
+                                        <>
+                                            <ul>
+                                                {compra.productos.map((item, index) => (
+                                                    <li key={index} className="Historial-producto">
+                                                        <strong>{item.producto?.name}</strong> – {item.cantidad} x {item.producto?.precio}€ ={' '}
+                                                        <span className="Historial-total">
+                                                            {(item.cantidad * item.producto?.precio).toFixed(2)}€
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            <p className="Historial-totalCompra">
+                                                Total: <strong>{totalCompra.toFixed(2)}€</strong>
+                                            </p>
+                                        </>
+                                    );
+                                })()} */
+
+/* Esto es un IIFE q es una función q se ejecuta al instante gracias al () final q tiene */
+/* totalCompra.toFixed(2) -> hace q tenga dos decimales */
+
+/* reduce: array.reduce((acumulador, elementoActual) => {
+    return acumulador + loQueQuierasSumar;
+}, valorInicial);
+ */
