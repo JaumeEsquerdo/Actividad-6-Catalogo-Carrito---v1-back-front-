@@ -57,10 +57,10 @@
 }
 .SeleccionMesa-btn {
 
-    background-color: var(--color-btn-primary);
+    background-color: var(--color-btn-link-bg-hov);
     color: var(--color-text-light);
-    border: none;
-    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-btn-link-bg);
+    padding: 0.75rem 1.2rem;
     border-radius: var(--radius-medium);
     font-size: 1rem;
     cursor: pointer;
@@ -68,7 +68,7 @@
 }
 
 .SeleccionMesa-btn:hover {
-    background-color: var(--color-btn-primary-dark);
+    background-color: var(--color-btn-link-bg);
     transform: scale(1.05);
 }
 

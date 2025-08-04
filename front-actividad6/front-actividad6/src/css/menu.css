@@ -52,7 +52,7 @@
 .DetalleProducto-boton {
     padding: 12px 24px;
     background-color: var(--color-btn-primary);
-    color: white;
+    color: var(--color-secondary);
     border: 2px solid var(--color-btn-primary-dark);
     border-radius: var(--radius-large);
     font-size: 1rem;
@@ -62,6 +62,7 @@
 
 .DetalleProducto-boton:hover {
     background-color: var(--color-btn-primary-dark);
+    color: var(--color-secondary);
 }
 
 .DetalleProducto-placeholder {
@@ -268,7 +269,7 @@
 
 .Card-btn {
     background-color: var(--color-btn-primary);
-    color: var(--color-text-light);
+    color: var(--color-secondary);
     border: 2px solid var(--color-btn-primary-dark);
     padding: 12px 16px;
     border-radius: var(--radius-large);
@@ -279,7 +280,7 @@
 
 .Card-btn:hover {
     background-color: var(--color-btn-primary-dark);
-    color: white;
+    color: var(--color-secondary);
 }
 
 .Card-tipo {

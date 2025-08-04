@@ -31,19 +31,20 @@
     --color-secondary-dark: #922E55;
     /* Color secundario oscuro */
 
-    /* Botones de filtro */
+    /* Botones*/
     --color-btn-link-bg: #a1274e;
-    --color-btn-link-bg-op: #f3b3c688;
+    --color-btn-link-bg-op: #ef92ae;
+    --color-btn-link-bg-hov: #7f3b50;
 
     /* Botón acción */
-    --color-btn-primary: #F28C28;
-    --color-btn-primary-dark: #d97706;
+    --color-btn-primary: #f9b067;
+    --color-btn-primary-dark: #f39120;
     --color-btn-primary-20: #f28d2858;
     /* Bordes y radios */
     --color-border: #edb0c9;
     /* Color para bordes */
     --radius-small: 4px;
-    --radius-medium: 8px;
+    --radius-medium: 12px;
     --radius-large: 24px;
 }
 
