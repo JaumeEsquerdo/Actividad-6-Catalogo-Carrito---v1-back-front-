@@ -11,6 +11,7 @@ const lineVariants = {
         rotate: custom + (custom > 0 ? 5 : -5), // cada línea rota un poco más en sentido opuesto
         scaleX: 1.1,
         x: custom > 0 ? 1 : -1, // x indica un desplazamiento horizontal en px
+        backgroundColor: '#fff'
     }),
 };
 

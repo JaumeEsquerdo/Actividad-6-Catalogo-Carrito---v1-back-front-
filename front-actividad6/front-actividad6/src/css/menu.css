@@ -523,12 +523,13 @@
 
 .CloseAside .line {
     position: absolute;
-    width: 20px;
-    height: 2px;
-    background-color: #333;
+    width: 26px;
+    height: 2.5px;
+    background-color: var(--color-btn-link-bg);
     /* Cambiá el color según tu diseño */
     border-radius: 1px;
 }
+
 
 /* overlay cerrar mesa */
 
