@@ -30,17 +30,30 @@ const MesaSelector = () => {
         localStorage.setItem('mesaId', idMesa);
         localStorage.setItem('sesionId', sesionId);
 
-        navigate('/menu') 
+        navigate('/menu')
     }
 
     return (
 
         <main className='SeleccionMesa-wrapper'>
 
+            <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="VideoBackground"
+            >
+                <source src="/bg-sushi.mp4" type="video/mp4" />
+            </video>
+
+            {/* Overlay oscuro */}
+            <div className="VideoOverlay"></div>
 
             <h1 className="Menu-h1 Header-title">SUSHIRO</h1>
             <div className="SeleccionMesa">
-                <h2 className="SeleccionMesa-h2">Selecciona tu mesa</h2>
+                <p></p>
+                <h2 className="SeleccionMesa-h2">Elige lo que quieras, sin soltar los palillos</h2>
                 <ul className="SeleccionMesa-ul">
                     {mesas.map((mesa) => (
                         <li key={mesa._id}>

@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
+    gap: 10rem;
 }
 
 /* mayor especificidad para que sobreponga a la clase que tiene compartida en menu.css que es 'Menu-h1', donde tiene el css general */
@@ -12,12 +12,15 @@
     justify-content: center;
     padding: 2rem;
     font-size: 6rem;
+    z-index: 6;
+    text-shadow:
+        8px 7px 2px var(--color-text-dark);
+        color: var(--color-bg-light);
 }
 
 .SeleccionMesa {
     display: flex;
-    min-height: 400px;
-    height: 500px;
+    min-height: 250px;
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
@@ -28,26 +31,24 @@
     margin: auto;
     text-align: center;
     font-family: var(--font-family);
+    z-index: 6;
 
 
 }
 
 .SeleccionMesa-h2 {
     color: var(--color-text-dark);
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
 }
 
 .SeleccionMesa-ul {
 
     display: grid;
-    gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 /* Crea columnas que tengan al menos 120px de ancho y se expandan hasta llenar el espacio, ajustando el número de columnas según el ancho disponible */
-
-
 
 .SeleccionMesa-btn {
 
@@ -68,4 +69,24 @@
 
 .SeleccionMesa-btn:active {
     transform: scale(0.98);
+}
+
+.VideoBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 4;
+}
+
+.VideoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
 }
