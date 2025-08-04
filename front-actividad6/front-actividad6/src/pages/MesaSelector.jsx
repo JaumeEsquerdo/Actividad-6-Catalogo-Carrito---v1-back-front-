@@ -1,11 +1,27 @@
 // src/pages/MesaSelector.jsx
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const MesaSelector = () => {
     const [mesas, setMesas] = useState([])
     const navigate = useNavigate()
 
+    /* OPCIONAL: INTRODUCIR UN LOCALSTORAGE PARA Q SE VEA UNA VEZ LA ANIMACION DE ENTRADA EN EL SELECCTOR DE MESA... y poner un operador ternario en la animacion de motion.div preguntando si lo tiene puesto */
+    // const [hasAnimated, setHasAnimated] = useState(false); // para hacer la animacion una vez solo
+
+    // /* para saber si ya has visto la animación */
+    // useEffect(() => {
+    //     const animState = localStorage.getItem('mesaSelectorAnimated');
+
+    //     if (!animState) { // si no tiene el animState en localStorage se lo pone la primera vez y actualiza el estado
+    //         setHasAnimated(true);
+    //         localStorage.setItem('mesaSelectorAnimated', 'true');
+    //     }
+    // }, []);
+
+
+    /* fetch de las mesas dispo */
     useEffect(() => {
         const fetchMesas = async () => {
             try {
@@ -51,8 +67,12 @@ const MesaSelector = () => {
             <div className="VideoOverlay"></div>
 
             <h1 className="Menu-h1 Header-title">SUSHIRO</h1>
-            <div className="SeleccionMesa">
-                <p></p>
+
+            <motion.div className="SeleccionMesa"
+                initial={{ opacity: 0, y: 120 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.5, duration: 4.8, ease: 'easeOut' }}>
+
                 <h2 className="SeleccionMesa-h2">Elige lo que quieras, sin soltar los palillos</h2>
                 <ul className="SeleccionMesa-ul">
                     {mesas.map((mesa) => (
@@ -66,8 +86,8 @@ const MesaSelector = () => {
                         </li>
                     ))}
                 </ul>
+            </motion.div>
 
-            </div>
         </main>
 
     )
