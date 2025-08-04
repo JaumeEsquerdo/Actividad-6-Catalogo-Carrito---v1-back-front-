@@ -56,7 +56,7 @@ const MesaSelector = () => {
                 <h2 className="SeleccionMesa-h2">Elige lo que quieras, sin soltar los palillos</h2>
                 <ul className="SeleccionMesa-ul">
                     {mesas.map((mesa) => (
-                        <li key={mesa._id}>
+                        <li className="SeleccionMesa-li" key={mesa._id}>
                             <button
                                 onClick={() => handleSeleccion(mesa._id)}
                                 className="SeleccionMesa-btn"

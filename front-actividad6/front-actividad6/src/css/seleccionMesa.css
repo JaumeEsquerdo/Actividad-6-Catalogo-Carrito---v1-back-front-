@@ -15,7 +15,7 @@
     z-index: 6;
     text-shadow:
         8px 7px 2px var(--color-text-dark);
-        color: var(--color-bg-light);
+    color: var(--color-bg-light);
 }
 
 .SeleccionMesa {
@@ -43,13 +43,18 @@
 }
 
 .SeleccionMesa-ul {
-
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    
 }
-
 /* Crea columnas que tengan al menos 120px de ancho y se expandan hasta llenar el espacio, ajustando el número de columnas según el ancho disponible */
 
+.SeleccionMesa-li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 .SeleccionMesa-btn {
 
     background-color: var(--color-btn-primary);
@@ -90,3 +95,4 @@
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
 }
+
