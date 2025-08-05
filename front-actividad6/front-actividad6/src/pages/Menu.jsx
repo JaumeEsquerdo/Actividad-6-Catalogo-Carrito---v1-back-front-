@@ -90,17 +90,17 @@ const Menu = () => {
         fetchProducts()
     }, [])
 
-    const addToCart = (product) => {
+    const addToCart = (product, cantidad=1) => {
         setCart((prevCart) => {
             const existingProduct = prevCart.find(item => item._id === product._id)
             if (existingProduct) {
                 return prevCart.map(item =>
                     item._id === product._id
-                        ? { ...item, quantity: item.quantity + 1 }
+                        ? { ...item, quantity: item.quantity + cantidad }
                         : item
                 )
             } else {
-                return [...prevCart, { ...product, quantity: 1 }]
+                return [...prevCart, { ...product, quantity: cantidad }]
             }
         })
     }
