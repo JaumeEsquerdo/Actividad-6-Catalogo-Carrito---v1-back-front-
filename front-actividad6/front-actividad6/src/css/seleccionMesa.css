@@ -59,7 +59,7 @@
 
     background-color: var(--color-btn-link-bg-hov);
     color: var(--color-text-light);
-    border: 2px solid var(--color-btn-link-bg);
+    /* border: 4.4px solid var(--color-btn-link-bg); */
     padding: 0.75rem 1.2rem;
     border-radius: var(--radius-medium);
     font-size: 1rem;
