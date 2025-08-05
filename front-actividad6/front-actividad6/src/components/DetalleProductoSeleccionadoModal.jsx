@@ -1,5 +1,7 @@
 import CloseButton from "./CloseButton";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 export const DetalleproductoSeleccionadoModal = ({ imageUrl, productoSeleccionado, onClose, addToCart, getStrokeColor }) => {
     if (!productoSeleccionado) return null;

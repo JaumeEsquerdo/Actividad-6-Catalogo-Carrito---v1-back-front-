@@ -69,6 +69,20 @@
     text-align: center;
 }
 
+.CantidadSelector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.CantidadNumero {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-text-dark);
+}
+
+
 /* modal parte izquierda */
 .PageImg {
     height: 100%;
@@ -631,7 +645,7 @@
         z-index: 1000;
         overflow-y: auto;
         justify-content: flex-start;
-        animation: fadeIn 0.3s ease-out;
+        /* animation: fadeIn 0.3s ease-out; */
         gap: 20px;
     }
 
