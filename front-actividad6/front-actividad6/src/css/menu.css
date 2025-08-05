@@ -619,7 +619,8 @@
     .DetalleProducto-img {
         width: 100%;
         height: auto;
-        max-height: 320px;
+        max-height: 380px;
+        max-width: 420px;
         border-radius: 24px;
     }
 
@@ -629,7 +630,13 @@
         padding: 20px;
         z-index: 1000;
         overflow-y: auto;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         animation: fadeIn 0.3s ease-out;
+        gap: 20px;
+    }
+
+    /* para los iconos */
+    .material-symbols-outlined {
+        font-size: 28px;
     }
 }
