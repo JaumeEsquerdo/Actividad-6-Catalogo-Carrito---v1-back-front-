@@ -34,6 +34,9 @@ const Menu = () => {
         clearSelectedProduct, productoSeleccionado, setProductoSeleccionado } = useUI();
 
 
+    const isMobile = window.innerWidth <= 1460; // para poder abrir los detalles de producto a la izq si es en pc y en overlay si es más pequeño
+
+
     useEffect(() => {
         if (!mesaId) {
             navigate('/') // si no hay mesa redirige a la selección
@@ -201,17 +204,34 @@ const Menu = () => {
 
     return (
         <div className="PageWrap">
-            <aside className="DetalleProducto">
-                <img className='PageImg' src="/img/sushi-table.jpg" alt="Mesas del restaurante" />
+            {!isMobile && (
+                <aside className="DetalleProducto">
+                    <img className='PageImg' src="/img/sushi-table.jpg" alt="Mesas del restaurante" />
 
-                <DetalleproductoSeleccionadoModal
-                    productoSeleccionado={productoSeleccionado}
-                    onClose={clearSelectedProduct}
-                    addToCart={addToCart}
-                    getStrokeColor={getStrokeColor}
-                    imageUrl={imageUrl}
-                />
-            </aside>
+                    {productoSeleccionado && (
+                        <DetalleproductoSeleccionadoModal
+                            productoSeleccionado={productoSeleccionado}
+                            onClose={clearSelectedProduct}
+                            addToCart={addToCart}
+                            getStrokeColor={getStrokeColor}
+                            imageUrl={imageUrl}
+                        />
+                    )}
+                </aside>
+            )}
+
+            {productoSeleccionado && isMobile && (
+                <div className="ModalOverlay">
+                    <DetalleproductoSeleccionadoModal
+                        productoSeleccionado={productoSeleccionado}
+                        onClose={clearSelectedProduct}
+                        addToCart={addToCart}
+                        getStrokeColor={getStrokeColor}
+                        imageUrl={imageUrl}
+                    />
+                </div>
+            )}
+
 
             <main className="Menu">
                 <MesaHeader mesa={mesa} setModalAbierto={setModalAbierto} setModalHistorialAbierto={setModalHistorialAbierto} />
