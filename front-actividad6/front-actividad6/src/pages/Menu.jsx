@@ -11,6 +11,7 @@ import { MenuFilters } from '@/components/MenuFilters';
 import { MesaHeader } from '@/components/MesaHeader';
 import { LogoutConfirmModal } from '@/components/LogoutConfirmModal';
 import { HistorialModal } from '@/components/HistorialModall';
+import { ToastCarrito } from '@/components/ToastCarrito';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -23,6 +24,8 @@ const Menu = () => {
     // const [productoSeleccionado, setProductoSeleccionado] = useState(null); // expandir producto a la izq
     // const [isCartOpen, setIsCartOpen] = useState(false);
     const [showToast, setShowToast] = useState(false); // toast de compra
+    const [showToastCarrito, setShowToastCarrito] = useState(false); // para el añadir al carrito
+    const [toastCarrito, setToastCarrito] = useState(""); // para el toast de añadir a carrito
 
     const [modalAbierto, setModalAbierto] = useState(false); // para que se rendereice o no la pregunta de cerrar sesion de la mesa (modal)
     const [modalHistorialAbierto, setModalHistorialAbierto] = useState(false); // modal de historial
@@ -75,7 +78,7 @@ const Menu = () => {
         }
     }, [mesaId])
 
-
+    /* obtener todos los productos */
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -90,21 +93,32 @@ const Menu = () => {
         fetchProducts()
     }, [])
 
-    const addToCart = (product, cantidad=1) => {
+
+    /* función para mostrar un toast para el añadir producto */
+    const showToastAñadir = (message) => {
+        setToastCarrito(message)
+        setShowToastCarrito(true)
+    }
+
+    /* función añadir producto */
+    const addToCart = (product, cantidad = 1) => {
         setCart((prevCart) => {
             const existingProduct = prevCart.find(item => item._id === product._id)
             if (existingProduct) {
+                showToastAñadir(`Añadido ${cantidad} ${product.name} más al carrito`)
                 return prevCart.map(item =>
                     item._id === product._id
                         ? { ...item, quantity: item.quantity + cantidad }
                         : item
                 )
             } else {
+                showToastAñadir(`Añadido ${product.name} al carrito`)
                 return [...prevCart, { ...product, quantity: cantidad }]
             }
         })
     }
 
+    /* eliminar un rpoducto del carrito por id */
     const removeOneFromCart = (productId) => {
         setCart((prevCart) => {
             return prevCart
@@ -249,6 +263,13 @@ const Menu = () => {
 
                 {cart.length > 0 && (
                     <CartBar openCart={openCart} totalPrecio={totalPrecio} totalPlatos={totalPlatos} />
+                )}
+                {showToastCarrito && (
+                    <ToastCarrito
+                        message={toastCarrito}
+                        visible={showToastCarrito}
+                        onClose={() => setShowToastCarrito(false)}
+                    />
                 )}
             </main>
 
