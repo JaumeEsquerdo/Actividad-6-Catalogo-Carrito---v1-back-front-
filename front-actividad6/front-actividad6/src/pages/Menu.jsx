@@ -106,14 +106,14 @@ const Menu = () => {
         setCart((prevCart) => {
             const existingProduct = prevCart.find(item => item._id === product._id)
             if (existingProduct) {
-                showToastAñadir(`Añadido ${cantidad} ${product.name} más al carrito`)
+                showToastAñadir(`Añadido ${cantidad} <span class="ToastCarrito-name">${product.name}</span> más al carrito`)
                 return prevCart.map(item =>
                     item._id === product._id
                         ? { ...item, quantity: item.quantity + cantidad }
                         : item
                 )
             } else {
-                showToastAñadir(`Añadido ${product.name} al carrito`)
+                showToastAñadir(`Añadido <span class="ToastCarrito-name">${product.name}</span> al carrito`)
                 return [...prevCart, { ...product, quantity: cantidad }]
             }
         })
@@ -131,7 +131,7 @@ const Menu = () => {
                     }
                     return item;
                 })
-                .filter(Boolean); // Elimina los productos que se han quedado como null (por cantidad 0)
+                .filter(Boolean); // Elimina los productos que se han quedado como null (por cantidad 0) ELEMENTOS FALSY
         });
     };
 

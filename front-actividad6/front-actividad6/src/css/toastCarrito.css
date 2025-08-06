@@ -3,7 +3,8 @@
     bottom: 80px;
     left: 50%;
     /* se alinea justo al borde izquierdo del .CartBar */
-    transform: translateX(-8px); /* y lo separo un poco a la derecha */
+    transform: translateX(-8px);
+    /* y lo separo un poco a la derecha */
     background-color: #222;
     color: white;
     padding: 10px 16px;
@@ -13,6 +14,11 @@
     opacity: 0.95;
     animation: toastFade 2.5s ease-in-out;
     max-width: 300px;
+}
+
+.ToastCarrito-name {
+    color: var(--color-bg);
+    font-weight: 600;
 }
 
 @keyframes toastFade {

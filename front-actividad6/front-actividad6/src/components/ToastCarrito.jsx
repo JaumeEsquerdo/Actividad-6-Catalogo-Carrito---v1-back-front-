@@ -14,9 +14,10 @@ export const ToastCarrito = ({ message, visible, onClose }) => {
     if (!visible) return null
 
     return (
-        <div className="ToastCarrito">
-            {message}
-        </div>
+        <div className="ToastCarrito"
+            dangerouslySetInnerHTML={{ __html: message }}
+        /* como solo es para modificar el color del producto, añado dangerouslySetInnerHTML para poder introducir mediante html el message */
+        />
     )
 }
 
