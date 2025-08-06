@@ -12,6 +12,7 @@ import { MesaHeader } from '@/components/MesaHeader';
 import { LogoutConfirmModal } from '@/components/LogoutConfirmModal';
 import { HistorialModal } from '@/components/HistorialModall';
 import { ToastCarrito } from '@/components/ToastCarrito';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Menu = () => {
     const navigate = useNavigate()
@@ -222,7 +223,29 @@ const Menu = () => {
                 <aside className="DetalleProducto">
                     <img className='PageImg' src="/img/sushi-table.jpg" alt="Mesas del restaurante" />
 
-                    {productoSeleccionado && (
+                    {/* aquí me ayudo con AnimatePresence para q tenga una salida con transición, junto con motion.div (tanto para pc como para responsive, ya q por dentro del component hay otro motion.div) */}
+                    <AnimatePresence>
+                        {productoSeleccionado && (
+                            <DetalleproductoSeleccionadoModal
+                                productoSeleccionado={productoSeleccionado}
+                                onClose={clearSelectedProduct}
+                                addToCart={addToCart}
+                                getStrokeColor={getStrokeColor}
+                                imageUrl={imageUrl}
+                            />
+                        )}
+                    </AnimatePresence>
+                </aside>
+            )}
+            <AnimatePresence>
+                {productoSeleccionado && isMobile && (
+                    <motion.div
+                        className="ModalOverlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
                         <DetalleproductoSeleccionadoModal
                             productoSeleccionado={productoSeleccionado}
                             onClose={clearSelectedProduct}
@@ -230,21 +253,9 @@ const Menu = () => {
                             getStrokeColor={getStrokeColor}
                             imageUrl={imageUrl}
                         />
-                    )}
-                </aside>
-            )}
-
-            {productoSeleccionado && isMobile && (
-                <div className="ModalOverlay">
-                    <DetalleproductoSeleccionadoModal
-                        productoSeleccionado={productoSeleccionado}
-                        onClose={clearSelectedProduct}
-                        addToCart={addToCart}
-                        getStrokeColor={getStrokeColor}
-                        imageUrl={imageUrl}
-                    />
-                </div>
-            )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
 
             <main className="Menu">
