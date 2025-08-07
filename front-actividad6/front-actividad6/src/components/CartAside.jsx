@@ -40,11 +40,10 @@ export const CartAside = ({ cart,
         <aside ref={asideRef} className={`CartAside ${isCartOpen ? 'open' : ''}`}>
             <div className='CardAside-header'>
                 <h3 className="Order-h3">Tu pedido</h3>
-                {/* <button onClick={() => setIsCartOpen(false)} className="CloseAside">✕</button> */}
                 <CloseButton target="cart" />
             </div>
             {cart.length === 0 ? (
-                <p>No hay productos en el carrito</p>
+                <p className="Cart-p">No hay productos en el carrito</p>
             ) : (
                 <>
                     <ul className="Order-ul">
@@ -68,7 +67,7 @@ export const CartAside = ({ cart,
                     </ul>
 
                     <div className='Cart-footer'>
-                        <h3>Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
+                        <h3 className="Cart-h3">Total: {cart.reduce((total, item) => total + item.quantity * item.precio, 0)}€</h3>
                         <button className='Button-confirm' onClick={pagarCompra}>Pagar compra</button>
                     </div>
 
