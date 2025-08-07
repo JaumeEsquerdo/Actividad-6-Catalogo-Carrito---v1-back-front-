@@ -59,7 +59,9 @@ export const CartAside = ({ cart,
                                         <span className="material-symbols-outlined">remove</span>
 
                                     </button>
-                                    <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>🗑️</button>
+                                    <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>
+                                        <span className="material-symbols-outlined">delete</span>
+                                    </button>
                                 </div>
                             </li>
                         ))}

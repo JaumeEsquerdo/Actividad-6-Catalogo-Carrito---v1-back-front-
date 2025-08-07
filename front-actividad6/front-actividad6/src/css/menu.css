@@ -75,6 +75,12 @@
     gap: 12px;
 }
 
+.CantidadBoton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .CantidadNumero {
     font-size: 1.5rem;
@@ -478,6 +484,9 @@
 }
 
 .Order-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 4.8px 4.8px;
 }
 
