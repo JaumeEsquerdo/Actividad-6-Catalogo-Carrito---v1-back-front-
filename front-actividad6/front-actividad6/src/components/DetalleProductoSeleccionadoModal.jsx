@@ -45,12 +45,12 @@ export const DetalleproductoSeleccionadoModal = ({ imageUrl, productoSeleccionad
                     disabled={cantidad === 1}
                 /* desactivado si es 1 */
                 >
-                    <span className="material-symbols-outlined">remove</span>
+                    <span className="material-symbols-outlined IconCartAction">remove</span>
 
                 </button>
                 <span className="CantidadNumero">{cantidad}</span>
                 <button className="CantidadBoton" onClick={aumentar}>
-                    <span className="material-symbols-outlined">add</span>
+                    <span className="material-symbols-outlined IconCartAction">add</span>
                 </button>
             </div>
 

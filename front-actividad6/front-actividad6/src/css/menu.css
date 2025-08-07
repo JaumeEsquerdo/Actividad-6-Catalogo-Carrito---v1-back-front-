@@ -72,20 +72,34 @@
 .CantidadSelector {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
 }
 
-.CantidadBoton{
+.CantidadBoton {
+    padding: 8px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--color-btn-link-bg);
+}
+
+.CantidadBoton:hover {
+    background-color: var(--color-secondary);
+}
+
+.CantidadBoton:disabled {
+    background-color: var(--color-btn-link-bg-hov);
+}
+
+.IconCartAction {
+    color: white;
 }
 
 
 .CantidadNumero {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--color-text-dark);
+    color: var(--color-btn-link-bg);
 }
 
 
@@ -294,12 +308,18 @@
     border-radius: var(--radius-large);
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .Card-btn:hover {
     background-color: var(--color-btn-primary-dark);
     color: var(--color-secondary);
+    transform: scale(1.05);
+}
+
+.Card-btn:active {
+    transform: scale(0.98);
+    ;
 }
 
 .Card-tipo {
@@ -414,11 +434,16 @@
     border-radius: var(--radius-medium);
     cursor: pointer;
 
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-out;
 }
 
 .CartBar-button:hover {
     background-color: var(--color-text-dark, #a84300);
+    transform: scale(1.05);
+}
+
+.CartBar-button:active {
+    transform: scale(0.98);
 }
 
 /* Aside lateral del carrito */
@@ -506,7 +531,7 @@
 }
 
 .Button-confirm:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-text-dark);
 }
 
 .Button-cancel {
@@ -543,8 +568,21 @@
     justify-content: center;
     align-items: center;
     padding: 24px;
-
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out;
     cursor: pointer;
+}
+
+.CloseAside:hover,
+.CloseAside:active {
+    background-color: var(--color-btn-link-bg);
+}
+
+.CloseAside:hover {
+    transform: scale(1.05);
+}
+
+.CloseAside:active {
+    transform: scale(0.98);
 }
 
 .CloseAside .line {
@@ -555,7 +593,6 @@
     /* Cambiá el color según tu diseño */
     border-radius: 2px;
 }
-
 
 /* overlay cerrar mesa */
 
@@ -664,6 +701,6 @@
 
     /* para los iconos */
     .material-symbols-outlined {
-        font-size: 28px;
+        font-size: 24px;
     }
 }

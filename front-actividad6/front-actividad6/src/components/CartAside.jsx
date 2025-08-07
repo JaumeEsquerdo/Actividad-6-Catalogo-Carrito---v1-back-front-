@@ -56,11 +56,11 @@ export const CartAside = ({ cart,
                                 </div>
                                 <div className="Order-actions">
                                     <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>
-                                        <span className="material-symbols-outlined">remove</span>
+                                        <span className="material-symbols-outlined IconCartAction">remove</span>
 
                                     </button>
                                     <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>
-                                        <span className="material-symbols-outlined">delete</span>
+                                        <span className="material-symbols-outlined IconCartAction">delete</span>
                                     </button>
                                 </div>
                             </li>

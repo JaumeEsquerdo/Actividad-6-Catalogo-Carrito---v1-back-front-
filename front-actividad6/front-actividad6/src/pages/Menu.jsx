@@ -113,7 +113,7 @@ const Menu = () => {
                         : item
                 )
             } else {
-                showToastAñadir(`Añadido <span class="ToastCarrito-name">${product.name}</span> al carrito`)
+                showToastAñadir(`Añadido ${cantidad} <span class="ToastCarrito-name">${product.name}</span> al carrito`)
                 return [...prevCart, { ...product, quantity: cantidad }]
             }
         })
