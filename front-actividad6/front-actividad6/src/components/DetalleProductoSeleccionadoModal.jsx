@@ -16,46 +16,49 @@ export const DetalleproductoSeleccionadoModal = ({ imageUrl, productoSeleccionad
     };
 
     return (
-            <motion.div
-                className="ModalProducto"
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-                <CloseButton target="product" onClick={onClose} />
+        <motion.div
+            className="ModalProducto"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+            <CloseButton target="product" onClick={onClose} />
 
-                <img
-                    src={imageUrl}
-                    alt={productoSeleccionado.name}
-                    style={{ border: `12px solid ${getStrokeColor(productoSeleccionado.tipo)}` }}
-                    className="DetalleProducto-img"
-                />
+            <img
+                src={imageUrl}
+                alt={productoSeleccionado.name}
+                style={{ border: `12px solid ${getStrokeColor(productoSeleccionado.tipo)}` }}
+                className="DetalleProducto-img"
+            />
 
-                <div className="DetalleProducto-detalles">
-                    <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
-                    <p className="DetallePoducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
-                    <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
-                </div>
+            <div className="DetalleProducto-detalles">
+                <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
+                <p className="DetallePoducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
+                <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
+            </div>
 
-                <div className="CantidadSelector">
-                    <button
-                        className="CantidadBoton"
-                        onClick={reducir}
-                        disabled={cantidad === 1}
-                    /* desactivado si es 1 */
-                    >
-                        ➖
-                    </button>
-                    <span className="CantidadNumero">{cantidad}</span>
-                    <button className="CantidadBoton" onClick={aumentar}>➕</button>
-                </div>
+            <div className="CantidadSelector">
+                <button
+                    className="CantidadBoton"
+                    onClick={reducir}
+                    disabled={cantidad === 1}
+                /* desactivado si es 1 */
+                >
+                    <span className="material-symbols-outlined">remove</span>
 
-                <button className="DetalleProducto-boton" onClick={handleAñadir}>
-                    Añadir {cantidad > 1 ? `${cantidad} uds.` : ""}
                 </button>
-            </motion.div>
-    
+                <span className="CantidadNumero">{cantidad}</span>
+                <button className="CantidadBoton" onClick={aumentar}>
+                    <span className="material-symbols-outlined">add</span>
+                </button>
+            </div>
+
+            <button className="DetalleProducto-boton" onClick={handleAñadir}>
+                Añadir {cantidad > 1 ? `${cantidad} uds.` : ""}
+            </button>
+        </motion.div>
+
     );
 };
 

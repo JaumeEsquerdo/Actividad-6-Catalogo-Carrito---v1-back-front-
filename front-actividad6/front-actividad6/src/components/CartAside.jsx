@@ -55,7 +55,10 @@ export const CartAside = ({ cart,
                                     <p className="Order-calc">{item.quantity} x {item.precio}€ = {item.quantity * item.precio}€</p>
                                 </div>
                                 <div className="Order-actions">
-                                    <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>➖</button>
+                                    <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>
+                                        <span className="material-symbols-outlined">remove</span>
+
+                                    </button>
                                     <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>🗑️</button>
                                 </div>
                             </li>
