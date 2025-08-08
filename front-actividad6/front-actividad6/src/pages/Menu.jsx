@@ -135,6 +135,20 @@ const Menu = () => {
         });
     };
 
+    /* aumentar en uno el producto con ese id */
+    const addOneToCart = (productId) => {
+        setCart((prevCart) => {
+            return prevCart.map(item => {
+                if (item._id === productId) {
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            });
+        });
+    };
+
+
+    /* eliminar toda cantidad de este producto */
     const removeProductCompletely = (productId) => {
         setCart((prevCart) => prevCart.filter(item => item._id !== productId));
     };
@@ -284,7 +298,7 @@ const Menu = () => {
                 )}
             </main>
 
-            <CartAside cart={cart} removeOneFromCart={removeOneFromCart} removeProductCompletely={removeProductCompletely}
+            <CartAside cart={cart} addOneToCart={addOneToCart} removeOneFromCart={removeOneFromCart} removeProductCompletely={removeProductCompletely}
                 pagarCompra={pagarCompra} showToast={showToast} setShowToast={setShowToast}
 
             />

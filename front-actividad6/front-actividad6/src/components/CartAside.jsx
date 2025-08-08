@@ -9,6 +9,7 @@ export const CartAside = ({ cart,
     pagarCompra,
     showToast,
     setShowToast,
+    addOneToCart
 }) => {
 
     const asideRef = useRef(null);
@@ -56,6 +57,10 @@ export const CartAside = ({ cart,
                                 <div className="Order-actions">
                                     <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>
                                         <span className="material-symbols-outlined IconCartAction">remove</span>
+
+                                    </button>
+                                    <button className='Order-btn' onClick={() => addOneToCart(item._id)}>
+                                        <span className="material-symbols-outlined IconCartAction">add</span>
 
                                     </button>
                                     <button className='Order-btn' onClick={() => removeProductCompletely(item._id)}>
