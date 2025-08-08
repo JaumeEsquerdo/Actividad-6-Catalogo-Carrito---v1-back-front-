@@ -52,7 +52,7 @@ export const CartAside = ({ cart,
                             <li key={item._id} className='Order-li'>
                                 <div className="Order-line">
                                     <p className="Order-name">{item.name}</p>
-                                    <p className="Order-calc">{item.quantity} x {item.precio}€ = {item.quantity * item.precio}€</p>
+                                    <p className="Order-calc">{item.quantity} x {item.precio}€ = <span className="Order-totalCalc">{item.quantity * item.precio}€</span></p>
                                 </div>
                                 <div className="Order-actions">
                                     <button className='Order-btn' onClick={() => removeOneFromCart(item._id)}>

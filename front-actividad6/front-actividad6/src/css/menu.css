@@ -490,12 +490,18 @@
 }
 
 .Order-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--color-secondary);
 }
 
 .Order-calc {
+    font-size: 1rem;
     color: var(--color-secondary-dark);
+}
+
+.Order-totalCalc{
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .Order-ul {
