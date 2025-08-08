@@ -172,7 +172,7 @@ const Menu = () => {
             if (!res.ok) throw new Error('Error al enviar la compra');
 
             const data = await res.json();
-            console.log('Compra registrada:', data);
+            // console.log('Compra registrada:', data);
 
             setShowToast(true);
 
