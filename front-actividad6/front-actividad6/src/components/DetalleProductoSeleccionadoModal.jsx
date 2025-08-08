@@ -34,7 +34,7 @@ export const DetalleproductoSeleccionadoModal = ({ imageUrl, productoSeleccionad
 
             <div className="DetalleProducto-detalles">
                 <h2 className="DetalleProducto-nombre">{productoSeleccionado.name}</h2>
-                <p className="DetallePoducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
+                <p className="DetalleProducto-descripcion">{productoSeleccionado.descripcion || 'Sin descripción'}</p>
                 <p className="DetalleProducto-precio">{productoSeleccionado.precio}€</p>
             </div>
 
