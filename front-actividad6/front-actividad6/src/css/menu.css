@@ -742,4 +742,10 @@
     .material-symbols-outlined {
         font-size: 24px;
     }
+
+    /* para q se vea bien el hover o click en tablet de los icons historial y cerrar sesión */
+    .Tooltip:hover .Tooltip-text {
+    opacity: 1;
+    transform: translateX(-90%) translateY(-10px);
+}
 }
