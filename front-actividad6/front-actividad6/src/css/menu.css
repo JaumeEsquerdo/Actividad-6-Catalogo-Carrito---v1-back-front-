@@ -107,7 +107,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--color-btn-link-bg);
-    pointer-events: none;
+
 }
 
 
@@ -145,7 +145,7 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    pointer-events: none;
+
 }
 
 .DetalleProducto-img {
@@ -197,7 +197,7 @@
     font-family: 'Chewy', cursive;
     margin-bottom: 10px;
     color: var(--color-text-dark);
-    pointer-events: none;
+
 }
 
 .Tooltip {
@@ -216,7 +216,7 @@
     border-radius: 6px;
     font-size: 0.75rem;
     white-space: nowrap;
-    pointer-events: none;
+
     z-index: 10;
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -242,7 +242,7 @@
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: var(--color-text-dark);
-    pointer-events: none;
+
 }
 
 .Menu-filters {
@@ -343,7 +343,7 @@
 .Card-h3 {
     font-family: 'Chewy', cursive;
     font-size: 2rem;
-    pointer-events: none;
+
 }
 
 .GaleriaMenu {
@@ -381,7 +381,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    pointer-events: none;
+
 }
 
 .Card-name {
@@ -397,7 +397,7 @@
 }
 
 .Card-price {
-    pointer-events: none;
+
     font-size: 14px;
     color: var(--color-text-muted);
 }
@@ -433,7 +433,7 @@
     align-items: center;
     gap: 0.5rem;
     color: #222;
-    pointer-events: none;
+
 }
 
 .CartBar-button {
@@ -477,7 +477,7 @@
 .Order-h3 {
     font-size: 1.6rem;
     color: var(--color-secondary);
-    pointer-events: none;
+
 }
 
 .Order-line {
@@ -486,7 +486,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 2px;
-    pointer-events: none;
+
 }
 
 .Order-name {
@@ -540,13 +540,13 @@
     color: var(--color-secondary);
     font-size: 1.4rem;
     font-weight: 600;
-    pointer-events: none;
+
 }
 
 .Cart-p {
     color: var(--color-secondary);
     font-size: 1rem;
-    pointer-events: none;
+
 }
 
 .Button-confirm {
@@ -745,7 +745,7 @@
 
     /* para q se vea bien el hover o click en tablet de los icons historial y cerrar sesión */
     .Tooltip:hover .Tooltip-text {
-    opacity: 1;
-    transform: translateX(-90%) translateY(-10px);
-}
+        opacity: 1;
+        transform: translateX(-90%) translateY(-10px);
+    }
 }
