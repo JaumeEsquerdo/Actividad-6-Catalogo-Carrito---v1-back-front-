@@ -37,9 +37,16 @@
     font-size: 1.6rem;
 }
 
+.Historial-p {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    pointer-events: none;
+}
+
 .Historial-list {
     list-style: none;
     padding: 0;
+    pointer-events: none;
 }
 
 .Historial-subtitulo {
@@ -78,6 +85,17 @@
     color: var(--color-text-light);
     border-radius: 6px;
     cursor: pointer;
+    transition: transform 0.3s ease-out;
+}
+
+.Historial-cerrar:hover {
+    transform: scale(1.05);
+
+}
+
+.Historial-cerrar:active {
+    transform: scale(0.98);
+
 }
 
 .Historial-totalCompra {

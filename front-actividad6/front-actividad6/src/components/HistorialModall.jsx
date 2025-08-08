@@ -42,7 +42,7 @@ export const HistorialModal = ({ isOpen, onClose }) => {
             <div className="Historial-modal" ref={modalRef}>
                 <h2 className='Historial-h2'>Historial de esta sesión</h2>
                 {compras.length === 0 ? (
-                    <p>No hay compras registradas aún.</p>
+                    <p className='Historial-p'>No hay compras registradas aún.</p>
                 ) : (
                     <ul className="Historial-list">
                         <p className="Historial-subtitulo">De más reciente a más antiguo</p>

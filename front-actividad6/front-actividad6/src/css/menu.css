@@ -107,6 +107,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--color-btn-link-bg);
+    pointer-events: none;
 }
 
 
@@ -144,6 +145,7 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    pointer-events: none;
 }
 
 .DetalleProducto-img {
@@ -534,14 +536,14 @@
     margin-top: 20px;
 }
 
-.Cart-h3{
+.Cart-h3 {
     color: var(--color-secondary);
     font-size: 1.4rem;
     font-weight: 600;
     pointer-events: none;
 }
 
-.Cart-p{
+.Cart-p {
     color: var(--color-secondary);
     font-size: 1rem;
     pointer-events: none;
@@ -569,12 +571,19 @@
     background-color: var(--color-bg-light);
     color: var(--color-secondary);
     border: 2px solid var(--color-secondary);
-    transition: background-color 0.3s ease-out;
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .Button-cancel:hover {
     background-color: var(--color-bg);
     color: var(--color-secondary);
+    transform: scale(1.05);
+
+}
+
+.Button-cancel:active {
+    transform: scale(0.98);
+
 }
 
 .CartAside.open {
