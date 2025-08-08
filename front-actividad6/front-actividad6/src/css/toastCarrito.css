@@ -3,7 +3,7 @@
     bottom: 80px;
     left: 50%;
     /* se alinea justo al borde izquierdo del .CartBar */
-    transform: translateX(-8px);
+    transform: translateX(-4px);
     /* y lo separo un poco a la derecha */
     background-color: #222;
     color: white;
@@ -41,5 +41,13 @@
     100% {
         opacity: 0;
         transform: translateY(20px);
+    }
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1460px) {
+    .ToastCarrito{
+        left: 2%;
+        bottom: 70px;
     }
 }
