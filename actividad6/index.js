@@ -94,6 +94,6 @@ app.use("/api/v1", router)
 
 
 //puerto PORT
-app.listen(PORT, () => {
-    console.log(`Servidor funcionando en ${DOMAIN}:${PORT}`)
-})
+// app.listen(PORT, () => {
+//     console.log(`Servidor funcionando en ${DOMAIN}:${PORT}`)
+// })
