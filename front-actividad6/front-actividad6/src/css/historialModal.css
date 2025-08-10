@@ -102,3 +102,11 @@
 .Historial-totalCompra {
     color: var(--color-secondary);
 }
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+
+    .Historial-modal{
+        width: 90%;
+    }
+}

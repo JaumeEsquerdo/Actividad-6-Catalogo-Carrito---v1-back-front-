@@ -499,7 +499,7 @@
     color: var(--color-secondary-dark);
 }
 
-.Order-totalCalc{
+.Order-totalCalc {
     font-size: 1rem;
     font-weight: 600;
 }
@@ -723,6 +723,10 @@
         right: 0;
     }
 
+    .Card-tipo {
+        padding: 36px;
+    }
+
 
 
     .DetalleProducto-img {
@@ -753,5 +757,41 @@
     .Tooltip:hover .Tooltip-text {
         opacity: 1;
         transform: translateX(-90%) translateY(-10px);
+    }
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+    .GaleriaMenu {
+        grid-template-columns: 1fr;
+        /* 1 columna en móvil */
+        gap: 16px;
+    }
+
+    .Menu {
+        padding: 20px 12px;
+        overflow-x: hidden;
+    }
+
+
+    .ModalProducto {
+        padding: 12px;
+    }
+
+    .ModalContent {
+        width: 90%;
+        padding: 1rem;
+        min-height: 200px;
+        align-content: center;
+    }
+
+    .Header-icons {
+        gap: 12px;
+    }
+
+    .Tooltip-text {
+        left: auto;
+        right: -82px;
+        transform: translateY(-5px);
     }
 }
