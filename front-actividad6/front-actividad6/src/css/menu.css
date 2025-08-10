@@ -456,6 +456,11 @@
     transform: scale(0.98);
 }
 
+.CartBar-icon {
+    color: var(--color-text-dark);
+    font-size: 26px;
+}
+
 /* Aside lateral del carrito */
 .CartAside {
     position: fixed;
@@ -671,6 +676,11 @@
     gap: 40px;
 }
 
+/* iconos */
+.material-symbols-outlined {
+    font-size: 26px;
+}
+
 /* pequeña transicion para aparecer */
 @keyframes fadeIn {
     from {
@@ -700,6 +710,7 @@
         width: 100%;
         height: auto;
         padding: 40px 20px;
+        overflow-x: hidden;
     }
 
     .GaleriaMenu {
@@ -731,8 +742,7 @@
 
     .DetalleProducto-img {
         width: 100%;
-        height: auto;
-        max-height: 380px;
+        max-height: 360px;
         max-width: 420px;
         border-radius: 24px;
     }
@@ -770,7 +780,6 @@
 
     .Menu {
         padding: 20px 12px;
-        overflow-x: hidden;
     }
 
 

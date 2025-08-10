@@ -37,12 +37,14 @@
 
 .Toast-icon {
     color: var(--color-success, #118b50);
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
-.Toast-title {
+.Toast-confirm {
     font-size: 1.2rem;
     font-weight: 600;
+    width: auto;
+    color: var(--color-text-dark);
 }
 
 .Toast-text {
@@ -59,5 +61,12 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+    .Toast-card {
+        width: 90%;
     }
 }

@@ -22,10 +22,10 @@ export const Toast = ({ show, onClose, message = 'Compra realizada con éxito', 
         <div className="Toast-overlay">
             <div className="Toast-card">
                 <header className="Toast-header">
+                    <h3 className="Toast-confirm">{message}</h3>
                     <span className="material-symbols-outlined Toast-icon">
                         check_circle
                     </span>
-                    <h3 className="Toast-confirm">{message}</h3>
                 </header>
                 <p className="Toast-text">Tu pedido se ha registrado correctamente.</p>
             </div>
