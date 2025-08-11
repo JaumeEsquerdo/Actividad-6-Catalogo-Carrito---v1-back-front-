@@ -1,0 +1,53 @@
+.ToastCarrito {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    /* se alinea justo al borde izquierdo del .CartBar */
+    transform: translateX(-4px);
+    /* y lo separo un poco a la derecha */
+    background-color: #222;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px 8px 0 0;
+    font-size: 14px;
+    z-index: 1001;
+    opacity: 0.95;
+    animation: toastFade 2.5s ease-in-out;
+    max-width: 300px;
+    
+}
+
+.ToastCarrito-name {
+    color: var(--color-bg);
+    font-weight: 600;
+}
+
+@keyframes toastFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1460px) {
+    .ToastCarrito{
+        left: 2%;
+        bottom: 70px;
+    }
+}

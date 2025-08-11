@@ -1,0 +1,145 @@
+.SeleccionMesa-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+}
+
+/* mayor especificidad para que sobreponga a la clase que tiene compartida en menu.css que es 'Menu-h1', donde tiene el css general */
+.SeleccionMesa-wrapper .Header-title {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    font-size: 6rem;
+    z-index: 6;
+    text-shadow:
+        8px 7px 2px var(--color-text-dark);
+    color: var(--color-bg-light);
+}
+
+.SeleccionMesa {
+    display: flex;
+    min-height: 250px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--color-bg-light);
+    border-radius: var(--radius-large);
+    box-shadow: var(--box-shadow);
+    max-width: 70%;
+    margin: auto;
+    text-align: center;
+    font-family: var(--font-family);
+    z-index: 6;
+
+
+}
+
+.SeleccionMesa-h2 {
+    color: var(--color-text-dark);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+
+}
+
+.SeleccionMesa-ul {
+    gap: 12px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 1fr;
+    grid-auto-columns: minmax(120px, auto);
+}
+
+/* Crea columnas que tengan al menos 120px de ancho y se expandan hasta llenar el espacio, ajustando el número de columnas según el ancho disponible */
+
+.SeleccionMesa-li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.SeleccionMesa-btn {
+    background-color: var(--color-btn-link-bg-hov);
+    color: var(--color-text-light);
+    /* border: 4.4px solid var(--color-btn-link-bg); */
+    padding: 0.75rem 1.2rem;
+    border-radius: var(--radius-medium);
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
+    flex: 1;
+    /* crece dentro del flex padre */
+    max-width: 140px;
+    white-space: normal;
+    /* permite saltos d linea */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.SeleccionMesa-btn:hover {
+    background-color: var(--color-btn-link-bg);
+    transform: scale(1.05);
+}
+
+.SeleccionMesa-btn:active {
+    transform: scale(0.98);
+}
+
+.VideoBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 4;
+}
+
+.VideoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 1460px) {
+    .SeleccionMesa {
+        max-width: 62%;
+    }
+
+    .SeleccionMesa-ul {
+        grid-template-rows: repeat(2, auto);
+        /* dos filas */
+        grid-auto-flow: column;
+        /* coloca los items por columnas.. (arriba-abajo...) */
+        grid-auto-columns: minmax(120px, 1fr);
+        /* ancho d cada columna */
+
+    }
+}
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 768px) {
+    .SeleccionMesa {
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .SeleccionMesa-ul {
+        grid-auto-columns: minmax(110px, 1fr);
+        gap: 10px;
+    }
+
+    .SeleccionMesa-wrapper {
+        gap: 6em;
+    }
+
+    .SeleccionMesa-h2 {
+        font-size: 1.4rem
+    }
+}

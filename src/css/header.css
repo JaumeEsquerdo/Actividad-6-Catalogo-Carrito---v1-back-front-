@@ -1,0 +1,20 @@
+
+.Header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Header-nav,.Header-subNav{
+  padding: 10px;
+  margin: 40px 0;
+}
+
+.Order-p{
+  font-size: 24px;
+  color: var(--color-text-dark);
+}
+/* .active{
+  scale: 1.1;
+} */
