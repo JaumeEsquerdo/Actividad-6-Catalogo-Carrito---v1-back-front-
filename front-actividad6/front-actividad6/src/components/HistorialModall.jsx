@@ -6,6 +6,11 @@ export const HistorialModal = ({ isOpen, onClose }) => {
     const modalRef = useRef(null);
     const [compras, setCompras] = useState([]);
 
+    const API_URL = import.meta.env.VITE_API_URL
+    const API_ROUTER = import.meta.env.VITE_API_ROUTER
+    const API_COMPRAS = import.meta.env.VITE_COMPRAS
+    const API_SESION = import.meta.env.VITE_SESION
+
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (modalRef.current && !modalRef.current.contains(e.target)) { /* modal.current asegura q el modal esté montado, y la otra parte es la confirmación de q el click lo han hecho fuera del modal q tiene la ref */
@@ -26,7 +31,7 @@ export const HistorialModal = ({ isOpen, onClose }) => {
     const fetchHistorial = async () => {
         try {
             const sesionId = localStorage.getItem('sesionId');
-            const res = await fetch(`http://localhost:3000/api/v1/compras/sesion/${sesionId}`);
+            const res = await fetch(`${API_URL}${API_ROUTER}${API_COMPRAS}${API_SESION}/${sesionId}`);
             const data = await res.json();
             if (data.status === 'ok') setCompras(data.data);
         } catch (err) {

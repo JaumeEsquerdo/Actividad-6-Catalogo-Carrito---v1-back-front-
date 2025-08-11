@@ -31,9 +31,13 @@ const Menu = () => {
     const [modalAbierto, setModalAbierto] = useState(false); // para que se rendereice o no la pregunta de cerrar sesion de la mesa (modal)
     const [modalHistorialAbierto, setModalHistorialAbierto] = useState(false); // modal de historial
 
-
-
-    const backendURL = "http://localhost:3000"; // o la URL de producción
+    const API_URL = import.meta.env.VITE_API_URL
+    const API_ROUTER = import.meta.env.VITE_API_ROUTER
+    const API_MESAS = import.meta.env.VITE_MESAS
+    const API_PRODUCTOS = import.meta.env.VITE_PRODUCTOS
+    const API_COMPRAS = import.meta.env.VITE_COMPRAS
+    
+    const backendURL = "https://sushiro-restaurante-carrito-de-comp.vercel.app"; // o http://localhost:3000
     const { openCart, selectProduct,
         clearSelectedProduct, productoSeleccionado, setProductoSeleccionado } = useUI();
 
@@ -65,7 +69,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchMesa = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/v1/mesas/${mesaId}`)
+                const res = await fetch(`${API_URL}${API_ROUTER}${API_MESAS}${mesaId}`)
                 const responseAPI = await res.json()
                 console.log(responseAPI)
                 setMesa(responseAPI.data)
@@ -83,7 +87,7 @@ const Menu = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/v1/productos')
+                const response = await fetch(`${API_URL}${API_ROUTER}${API_PRODUCTOS}`)
                 const responseAPI = await response.json()
                 setProducts(responseAPI.data)
                 console.log('productos', responseAPI.data)
@@ -172,7 +176,7 @@ const Menu = () => {
         const sesionId = localStorage.getItem('sesionId');
 
         try {
-            const res = await fetch('http://localhost:3000/api/v1/compras', {
+            const res = await fetch(`${API_URL}${API_ROUTER}${API_COMPRAS}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

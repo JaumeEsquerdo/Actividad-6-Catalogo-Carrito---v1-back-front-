@@ -70,6 +70,7 @@
     cursor: pointer;
     display: inline-block;
     flex: 1;
+    /* crece dentro del flex padre */
     max-width: 140px;
     white-space: normal;
     /* permite saltos d linea */

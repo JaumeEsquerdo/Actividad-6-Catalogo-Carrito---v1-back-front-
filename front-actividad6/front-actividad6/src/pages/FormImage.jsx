@@ -5,6 +5,10 @@ const FormImage = () => {
     const [mensaje, setMensaje] = useState('');   // mensaje de éxito o error
     const [url, setUrl] = useState('');           // URL de la imagen subida (para mostrarla luego)
 
+    const API_URL = import.meta.env.VITE_API_URL
+    const API_ROUTER = import.meta.env.VITE_API_ROUTER
+    const API_PRODUCTO_UPLOAD = import.meta.env.VITE_PRODUCTO_UPLOAD
+
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevenimos el comportamiento por defecto del formulario (evita recarga)
 
@@ -26,7 +30,7 @@ const FormImage = () => {
         try {
             // Enviamos el FormData al backend con fetch
             // La propiedad 'body' recibe el FormData que incluye el archivo
-            const res = await fetch('http://localhost:3000/api/v1/producto/upload', {
+            const res = await fetch(`${API_URL}${API_ROUTER}${API_PRODUCTO_UPLOAD}`, {
                 method: 'POST',
                 body: formData, // aquí va todo el formulario, incluida la imagen
             });

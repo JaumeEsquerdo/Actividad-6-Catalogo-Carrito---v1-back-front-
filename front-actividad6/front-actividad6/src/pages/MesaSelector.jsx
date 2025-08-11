@@ -7,6 +7,10 @@ const MesaSelector = () => {
     const [mesas, setMesas] = useState([])
     const navigate = useNavigate()
 
+    const API_URL = import.meta.env.VITE_API_URL
+    const API_ROUTER = import.meta.env.VITE_API_ROUTER
+    const API_MESAS = import.meta.env.VITE_MESAS
+
     /* OPCIONAL: INTRODUCIR UN LOCALSTORAGE PARA Q SE VEA UNA VEZ LA ANIMACION DE ENTRADA EN EL SELECCTOR DE MESA... y poner un operador ternario en la animacion de motion.div preguntando si lo tiene puesto */
     // const [hasAnimated, setHasAnimated] = useState(false); // para hacer la animacion una vez solo
 
@@ -25,7 +29,7 @@ const MesaSelector = () => {
     useEffect(() => {
         const fetchMesas = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/v1/mesas')
+                const response = await fetch(`${API_URL}${API_ROUTER}${API_MESAS}`)
                 const responseAPI = await response.json()
 
                 console.log('Mesas desde API:', responseAPI.data)
