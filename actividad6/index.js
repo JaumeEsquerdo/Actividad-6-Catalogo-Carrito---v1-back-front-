@@ -2,13 +2,13 @@ import express from 'express';
 import path from 'path'
 
 
-import {PORT, DOMAIN} from './config/config.js' //config
+import { PORT, DOMAIN } from './config/config.js' //config
 
 
-import {conectarDB} from './db/mongoose.js'
+import { conectarDB } from './db/mongoose.js'
 
 // importar middleware de multer
-import {uploadImg} from './middleware/upload.middleware.js'
+import { uploadImg } from './middleware/upload.middleware.js'
 
 
 
@@ -18,14 +18,14 @@ import router from './routes/index.routes.js';
 //multer
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000"
 
-const app= express();
+const app = express();
 
 
 //llamar a la función fuera
 
 app.use(cors()); //conectar desde cualquier conexión
 app.use(express.json()) //leer datos que vienen en el body de mi request
-app.use(express.urlencoded({extended:true})) // nos permite leer datos desde formularios HTML
+app.use(express.urlencoded({ extended: true })) // nos permite leer datos desde formularios HTML
 app.use('/uploads', express.static(path.join(process.cwd(), 'public/uploads'))) // Permite que Express sirva las imágenes almacenadas en 'public/uploads' para que, al usar las URLs guardadas en la base de datos (ej. http://localhost:3000/uploads/nombre-archivo.png), el frontend pueda mostrarlas correctamente.
 
 
@@ -35,7 +35,7 @@ conectarDB();
 //RUTAS FRONT
 //limpiar la terminal cada vez que reinicio proyecto
 console.clear();
-app.get("/", (req,res)=>{
+app.get("/", (req, res) => {
     // res.send("Bienvenidos a nuestra API con express y mongo")
     const landingHtml = `
     <h2>Hola </h2>
@@ -48,7 +48,7 @@ app.get("/", (req,res)=>{
     </form>
     `;
     res.send(landingHtml)
-    
+
 })
 
 
@@ -93,7 +93,7 @@ router.post("/producto/upload", uploadImg.single('imgprod'), (req, res, next) =>
 app.use("/api/v1", router)
 
 
-//puerto PORT
-// app.listen(PORT, () => {
-//     console.log(`Servidor funcionando en ${DOMAIN}:${PORT}`)
-// })
+//puerto PORT... comentado para q funcione en desarrollo vercel
+app.listen(PORT, () => {
+    //     //  console.log(`Servidor funcionando en ${DOMAIN}:${PORT}`)
+})

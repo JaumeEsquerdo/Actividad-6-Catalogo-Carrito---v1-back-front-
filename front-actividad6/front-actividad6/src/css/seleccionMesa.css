@@ -61,7 +61,6 @@
 }
 
 .SeleccionMesa-btn {
-
     background-color: var(--color-btn-link-bg-hov);
     color: var(--color-text-light);
     /* border: 4.4px solid var(--color-btn-link-bg); */
@@ -69,8 +68,11 @@
     border-radius: var(--radius-medium);
     font-size: 1rem;
     cursor: pointer;
-    width: fit-content;
-    max-width: 100%;
+    display: inline-block;
+    flex: 1;
+    max-width: 140px;
+    white-space: normal;
+    /* permite saltos d linea */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
